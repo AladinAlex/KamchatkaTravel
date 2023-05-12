@@ -1,0 +1,250 @@
+﻿@using KamchatkaTravel.Application.Contracts.DTOs;
+@using KamchatkaTravel.Domain.Shared.Extensions;
+@model TourViewDto;
+
+@{
+    ViewData["Title"] = Model.Tour.Name;
+}
+
+<main class="page">
+    <div class="tour-page">
+
+        @*начальный экран тура*@
+        <section class="presentation" data-presentation="main">
+            <div class="presentation__block-bg" data-presentation="block-parallax">
+                <img src="data:image; base64, @Convert.ToBase64String(Model.Tour.LogoImage)" class="presentation__bg" data-depth="0.2" alt="">
+            </div>
+            <div class="main-container max-width">
+                <div class="presentation__wrap-content">
+                    <div class="presentation__block-info">
+                        <h1 class="title title--h1 title-reset">@Model.Tour.Name</h1>
+                        <span class="presentation__desc">@Model.Tour.Tagline</span>
+                        <button type="button" class="btn btn--size--bg btn--theme--secondary presentation__btn" data-smooth-scrolling="#feedback-form">
+                            <span class="btn__text">Хочу поехать</span>
+                        </button>
+                    </div>
+                    <div class="presentation__wrap-conditions">
+                        <div class="presentation__block-conditions">
+                            <img src="/images/day-night.png" class="presentation__icon-conditions" alt="">
+                            <span class="presentation__text-conditions">@Model.Tour.Days.Count.AddWordDay() | @Model.Tour.NightType.GetDescription()</span>
+                        </div>
+                        <div class="presentation__block-conditions">
+                            <img src="/images/ruble.png" class="presentation__icon-conditions" alt="">
+                            <span class="presentation__text-conditions">@Model.Tour.Price.ToNiceStringFormat() ₽ | чел</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @*описание тура*@
+        <section class="tour-desc section">
+            <div class="main-container max-width">
+                <h2 class="title title--h2 title-reset">Описание тура</h2>
+                <div class="tour-desc__wrap-content">
+                    <div class="tour-desc__block-image">
+                        <img src="data:image; base64, @Convert.ToBase64String(Model.Tour.DescriptionImage)" class="tour-desc__image" alt="">
+                    </div>
+                    <div class="tour-desc__block-text text">
+                        @Model.Tour.Description
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @*что увидим*@
+        <section class="sights section section--theme--primary">
+            <div class="main-container max-width">
+                <h2 class="title title--h2 title-reset">Что увидим?</h2>
+                <div class="sights__wrap-cards">
+                    @{
+                        foreach (var view in Model.Tour.Views)
+                        {
+                            <div class="sight-card">
+                                <div class="sight-card__block-image">
+                                    <img src="data:image; base64, @Convert.ToBase64String(view.Image)" class="sight-card__image" alt="">
+                                </div>
+                                <div class="sight-card__block-info">
+                                    <span class="sight-card__title">@view.Name</span>
+                                    <span class="sight-card__subtitle">@view.Description</span>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+
+        @*блок с картинками*@
+        <section class="pictures" data-modal-picture="main">
+            @{
+                //foreach (var link in Model.PicturesLink)
+                //{
+                //    <a href="/images/MainPicturesSeparate/@link"
+                //       data-img="/images/MainPicturesSeparate/@link"
+                //       data-thumb="/images/MainPicturesSeparate/@link"
+                //       data-alt="Example"
+                //       data-height="2500"
+                //       data-width="1667"
+                //       data-modal-picture="link"
+                //       class="pictures__link">
+                //        <img src="/images/MainPicturesSeparate/@link" class="pictures__image" alt="">
+                //    </a>
+                //}
+                foreach (var img in Model.Tour.Images)
+                {
+                    <a src="@Convert.ToBase64String(img.Img)"
+                   data-img="data:image; base64 @Convert.ToBase64String(img.Img)"
+                   data-thumb="data:image; base64, @Convert.ToBase64String(img.Img)"
+                   data-alt="example"
+                   data-height="2500"
+                   data-width="1667"
+                   data-modal-picture="link"
+                   class="pictures__link">
+                        <img src="data:image; base64, @Convert.ToBase64String(img.Img)" class="pictures__image" alt="">
+                    </a>
+                }
+
+            }
+        </section>
+
+        @*программа тура - дни*@
+        <section class="program section" data-program="main">
+            <div class="main-container max-width">
+
+                @*Заголовок и стрелочки слайдера*@
+                <div class="section__head">
+                    <h2 class="title title--h2 title-reset">Наша программа</h2>
+                    <div class="box-arrows">
+                        <button type="button" class="arrow" data-program="btn-prev">
+                            <svg class="arrow__icon">
+                                <use xlink:href="/icons/sprite-svg.svg#arrow-left" />
+                            </svg>
+                        </button>
+                        <button type="button" class="arrow" data-program="btn-next">
+                            <svg class="arrow__icon">
+                                <use xlink:href="/icons/sprite-svg.svg#arrow-right" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                @*слайдер о днями*@
+                <div class="swiper program__slider" data-program="slider">
+                    <div class="swiper-wrapper">
+                        @{
+                            foreach (var day in Model.Tour.Days)
+                            {
+                                <div class="swiper-slide">
+                                    <div class="program__card">
+                                        <span class="program__card-title">День @day.Number: @day.Name</span>
+                                        <div class="program__card-wrap-info">
+                                            <div class="program__card-block-image">
+                                                <img src="data:image; base64, @Convert.ToBase64String(day.Image)" class="program__card-image" alt="">
+                                            </div>
+                                            <div class="program__card-block-text text">
+                                                @day.Description
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @*блок что включено/не включено*@
+        <section class="price section">
+            <div class="price__wrap-image">
+                <img src="data:image; base64, @Convert.ToBase64String(Model.Tour.LogoImage)" class="price__image" data-scroll-parallax alt="">
+            </div>
+            <div class="main-container max-width">
+                <div class="price__wrap-info">
+                    <h2 class="title title--h2 title-reset">Стоимость @Model.Tour.Price.ToNiceStringFormat() ₽/чел</h2>
+                    <div class="price__wrap-blocks">
+                        <div class="price__block-info">
+                            <span class="price__block-title">Входит в стоимость:</span>
+                            <ul class="price__list">
+                                @{
+                                    foreach (var incld in Model.Tour.Includes.Where(i => i.isInclude))
+                                    {
+                                        <li class="price__li">@incld.Text</li>
+                                    }
+
+                                }
+                            </ul>
+                        </div>
+                        <div class="price__block-info">
+                            <span class="price__block-title">Не входит в стоимость:</span>
+                            <ul class="price__list">
+                                @{
+                                    foreach (var incld in Model.Tour.Includes.Where(i => !i.isInclude))
+                                    {
+                                        <li class="price__li">@incld.Text</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="@Model.Tour.LinkEquipment" type="download" class="price__link link-reset">Скачать список снаряжения</a>
+                </div>
+            </div>
+        </section>
+
+        @*частые вопросы и туре*@
+        <section class="faq section" data-faq="main">
+            <div class="main-container max-width">
+                <h2 class="title title--h2 title-reset">Частые вопросы о туре</h2>
+                <div class="faq__wrap-cards">
+                    @{
+                        foreach (var qn in Model.Tour.Questions)
+                        {
+                            <div class="faq__block" data-faq="block">
+                                <div class="faq__block-head" data-faq="head">
+                                    <span class="faq__block-title">@qn.Name</span>
+                                    <img src="/images/plus.svg" class="faq__block-icon" alt="">
+                                </div>
+                                <div class="faq__block-body text" data-faq="body">
+                                    @qn.Answer
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+
+        @*форма обратной связи*@
+        <section class="feedback-form section" data-smooth-scrolling="feedback-form">
+            <div class="main-container max-width">
+                <div class="feedback-form__head">
+                    <h2 class="title title--h2 title-reset">Оставьте контакты и мы свяжемся с вами</h2>
+                    <span class="feedback-form__subtitle">@Model.Tour.Name @Model.Tour.Price.ToNiceStringFormat() ₽</span>
+                </div>
+                <form class="form" method="post" id="#feedbackForm">
+                    <div class="input">
+                        <input type="text" class="input__field" placeholder="Ваше имя *" name="firstname" required>
+                    </div>
+                    <div class="input">
+                        <input type="email" class="input__field" placeholder="Ваш email *" name="email" required>
+                    </div>
+                    <div class="input">
+                        <input type="phone" class="input__field" placeholder="Ваш телефон *" name="phone" data-phone-mask required>
+                    </div>
+                    <button id="#feedbackButton" type="submit" class="btn btn--size--bg btn--theme--secondary">
+                        <span class="btn__text">Отправить</span>
+                    </button>
+                    <span class="form__privacy-policy">Нажимая кнопку, вы соглашаетесь с <a href="/privacy-policy.html" class="link-reset">Политикой конфиденциальности</a></span>
+                </form>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<script>
+    var window.tourId = @Model.Tour.Id;
+</script>

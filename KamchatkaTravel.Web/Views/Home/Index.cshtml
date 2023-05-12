@@ -1,0 +1,264 @@
+﻿@using KamchatkaTravel.Application.Contracts.DTOs;
+@using KamchatkaTravel.Domain.Shared.Extensions;
+@model IndexDto;
+
+@{
+    ViewData["Title"] = "Land in the Ocean - Туры по Камчатке";
+}
+
+<main class="page">
+    <div class="main-page">
+
+        @*текст на фоне изображения гор - главная страница*@
+        <section class="presentation" data-presentation="main">
+            <div class="presentation__block-bg" data-presentation="block-parallax">
+                <img src="images/kamchatka-1.jpg" class="presentation__bg" data-depth="0.2" alt="">
+            </div>
+            <div class="main-container max-width">
+                <div class="presentation__wrap-content">
+                    <div class="presentation__block-info">
+                        <h1 class="title title--h1 title-reset">Камчатка</h1>
+                        <span class="presentation__desc">Чтобы выбрать лучшее приключение, поговорите с нашим гидом</span>
+                        <button type="button" class="btn btn--size--bg btn--theme--secondary presentation__btn" data-smooth-scrolling="#feedback-form">
+                            <span class="btn__text">Поговорить с гидом</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @*список туров*@
+        <section class="tours section" data-smooth-scrolling="tours">
+            <div class="main-container max-width">
+
+                @*тут заголовок и фильтр*@
+                <div class="section__head">
+
+                    <h2 class="title title--h2 title-reset">Туры</h2>
+
+                    @*                    <div class="block-sorting">
+                    <div class="sorting" data-sorting="main">
+                    <div class="sorting__block-head" data-sorting="block-head">
+                    <span class="sorting__title-head">Вид тура - однодневный</span>
+                    </div>
+                    <div class="sorting__block-body">
+                    <div class="radio">
+                    <label data-role="" class="radio__label">
+                    <input type="radio" class="radio__input" name="view-sorting" value="" checked>
+                    <span class="radio__text">Однодневный</span>
+                    <span class="radio__decore"></span>
+                    </label>
+                    </div>
+                    <div class="radio">
+                    <label data-role="" class="radio__label">
+                    <input type="radio" class="radio__input" name="view-sorting" value="">
+                    <span class="radio__text">Многодневный</span>
+                    <span class="radio__decore"></span>
+                    </label>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="sorting" data-sorting="main">
+                    <div class="sorting__block-head" data-sorting="block-head">
+                    <span class="sorting__title-head">Cезон - Зима</span>
+                    </div>
+                    <div class="sorting__block-body">
+                    <div class="radio">
+                    <label data-role="" class="radio__label">
+                    <input type="radio" class="radio__input" name="season-sorting" value="" checked>
+                    <span class="radio__text">Зима</span>
+                    <span class="radio__decore"></span>
+                    </label>
+                    </div>
+                    <div class="radio">
+                    <label data-role="" class="radio__label">
+                    <input type="radio" class="radio__input" name="season-sorting" value="">
+                    <span class="radio__text">Весна</span>
+                    <span class="radio__decore"></span>
+                    </label>
+                    </div>
+                    <div class="radio">
+                    <label data-role="" class="radio__label">
+                    <input type="radio" class="radio__input" name="season-sorting" value="">
+                    <span class="radio__text">Лето</span>
+                    <span class="radio__decore"></span>
+                    </label>
+                    </div>
+                    <div class="radio">
+                    <label data-role="" class="radio__label">
+                    <input type="radio" class="radio__input" name="season-sorting" value="">
+                    <span class="radio__text">Осень</span>
+                    <span class="radio__decore"></span>
+                    </label>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="sorting" data-sorting="main">
+                    <div class="sorting__block-head" data-sorting="block-head">
+                    <span class="sorting__title-head">По цене - возрастание</span>
+                    </div>
+                    <div class="sorting__block-body">
+                    <div class="radio">
+                    <label data-role="" class="radio__label">
+                    <input type="radio" class="radio__input" name="price-sorting" value="" checked>
+                    <span class="radio__text">Возрастание</span>
+                    <span class="radio__decore"></span>
+                    </label>
+                    </div>
+                    <div class="radio">
+                    <label data-role="" class="radio__label">
+                    <input type="radio" class="radio__input" name="price-sorting" value="">
+                    <span class="radio__text">Убывание</span>
+                    <span class="radio__decore"></span>
+                    </label>
+                    </div>
+                    </div>
+                    </div>
+                    </div>*@
+                </div>
+
+                @*тут сами карточки туров*@
+                <div class="tours__wrap-cards">
+                    @{
+                        foreach (var tour in Model.Tours)
+                        {
+                            <a class="tour-card" asp-controller="Tour" asp-action="Tour" asp-route-tourId="@tour.Id">
+                                <div class="tour-card__block-image">
+                                    <img src="data:image; base64, @(Convert.ToBase64String(tour.LogoImage))" class="tour-card__image" alt="">
+                                </div>
+                                <div class="tour-card__wrap-info">
+                                    <span class="tour-card__title">@tour.Name.</span>
+                                    <span class="tour-card__desc">@tour.dayCount.AddWordDay() | @tour.NightType.GetDescription() </span>
+                                    <div class="tour-card__block-price">
+                                        <span class="tour-card__price">@tour.Price.ToNiceStringFormat() р</span>
+                                        <button type="button" class="btn btn--size--md btn--theme--tertiary">
+                                            <span class="btn__text">Хочу поехать</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+
+        @*блок с картинками*@
+        <section class="pictures" data-modal-picture="main">
+            @{
+                foreach (var link in Model.PicturesLink)
+                {
+                    <a href="/images/MainPicturesSeparate/@link"
+                   data-img="/images/MainPicturesSeparate/@link"
+                   data-thumb="/images/MainPicturesSeparate/@link"
+                   data-alt="Example"
+                   data-height="2500"
+                   data-width="1667"
+                   data-modal-picture="link"
+                   class="pictures__link">
+                        <img src="/images/MainPicturesSeparate/@link" class="pictures__image" alt="">
+                    </a>
+                }
+
+            }
+        </section>
+
+        @*блок частые вопросы*@
+        <section class="faq section" data-faq="main">
+            <div class="main-container max-width">
+                <h2 class="title title--h2 title-reset">Частые вопросы о компании</h2>
+                <div class="faq__wrap-cards">
+                    @{
+                        foreach (var q in Model.Questions)
+                        {
+                            <div class="faq__block" data-faq="block">
+                                <div class="faq__block-head" data-faq="head">
+                                    <span class="faq__block-title">@q.Name</span>
+                                    <img src="~/images/plus.svg" class="faq__block-icon" alt="">
+                                </div>
+                                <div class="faq__block-body text" data-faq="body">
+                                    <p>
+                                        @q.Answer
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+
+        @*блок отзывы*@
+        <section class="reviews section" data-reviews="main" data-smooth-scrolling="reviews">
+            <div class="main-container max-width">
+
+                @*Тут заголовок и переключатель слайдов*@
+                <div class="section__head">
+                    <h2 class="title title--h2 title-reset">Отзывы путешественников</h2>
+                    <div class="box-arrows">
+                        <button type="button" class="arrow" data-reviews="btn-prev">
+                            <svg class="arrow__icon">
+                                <use xlink:href="/icons/sprite-svg.svg#arrow-left" />
+                            </svg>
+                        </button>
+                        <button type="button" class="arrow" data-reviews="btn-next">
+                            <svg class="arrow__icon">
+                                <use xlink:href="/icons/sprite-svg.svg#arrow-right" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                @*Тут сами отзывы*@
+                <div class="swiper program__slider" data-reviews="slider">
+                    <div class="swiper-wrapper">
+                        @{
+                            foreach (var rv in Model.Reviews)
+                            {
+                                <div class="swiper-slide">
+                                    <div class="review-card">
+                                        <div class="review-card__block-image">
+                                            <img src="data:image; base64, @(Convert.ToBase64String(rv.LogoImage))" class="review-card__image" alt="">
+                                        </div>
+                                        <span class="review-card__name">@rv.FirstName @rv.LastName.FirstChar().</span>
+                                        <span class="review-card__date">@rv.Date.Date г.</span>
+                                        <div class="review-card__text">
+                                            <p>
+                                                @rv.Text
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @*форма обратной связи*@
+        <section class="feedback-form section" data-smooth-scrolling="feedback-form">
+            <div class="main-container max-width">
+                <div class="feedback-form__head">
+                    <h2 class="title title--h2 title-reset">Оставьте контакты и мы свяжемся с вами</h2>
+                </div>
+                <form class="form" method="post" id="#feedbackForm">
+                    <div class="input">
+                        <input type="text" class="input__field" placeholder="Ваше имя *" name="firstname" required>
+                    </div>
+                    <div class="input">
+                        <input type="email" class="input__field" placeholder="Ваш email *" name="email" required>
+                    </div>
+                    <div class="input">
+                        <input type="phone" class="input__field" placeholder="Ваш телефон *" name="phone" data-phone-mask required>
+                    </div>
+                    <button id="#feedbackButton" type="submit" class="btn btn--size--bg btn--theme--secondary">
+                        <span class="btn__text">Отправить</span>
+                    </button>
+                    <span class="form__privacy-policy">Нажимая кнопку, вы соглашаетесь с <a asp-controller="Home" asp-action="Privacy" class="link-reset">Политикой конфиденциальности</a></span>
+                </form>
+            </div>
+        </section>
+
+    </div>
+</main>

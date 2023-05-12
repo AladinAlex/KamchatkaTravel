@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.Domain", "KamchatkaTravel.Domain\KamchatkaTravel.Domain.csproj", "{AF7640FB-F8C0-4C77-A3FC-11D9135D8322}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.Domain.Shared", "KamchatkaTravel.Domain.Shared\KamchatkaTravel.Domain.Shared.csproj", "{2CA3823B-80E6-4AFB-B6B1-C6949429A008}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.Application", "KamchatkaTravel.Application\KamchatkaTravel.Application.csproj", "{40BA0E55-3F8D-48EA-BFEF-7886B8DC16B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.Application.Contracts", "KamchatkaTravel.Application.Contracts\KamchatkaTravel.Application.Contracts.csproj", "{0A50FC23-38B0-48AD-979E-656E915B5CA0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.EntityFrameworkCore", "KamchatkaTravel.EntityFrameworkCore\KamchatkaTravel.EntityFrameworkCore.csproj", "{5460627E-CC26-41A6-871D-551188A839DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KamchatkaTravel.Web", "KamchatkaTravel.Web\KamchatkaTravel.Web.csproj", "{FB076ECE-C98B-481C-86EF-F6999BC681AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF7640FB-F8C0-4C77-A3FC-11D9135D8322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF7640FB-F8C0-4C77-A3FC-11D9135D8322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF7640FB-F8C0-4C77-A3FC-11D9135D8322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF7640FB-F8C0-4C77-A3FC-11D9135D8322}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CA3823B-80E6-4AFB-B6B1-C6949429A008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CA3823B-80E6-4AFB-B6B1-C6949429A008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CA3823B-80E6-4AFB-B6B1-C6949429A008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CA3823B-80E6-4AFB-B6B1-C6949429A008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40BA0E55-3F8D-48EA-BFEF-7886B8DC16B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40BA0E55-3F8D-48EA-BFEF-7886B8DC16B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40BA0E55-3F8D-48EA-BFEF-7886B8DC16B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40BA0E55-3F8D-48EA-BFEF-7886B8DC16B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A50FC23-38B0-48AD-979E-656E915B5CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A50FC23-38B0-48AD-979E-656E915B5CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A50FC23-38B0-48AD-979E-656E915B5CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A50FC23-38B0-48AD-979E-656E915B5CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5460627E-CC26-41A6-871D-551188A839DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5460627E-CC26-41A6-871D-551188A839DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5460627E-CC26-41A6-871D-551188A839DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5460627E-CC26-41A6-871D-551188A839DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB076ECE-C98B-481C-86EF-F6999BC681AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB076ECE-C98B-481C-86EF-F6999BC681AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB076ECE-C98B-481C-86EF-F6999BC681AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB076ECE-C98B-481C-86EF-F6999BC681AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A9AB8DB-F148-4C65-BC5D-20AA639687FB}
+	EndGlobalSection
+EndGlobal
