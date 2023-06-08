@@ -5,6 +5,7 @@ if (form != null) {
 document.querySelector('[name="tours"]').addEventListener('click', (event) => { event.preventDefault(); mainTransit('tours'); });
 document.querySelector('[name="about"]').addEventListener('click', (event) => { event.preventDefault(); mainTransit('about'); });
 document.querySelector('[name="reviews"]').addEventListener('click', (event) => { event.preventDefault(); mainTransit('reviews'); });
+document.querySelector('[name="faq"]').addEventListener('click', (event) => { event.preventDefault(); mainTransit('faq'); });
 scrollToBlock();
 
 async function sendFeedback() {
@@ -73,6 +74,8 @@ function mainTransit(idSection) {
     if (window.location.pathname != "/") {
         window.location.href = "/#" + idSection;
     }
+    console.log(window.location.pathname);
+    console.log(window.location.href);
 }
 
 function scrollToBlock() {
@@ -83,6 +86,8 @@ function scrollToBlock() {
             behavior: 'smooth',
             block: 'start'
         });
+
+        console.log(`[data-smooth-scrolling="${hash.substr(1)}"]`);
     }
 }
 
