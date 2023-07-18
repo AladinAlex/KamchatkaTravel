@@ -1,8 +1,164 @@
-﻿@{
+﻿@model KamchatkaTravel.Application.Contracts.DTOs.DataDTOs.CreateTourDto;
+
+@{
     ViewData["Title"] = "Home Page";
+    
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Добавление данных</h1>
+
+
+@*форма обратной связи*@
+<section class="add_tour section">
+    <h2>Туры</h2>
+    <div>
+        <form enctype="multipart/form-data" asp-controller="Tour" asp-action="CreateTour">
+            <div>
+                <input type="text" placeholder="Название тура" name="Name" required>
+                <span asp-validation-for="Name"></span>
+            </div>
+
+            <div>
+                <input type="text" placeholder="Слоган" name="Tagline" required>
+                <span asp-validation-for="Tagline"></span>
+            </div>
+
+            <div>
+                <input asp-for="Logos" type="file" placeholder="Лого" name="Logos">
+                <span asp-validation-for="Logos"></span>
+            </div>
+
+            <div>
+                <select name="SeasonType" placeholder="Время года" required>
+                    <option value="0">Все</option>
+                    <option value="1">Лето</option>
+                    <option value="2">Осень</option>
+                    <option value="3">Зима</option>
+                    <option value="4">Весна</option>
+                </select>
+                <span asp-validation-for="SeasonType"></span>
+            </div>
+
+            <div>
+                <select name="NightType" placeholder="Тип ночевки" required>
+                    <option value="0"></option>
+                    <option value="1">в палатках и квартире</option>
+                    <option value="2">в палатках и отеле</option>
+                    <option value="3">в глэмпинге и отеле</option>
+                    <option value="4">без ночевки</option>
+                </select>
+                <span asp-validation-for="NightType"></span>
+            </div>
+
+            <div>
+                <input type="text" placeholder="Цена" name="Price" required>
+                <span asp-validation-for="Price"></span>
+            </div>
+
+            <div>
+                @*<textarea type="text" placeholder="Описание" name="Description" required> *@
+                <textarea type="text" placeholder="Описание" name="Description"  required></textarea>
+                <span asp-validation-for="Description"></span>
+            </div>
+
+            <div>
+                <input asp-for="DescriptionImages" type="file" placeholder="Картинка для описания" name="DescriptionImages">
+                <span asp-validation-for="DescriptionImages"></span>
+            </div>
+
+            <div>
+                <input type="text" placeholder="Ссылка на обмундирование" name="LinkEquipment" required>
+                <span asp-validation-for="LinkEquipment"></span>
+            </div>
+
+
+
+            <button type="submit">
+                <span>Отправить</span>
+            </button>
+        </form>
+    </div>
+</section>
+
+<section class ="add_day section">
+    <h2>Дни</h2>
+    @*Тут выбор тура*@
+    <div>
+        <select name="SeasonType" placeholder="Время года" required>
+            <option value="0">Все</option>
+            <option value="1">Лето</option>
+            <option value="2">Осень</option>
+            <option value="3">Зима</option>
+            <option value="4">Весна</option>
+        </select>
+        <span asp-validation-for="SeasonType"></span>
+    </div>
+
+    <div>
+        <form enctype="multipart/form-data" asp-controller="Tour" asp-action="CreateTour">
+            <div>
+                <input type="text" placeholder="Название тура" name="Name" required>
+                <span asp-validation-for="Name"></span>
+            </div>
+
+            <div>
+                <input type="text" placeholder="Слоган" name="Tagline" required>
+                <span asp-validation-for="Tagline"></span>
+            </div>
+
+            <div>
+                <input asp-for="Logos" type="file" placeholder="Лого" name="Logos">
+                <span asp-validation-for="Logos"></span>
+            </div>
+
+            <div>
+                <select name="SeasonType" placeholder="Время года" required>
+                    <option value="0">Все</option>
+                    <option value="1">Лето</option>
+                    <option value="2">Осень</option>
+                    <option value="3">Зима</option>
+                    <option value="4">Весна</option>
+                </select>
+                <span asp-validation-for="SeasonType"></span>
+            </div>
+
+            <div>
+                <select name="NightType" placeholder="Тип ночевки" required>
+                    <option value="0"></option>
+                    <option value="1">в палатках и квартире</option>
+                    <option value="2">в палатках и отеле</option>
+                    <option value="3">в глэмпинге и отеле</option>
+                    <option value="4">без ночевки</option>
+                </select>
+                <span asp-validation-for="NightType"></span>
+            </div>
+
+            <div>
+                <input type="text" placeholder="Цена" name="Price" required>
+                <span asp-validation-for="Price"></span>
+            </div>
+
+            <div>
+                @*<textarea type="text" placeholder="Описание" name="Description" required> *@
+                <textarea type="text" placeholder="Описание" name="Description" required></textarea>
+                <span asp-validation-for="Description"></span>
+            </div>
+
+            <div>
+                <input asp-for="DescriptionImages" type="file" placeholder="Картинка для описания" name="DescriptionImages">
+                <span asp-validation-for="DescriptionImages"></span>
+            </div>
+
+            <div>
+                <input type="text" placeholder="Ссылка на обмундирование" name="LinkEquipment" required>
+                <span asp-validation-for="LinkEquipment"></span>
+            </div>
+
+
+
+            <button type="submit">
+                <span>Отправить</span>
+            </button>
+        </form>
+    </div>
+</section>

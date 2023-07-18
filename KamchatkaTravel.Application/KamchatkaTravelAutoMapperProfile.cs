@@ -3,7 +3,7 @@ using KamchatkaTravel.Application.Contracts.DTOs.TourDTOs;
 using KamchatkaTravel.Application.Contracts.DTOs.ReviewDTOs;
 using KamchatkaTravel.Domain.Tours;
 using KamchatkaTravel.Domain.Reviews;
-using KamchatkaTravel.Application.Contracts.DTOs.AdminDto;
+using KamchatkaTravel.Application.Contracts.DTOs.DataDTOs;
 
 namespace KamchatkaTravel.Application
 {
@@ -26,6 +26,14 @@ namespace KamchatkaTravel.Application
 
             CreateMap<CreateQuestionDto, Question>().ReverseMap();
             CreateMap<CreateReviewDto, Review>().ReverseMap();
+            CreateMap<CreateTourDto, Tour>()
+                //.ForSourceMember(x=> x.LogoImage, opt => opt.DoNotValidate())
+                //.ForMember(x => x.LogoImage,opt => opt.Ignore())
+                .ReverseMap();
+            CreateMap<CreateDayDto, Day>().ReverseMap();
+            CreateMap<CreateImageDto, Image>().ReverseMap();
+            CreateMap<CreateIncludeDto, Include>().ReverseMap();
+            CreateMap<CreateViewDto, View>().ReverseMap();
         }
     }
 }

@@ -11,14 +11,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KamchatkaTravel.EntityFrameworkCore.Tours
+namespace KamchatkaTravel.EntityFrameworkCore.Repositories
 {
     public class TourRepository : ITourRepository
     {
         private readonly KamchatkaTravelDbContext _context;
         public TourRepository(KamchatkaTravelDbContext context)
         {
-            _context= context;
+            _context = context;
         }
 
         public async Task<IEnumerable<Tour>> GetToursAsync()

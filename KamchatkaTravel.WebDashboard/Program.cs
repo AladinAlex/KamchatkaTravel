@@ -1,7 +1,25 @@
+using KamchatkaTravel.Application.Contracts.Interfaces;
+using KamchatkaTravel.Application.Services;
+using KamchatkaTravel.Application;
+using KamchatkaTravel.Domain.Interfaces;
+using KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore;
+using KamchatkaTravel.EntityFrameworkCore.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(typeof(KamchatkaTravelAutoMapperProfile));
+builder.Services.AddDbContext<KamchatkaTravelDbContext>(
+    c => c.UseSqlServer(builder.Configuration.GetConnectionString("DbTravel")));
+// Add services to the container.
+
+builder.Services.AddScoped<IDataRepository, DataRepository>();
+builder.Services.AddTransient<IDataService, DataService>();
+
+
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -12,6 +30,9 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

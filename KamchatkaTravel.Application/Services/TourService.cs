@@ -17,7 +17,7 @@ using KamchatkaTravel.Domain.Shared.Tours;
 using System.Diagnostics;
 using System.Collections;
 
-namespace KamchatkaTravel.Application.Tours
+namespace KamchatkaTravel.Application.Services
 {
     public class TourService : ITourService
     {
@@ -43,7 +43,7 @@ namespace KamchatkaTravel.Application.Tours
             response.Questions = _mapper.Map<IEnumerable<QuestionDto>>(questions);
             response.Reviews = _mapper.Map<IEnumerable<ReviewDto>>(reviews);
 
-            foreach(var t in response.Tours)
+            foreach (var t in response.Tours)
             {
                 t.dayCount = tours.Where(x => x.Id == t.Id).Count();
             }
@@ -56,22 +56,22 @@ namespace KamchatkaTravel.Application.Tours
             TourViewDto response = new();
             var t = await _repository.GetTourByIdAsync(id);
 
-            
+
             response.Tour = new TourDetailsDto();
             response.Tour.Id = t.Id;
-            response.Tour.Name  = t.Name; 
-            response.Tour.Tagline = t.Tagline; 
-            response.Tour.LogoImage = t.LogoImage; 
-            response.Tour.SeasonType = t.SeasonType; 
-            response.Tour.NightType = t.NightType; 
-            response.Tour.Price = t.Price; 
-            response.Tour.Description = t.Description; 
+            response.Tour.Name = t.Name;
+            response.Tour.Tagline = t.Tagline;
+            response.Tour.LogoImage = t.LogoImage;
+            response.Tour.SeasonType = t.SeasonType;
+            response.Tour.NightType = t.NightType;
+            response.Tour.Price = t.Price;
+            response.Tour.Description = t.Description;
             response.Tour.DescriptionImage = t.DescriptionImage;
             response.Tour.LinkEquipment = t.LinkEquipment;
             response.Tour.Views = _mapper.Map<List<View>, List<ViewDto>>(t.Views);
-            response.Tour.Images = _mapper.Map<List<Image>, List<ImageDto>>(t.Images); 
-            response.Tour.Days = _mapper.Map<List<Day>, List<DayDto>>(t.Days); 
-            response.Tour.Includes = _mapper.Map<List<Include>, List<IncludeDto>>(t.Includes); 
+            response.Tour.Images = _mapper.Map<List<Image>, List<ImageDto>>(t.Images);
+            response.Tour.Days = _mapper.Map<List<Day>, List<DayDto>>(t.Days);
+            response.Tour.Includes = _mapper.Map<List<Include>, List<IncludeDto>>(t.Includes);
             response.Tour.Questions = _mapper.Map<List<Question>, List<QuestionDto>>(t.Questions);
 
             //response.Tour = mapper.Map<Tour, TourDetailsDto>(await _repository.GetTourByIdAsync(id));

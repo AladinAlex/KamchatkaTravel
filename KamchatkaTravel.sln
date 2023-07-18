@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.EntityFrame
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.Web", "KamchatkaTravel.Web\KamchatkaTravel.Web.csproj", "{FB076ECE-C98B-481C-86EF-F6999BC681AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KamchatkaTravel.WebDashboard", "KamchatkaTravel.WebDashboard\KamchatkaTravel.WebDashboard.csproj", "{1B8F5C16-9DEF-4F3E-AE9A-3C64AB12F617}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.WebDashboard", "KamchatkaTravel.WebDashboard\KamchatkaTravel.WebDashboard.csproj", "{1B8F5C16-9DEF-4F3E-AE9A-3C64AB12F617}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

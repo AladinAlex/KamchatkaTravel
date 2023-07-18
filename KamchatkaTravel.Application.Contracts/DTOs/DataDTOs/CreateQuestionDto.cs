@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KamchatkaTravel.Application.Contracts.DTOs.AdminDto
+namespace KamchatkaTravel.Application.Contracts.DTOs.DataDTOs
 {
     public class CreateQuestionDto
     {

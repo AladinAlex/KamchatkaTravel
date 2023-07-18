@@ -1,11 +1,9 @@
 using KamchatkaTravel.Application;
-using KamchatkaTravel.Application.Admin;
 using KamchatkaTravel.Application.Contracts.Interfaces;
-using KamchatkaTravel.Application.Tours;
+using KamchatkaTravel.Application.Services;
 using KamchatkaTravel.Domain.Interfaces;
-using KamchatkaTravel.EntityFrameworkCore.Admin;
 using KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore;
-using KamchatkaTravel.EntityFrameworkCore.Tours;
+using KamchatkaTravel.EntityFrameworkCore.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -23,8 +21,8 @@ builder.Services.AddDbContext<KamchatkaTravelDbContext>(
 builder.Services.AddTransient<ITourService, TourService>();
 builder.Services.AddTransient<ITourRepository, TourRepository>();
 
-builder.Services.AddTransient<IAdminService, AdminService>();
-builder.Services.AddTransient<IAdminRepository, AdminRepository>();
+//builder.Services.AddTransient<IAdminService, AdminService>();
+//builder.Services.AddTransient<IAdminRepository, AdminRepository>();
 
 var app = builder.Build();
 
