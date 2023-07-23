@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
@@ -43,11 +44,11 @@ namespace KamchatkaTravel.Application.Services
         public async Task CreateTour(CreateTourDto tourDto)
         {
             var t = _mapper.Map<Tour>(tourDto);
-            t.LogoImage = await WriteBytes(tourDto.Logos);
-            t.DescriptionImage = await WriteBytes(tourDto.DescriptionImages);
+            t.LogoImage = WriteBytes(tourDto.LogoImg);
+            t.DescriptionImage = WriteBytes(tourDto.DescriptionImg);
 
             await _repository.InsertTour(t);
-        }
+        } 
         public async Task CreateDay(CreateDayDto dayDto)
         {
             var d = _mapper.Map<Day>(dayDto);
@@ -71,29 +72,27 @@ namespace KamchatkaTravel.Application.Services
             var v = _mapper.Map<View>(viewDto);
             await _repository.InsertView(v);
         }
-        private async Task<byte[]> WriteBytes(IFormFile ifile)
+        private byte[] WriteBytes(IFormFile ifile)
         {
             byte[] result = new byte[0];
-            //return result;
 
             string ImageName = Guid.NewGuid().ToString() + Path.GetExtension(ifile.FileName);
             string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", ImageName);
-
-            //result = 
             if(ifile.Length > 0)
                 using (var ms = new MemoryStream())
                 {
                     ifile.CopyTo(ms);
                     result = ms.ToArray();
                 }
-            System.IO.DirectoryInfo di = new DirectoryInfo(SavePath);
-            foreach (FileInfo file in di.GetFiles())
-            {
-                file.Delete();
-            }
 
             return result;
         }
 
+        public async Task<GetToursResponse> GetTours()
+        {
+            var tours = await _repository.SelectTours();
+            var t = _mapper.Map<GetToursResponse>(tours.ToList());
+            return t;
+        }
     }
 }

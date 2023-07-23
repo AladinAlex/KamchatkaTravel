@@ -16,5 +16,6 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
         Task CreateImage(CreateImageDto imageDto);
         Task CreateInclude(CreateIncludeDto incDto);
         Task CreateView(CreateViewDto viewDto);
+        Task<GetToursResponse> GetTours();
     }
 }

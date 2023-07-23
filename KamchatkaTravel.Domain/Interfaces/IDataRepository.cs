@@ -17,5 +17,6 @@ namespace KamchatkaTravel.Domain.Interfaces
         Task InsertInclude(Include inc);
         Task InsertQuestion(Question question);
         Task InsertView(View view);
+        Task<IEnumerable<Tour>> SelectTours();
     }
 }

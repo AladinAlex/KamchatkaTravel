@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KamchatkaTravel.WebDashboard.Controllers
 {
-    //[ApiController]
-    //[Route("api/[controller]")]
+    [ApiController]
+    [Route("api/[controller]")]
     public class TourController : Controller
     {
         readonly IDataService _dataService;
@@ -16,11 +16,12 @@ namespace KamchatkaTravel.WebDashboard.Controllers
 
         [HttpPost]
         //[Produces("application/json")]
+        [Consumes("multipart/form-data")]
         [Route("CreateTour")]
-        public async Task<IActionResult> CreateTour(CreateTourDto request)
+        public async Task CreateTour([FromForm] CreateTourDto request)
         {
             await _dataService.CreateTour(request);
-            return View("/Views/Home/Index.cshtml");
+            //return View("/Views/Home/Index.cshtml");
         }
 
         [HttpPost]
@@ -72,5 +73,13 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             await _dataService.CreateView(request);
         }
 
+        [HttpGet]
+        [Produces("application/json")]
+        [Route("GetTours")]
+        public async Task<GetToursResponse> GetTours()
+        {
+            var response = await _dataService.GetTours();
+            return response;
+        }
     }
 }

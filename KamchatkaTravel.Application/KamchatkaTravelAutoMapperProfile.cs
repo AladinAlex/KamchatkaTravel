@@ -34,6 +34,11 @@ namespace KamchatkaTravel.Application
             CreateMap<CreateImageDto, Image>().ReverseMap();
             CreateMap<CreateIncludeDto, Include>().ReverseMap();
             CreateMap<CreateViewDto, View>().ReverseMap();
+
+            CreateMap<Tour, SimpleTour> ().ReverseMap();
+            CreateMap<IEnumerable<Tour>, GetToursResponse> ()
+                .ForMember(dto => dto.tours, opt => opt.MapFrom(x => x.ToList()))
+                .ReverseMap();
         }
     }
 }

@@ -2,6 +2,7 @@
 using KamchatkaTravel.Domain.Reviews;
 using KamchatkaTravel.Domain.Tours;
 using KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,12 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
         {
             await _context.Views.AddAsync(view);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Tour>> SelectTours()
+        {
+            var tours = await _context.Tours.Where(t => t.Visible).Select(x => new Tour { Id = x.Id, Name = x.Name }).ToListAsync();
+            return tours;
         }
     }
 }

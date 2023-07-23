@@ -22,7 +22,7 @@ namespace KamchatkaTravel.Domain.Shared.Tours
         [Display(Name = "в глэмпинге и отеле")]
         GlampingAndHotel = 3,
 
-        [Display(Name = "без ночевкиц")]
+        [Display(Name = "без ночевки")]
         withoutNight = 4
     }
 
