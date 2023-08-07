@@ -4,6 +4,7 @@ using KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KamchatkaTravel.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(KamchatkaTravelDbContext))]
-    partial class KamchatkaTravelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230807185235_TourId")]
+    partial class TourId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,7 +126,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(512)");
 
                     b.Property<byte[]>("Image")
                         .IsRequired()
@@ -291,7 +294,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(1024)");
 
                     b.Property<byte[]>("DescriptionImage")
                         .IsRequired()
@@ -353,7 +356,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(512)");
 
                     b.Property<byte[]>("Image")
                         .IsRequired()

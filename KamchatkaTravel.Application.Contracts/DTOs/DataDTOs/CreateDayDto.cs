@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.DataDTOs
         public string Name { get; set; }
         public int Number { get; set; }
         public string Description { get; set; }
-        public byte[] Image { get; set; }
+        public IFormFile? Img { get; set; }
+        public Guid tourID { get; set; }
     }
 }

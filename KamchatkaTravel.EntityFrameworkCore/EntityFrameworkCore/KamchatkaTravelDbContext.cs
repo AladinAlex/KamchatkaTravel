@@ -63,9 +63,9 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 q.Property(tour => tour.Tagline).IsRequired().HasColumnType("nvarchar(128)");
                 q.Property(tour => tour.LogoImage).IsRequired().HasColumnType("varbinary(max)");
                 q.Property(tour => tour.SeasonType).IsRequired().HasDefaultValue(SeasonType.All);
-                q.Property(tour => tour.NightType).IsRequired().HasDefaultValue(NightType.defaultValue);
+                q.Property(tour =>tour.NightType).IsRequired().HasDefaultValue(NightType.defaultValue);
                 q.Property(tour => tour.Price).IsRequired().HasColumnType("decimal(16, 2)");
-                q.Property(tour => tour.Description).IsRequired().HasColumnType("nvarchar(1024)");
+                q.Property(tour => tour.Description).IsRequired().HasColumnType("nvarchar(max)");
                 q.Property(tour => tour.DescriptionImage).IsRequired().HasColumnType("varbinary(max)");
                 q.Property(tour => tour.Visible).HasDefaultValue(1);
                 q.Property(tour => tour.LinkEquipment).IsRequired(false);
@@ -81,7 +81,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 d.Property(d => d.Id).HasDefaultValueSql("newid()");
                 d.Property(d => d.Name).IsRequired().HasColumnType("nvarchar(64)");
                 d.Property(d => d.Number).IsRequired().HasColumnType("nvarchar(64)");
-                d.Property(d => d.Description).IsRequired().HasColumnType("nvarchar(512)");
+                d.Property(d => d.Description).IsRequired().HasColumnType("nvarchar(max)");
                 d.Property(d => d.Image).IsRequired().HasColumnType("varbinary(max)");
                 //d.Property(d => d.Tour).IsRequired();
                 d.Property(d => d.Visible).HasDefaultValue(true);
@@ -137,7 +137,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 v.HasIndex(v => v.Id).IsUnique(true);
                 v.Property(v => v.Id).HasDefaultValueSql("newid()");
                 v.Property(v => v.Name).IsRequired().HasColumnType("nvarchar(128)");
-                v.Property(v => v.Description).IsRequired().HasColumnType("nvarchar(512)");
+                v.Property(v => v.Description).IsRequired().HasColumnType("nvarchar(max)");
                 v.Property(v => v.Image).IsRequired().HasColumnType("varbinary(max)");
                 v.Property(v => v.Visible).HasDefaultValue(true);
                 v.Property(v => v.CreateDt).IsRequired().HasColumnType("datetime2");

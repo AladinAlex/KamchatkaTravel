@@ -13,6 +13,8 @@ namespace KamchatkaTravel.Domain.Tours
         public Guid Id { get; set; }
         public byte[] Img { get; set; }
         public int? Ord { get; set; }
+        public Tour tour { get; set; }
+        public Guid TourId { get; set; }
     }
 
 }

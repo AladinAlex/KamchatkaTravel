@@ -4,15 +4,16 @@ using KamchatkaTravel.Application.Contracts.DTOs.ReviewDTOs;
 using KamchatkaTravel.Domain.Tours;
 using KamchatkaTravel.Domain.Reviews;
 using KamchatkaTravel.Application.Contracts.DTOs.DataDTOs;
+using System.Collections.Generic;
 
 namespace KamchatkaTravel.Application
 {
-    public  class KamchatkaTravelAutoMapperProfile : Profile
+    public class KamchatkaTravelAutoMapperProfile : Profile
     {
         public KamchatkaTravelAutoMapperProfile()
         {
             CreateMap<Tour, TourDto>().ReverseMap();
-            CreateMap<Day, DayDto>();
+            CreateMap<Day, DayDto>().ReverseMap();
 
             CreateMap<IEnumerable<Tour>, List<TourDto>>().ReverseMap();
 
@@ -35,10 +36,12 @@ namespace KamchatkaTravel.Application
             CreateMap<CreateIncludeDto, Include>().ReverseMap();
             CreateMap<CreateViewDto, View>().ReverseMap();
 
-            CreateMap<Tour, SimpleTour> ().ReverseMap();
-            CreateMap<IEnumerable<Tour>, GetToursResponse> ()
+            CreateMap<Tour, SimpleTour>().ReverseMap();
+            CreateMap<IEnumerable<Tour>, GetToursResponse>()
                 .ForMember(dto => dto.tours, opt => opt.MapFrom(x => x.ToList()))
                 .ReverseMap();
+
+            CreateMap<IEnumerable<Day>, List<DayDto>>();
         }
     }
 }

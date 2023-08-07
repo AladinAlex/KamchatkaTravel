@@ -14,5 +14,7 @@ namespace KamchatkaTravel.Domain.Tours
         public int Number { get; set; }
         public string Text { get; set; }
         public bool isInclude { get; set; } // включено/не включено
+        public Tour tour { get; set; }
+        public Guid TourId { get; set; }
     }
 }

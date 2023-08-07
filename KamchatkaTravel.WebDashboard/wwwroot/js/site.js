@@ -1,11 +1,12 @@
 ﻿let form = document.getElementById("#tourForm");
 if (form != null) {
     form.addEventListener('submit', (event) => { event.preventDefault(); addTour(); });
-    console.log('add submit event');
-
 }
 
-//document.getElementById("#tourSelect").addEventListener('onclick', (event) => { event.preventDefault(); loadTour(); });
+let dayForm = document.getElementById("#dayForm");
+if (dayForm != null) {
+    dayForm.addEventListener('submit', (event) => { event.preventDefault(); addDay(); });
+}
 
 async function addTour() {
 
@@ -33,6 +34,37 @@ async function addTour() {
     else {
         document.getElementById("#ModalTitle").innerHTML = 'Ошибка!';
         document.getElementById("#ModalText").innerHTML = 'Сервер не отвечает, попробуйте создать тур позже.';
+
+        modal().open("#m-success");
+    }
+}
+
+async function addDay() {
+    const formData = new FormData(dayForm);
+    formData.append("tourID", document.getElementById("#tourSelect").value)
+
+    url = 'api/Tour/CreateDay';
+
+    let responce = await fetch(url,
+        {
+            method: 'post',
+            headers: {
+                Accept: "multipart/form-data",
+            },
+            body: formData
+        }
+    )
+
+    let result = await responce.status;
+
+    if (result == 200) {
+        document.getElementById("#ModalTitle").innerHTML = 'День создан.';
+        document.getElementById("#ModalText").innerHTML = '';
+        modal().open("#m-success");
+    }
+    else {
+        document.getElementById("#ModalTitle").innerHTML = 'Ошибка!';
+        document.getElementById("#ModalText").innerHTML = 'Сервер не отвечает, попробуйте создать день позже.';
 
         modal().open("#m-success");
     }

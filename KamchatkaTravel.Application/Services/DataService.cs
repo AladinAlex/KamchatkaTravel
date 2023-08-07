@@ -52,6 +52,7 @@ namespace KamchatkaTravel.Application.Services
         public async Task CreateDay(CreateDayDto dayDto)
         {
             var d = _mapper.Map<Day>(dayDto);
+            d.Image = WriteBytes(dayDto.Img);
             await _repository.InsertDay(d);
         }
 

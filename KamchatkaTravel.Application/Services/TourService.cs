@@ -69,8 +69,8 @@ namespace KamchatkaTravel.Application.Services
             response.Tour.DescriptionImage = t.DescriptionImage;
             response.Tour.LinkEquipment = t.LinkEquipment;
             response.Tour.Views = _mapper.Map<List<View>, List<ViewDto>>(t.Views);
-            response.Tour.Images = _mapper.Map<List<Image>, List<ImageDto>>(t.Images);
-            response.Tour.Days = _mapper.Map<List<Day>, List<DayDto>>(t.Days);
+            response.Tour.Images = _mapper.Map<List<ImageDto>>(t.Images);
+            response.Tour.Days = _mapper.Map<List<DayDto>>(t.Days);
             response.Tour.Includes = _mapper.Map<List<Include>, List<IncludeDto>>(t.Includes);
             response.Tour.Questions = _mapper.Map<List<Question>, List<QuestionDto>>(t.Questions);
 

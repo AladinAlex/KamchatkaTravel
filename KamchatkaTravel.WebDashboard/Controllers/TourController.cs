@@ -15,7 +15,6 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         }
 
         [HttpPost]
-        //[Produces("application/json")]
         [Consumes("multipart/form-data")]
         [Route("CreateTour")]
         public async Task CreateTour([FromForm] CreateTourDto request)
@@ -25,9 +24,9 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         }
 
         [HttpPost]
-        [Produces("application/json")]
+        [Consumes("multipart/form-data")]
         [Route("CreateDay")]
-        public async Task CreateDay(CreateDayDto request)
+        public async Task CreateDay([FromForm] CreateDayDto request)
         {
             await _dataService.CreateDay(request);
         }

@@ -12,5 +12,6 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.TourDTOs
         public int Number { get; set; }
         public string Description { get; set; }
         public byte[] Image { get; set; }
+        public Guid TourId { get; set; }
     }
 }
