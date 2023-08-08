@@ -1,4 +1,6 @@
-﻿using KamchatkaTravel.WebDashboard.Models;
+﻿using KamchatkaTravel.Application.Contracts.Interfaces;
+using KamchatkaTravel.Application.Services;
+using KamchatkaTravel.WebDashboard.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,11 +8,10 @@ namespace KamchatkaTravel.WebDashboard.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        readonly IDashboardService _dashboardService;
+        public HomeController(IDashboardService dashboardService)
         {
-            _logger = logger;
+            _dashboardService = dashboardService;
         }
 
         public IActionResult Index()
@@ -18,15 +19,16 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> ClientRequest()
         {
-            return View();
+            MainClientRequestModel model = new();
+            model.clientRequests = await _dashboardService.GetClientRequests();
+            return View("~/Views/ClientRequest/MainClientRequest.cshtml", model);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> MainTour()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View("~/Views/Tours/MainTour.cshtml");
         }
     }
 }

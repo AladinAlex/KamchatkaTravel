@@ -260,3 +260,7 @@ textarea {
 .select-tour {
     padding: 20px 0;
 }
+
+.hidden {
+    display: none;
+}

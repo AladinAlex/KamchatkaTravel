@@ -17,7 +17,8 @@ builder.Services.AddDbContext<KamchatkaTravelDbContext>(
 
 builder.Services.AddScoped<IDataRepository, DataRepository>();
 builder.Services.AddTransient<IDataService, DataService>();
-
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+builder.Services.AddTransient<IDashboardService, DashboardService>();
 
 builder.Services.AddSwaggerGen();
 

@@ -172,6 +172,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 cl.Property(cl => cl.TourId).IsRequired(false);
                 cl.Property(cl => cl.CreateDt).IsRequired().HasColumnType("datetime2");
                 cl.Property(cl => cl.UpdateDt).HasColumnType("datetime2");
+                cl.Property(cl => cl.comment).HasColumnType("nvarchar(max)");
             });
         }
 

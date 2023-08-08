@@ -6,6 +6,8 @@ using KamchatkaTravel.Domain.Reviews;
 using KamchatkaTravel.Application.Contracts.DTOs.DataDTOs;
 using System.Collections.Generic;
 using KamchatkaTravel.Application.Contracts.DTOs;
+using KamchatkaTravel.Application.Contracts.DTOs.ClientRequestDTOs;
+using KamchatkaTravel.Domain.ClientRequests;
 
 namespace KamchatkaTravel.Application
 {
@@ -44,6 +46,8 @@ namespace KamchatkaTravel.Application
 
             CreateMap<Tour, TourDetailsDto>();
             CreateMap<Day, DayDto>();
+            CreateMap<ClientRequest, ClientRequestViewModel>()
+                .ForMember(dto => dto.tourName, opt => opt.MapFrom(x => x.tour != null ? x.tour.Name : ""));
         }
     }
 }
