@@ -53,28 +53,12 @@ namespace KamchatkaTravel.Application.Services
 
         public async Task<TourViewDto> GetTourInfo(Guid id)
         {
-            TourViewDto response = new();
             var t = await _repository.GetTourByIdAsync(id);
+            TourViewDto response = new()
+            {
+                Tour = _mapper.Map<TourDetailsDto>(t)
+            };
 
-
-            response.Tour = new TourDetailsDto();
-            response.Tour.Id = t.Id;
-            response.Tour.Name = t.Name;
-            response.Tour.Tagline = t.Tagline;
-            response.Tour.LogoImage = t.LogoImage;
-            response.Tour.SeasonType = t.SeasonType;
-            response.Tour.NightType = t.NightType;
-            response.Tour.Price = t.Price;
-            response.Tour.Description = t.Description;
-            response.Tour.DescriptionImage = t.DescriptionImage;
-            response.Tour.LinkEquipment = t.LinkEquipment;
-            response.Tour.Views = _mapper.Map<List<View>, List<ViewDto>>(t.Views);
-            response.Tour.Images = _mapper.Map<List<ImageDto>>(t.Images);
-            response.Tour.Days = _mapper.Map<List<DayDto>>(t.Days);
-            response.Tour.Includes = _mapper.Map<List<Include>, List<IncludeDto>>(t.Includes);
-            response.Tour.Questions = _mapper.Map<List<Question>, List<QuestionDto>>(t.Questions);
-
-            //response.Tour = mapper.Map<Tour, TourDetailsDto>(await _repository.GetTourByIdAsync(id));
             return response;
         }
 

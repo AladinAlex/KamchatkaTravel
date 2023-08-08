@@ -19,10 +19,10 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.TourDTOs
         public string Description { get; set; }
         public byte[] DescriptionImage { get; set; }
         public string LinkEquipment { get; set; }
-        public List<ViewDto> Views { get; set; }
-        public List<ImageDto> Images { get; set; }
-        public List<DayDto> Days { get; set; }
-        public List<IncludeDto> Includes { get; set; }
-        public List<QuestionDto> Questions { get; set; }
+        public IEnumerable<ViewDto> Views { get; set; }
+        public IEnumerable<ImageDto> Images { get; set; }
+        public IEnumerable<DayDto> Days { get; set; }
+        public IEnumerable<IncludeDto> Includes { get; set; }
+        public IEnumerable<QuestionDto> Questions { get; set; }
     }
 }

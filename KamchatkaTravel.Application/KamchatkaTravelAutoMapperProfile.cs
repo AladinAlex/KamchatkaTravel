@@ -5,6 +5,7 @@ using KamchatkaTravel.Domain.Tours;
 using KamchatkaTravel.Domain.Reviews;
 using KamchatkaTravel.Application.Contracts.DTOs.DataDTOs;
 using System.Collections.Generic;
+using KamchatkaTravel.Application.Contracts.DTOs;
 
 namespace KamchatkaTravel.Application
 {
@@ -41,7 +42,8 @@ namespace KamchatkaTravel.Application
                 .ForMember(dto => dto.tours, opt => opt.MapFrom(x => x.ToList()))
                 .ReverseMap();
 
-            CreateMap<IEnumerable<Day>, List<DayDto>>();
+            CreateMap<Tour, TourDetailsDto>();
+            CreateMap<Day, DayDto>();
         }
     }
 }

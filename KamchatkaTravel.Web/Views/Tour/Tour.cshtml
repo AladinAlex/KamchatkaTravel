@@ -26,7 +26,7 @@
                     <div class="presentation__wrap-conditions">
                         <div class="presentation__block-conditions">
                             <img src="/images/day-night.png" class="presentation__icon-conditions" alt="">
-                            <span class="presentation__text-conditions">@Model.Tour.Days.Count.AddWordDay() | @Model.Tour.NightType.GetDescription()</span>
+                            <span class="presentation__text-conditions">@Model.Tour.Days.Count().AddWordDay() | @Model.Tour.NightType.GetDescription()</span>
                         </div>
                         <div class="presentation__block-conditions">
                             <img src="/images/ruble.png" class="presentation__icon-conditions" alt="">
@@ -78,33 +78,34 @@
         @*блок с картинками*@
         <section class="pictures" data-modal-picture="main">
             @{
-                //foreach (var link in Model.PicturesLink)
-                //{
-                //    <a href="/images/MainPicturesSeparate/@link"
-                //       data-img="/images/MainPicturesSeparate/@link"
-                //       data-thumb="/images/MainPicturesSeparate/@link"
-                //       data-alt="Example"
-                //       data-height="2500"
-                //       data-width="1667"
-                //       data-modal-picture="link"
-                //       class="pictures__link">
-                //        <img src="/images/MainPicturesSeparate/@link" class="pictures__image" alt="">
-                //    </a>
-                //}
-                foreach (var img in Model.Tour.Images)
-                {
-                    <a src="@Convert.ToBase64String(img.Img)"
-                   data-img="data:image; base64 @Convert.ToBase64String(img.Img)"
-                   data-thumb="data:image; base64, @Convert.ToBase64String(img.Img)"
-                   data-alt="example"
-                   data-height="2500"
-                   data-width="1667"
-                   data-modal-picture="link"
-                   class="pictures__link">
-                        <img src="data:image; base64, @Convert.ToBase64String(img.Img)" class="pictures__image" alt="">
-                    </a>
-                }
-
+                if (Model.Tour.Images != null && Model.Tour.Images.Count() == 8)
+                    foreach (var img in Model.Tour.Images)
+                    {
+                        <a src="@Convert.ToBase64String(img.Img)"
+                           data-img="data:image; base64 @Convert.ToBase64String(img.Img)"
+                           data-thumb="data:image; base64, @Convert.ToBase64String(img.Img)"
+                           data-alt="example"
+                           data-height="2500"
+                           data-width="1667"
+                           data-modal-picture="link"
+                           class="pictures__link">
+                            <img src="data:image; base64, @Convert.ToBase64String(img.Img)" class="pictures__image" alt="">
+                        </a>
+                    }
+                else
+                    foreach (var link in Model.PicturesLink)
+                    {
+                        <a href="/images/MainPicturesSeparate/@link"
+                           data-img="/images/MainPicturesSeparate/@link"
+                           data-thumb="/images/MainPicturesSeparate/@link"
+                           data-alt="Example"
+                           data-height="2500"
+                           data-width="1667"
+                           data-modal-picture="link"
+                           class="pictures__link">
+                            <img src="/images/MainPicturesSeparate/@link" class="pictures__image" alt="">
+                        </a>
+                    }
             }
         </section>
 
