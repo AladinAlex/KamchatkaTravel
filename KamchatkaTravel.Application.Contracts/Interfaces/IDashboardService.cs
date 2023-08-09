@@ -9,6 +9,8 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
 {
     public interface IDashboardService
     {
-        Task<IEnumerable<ClientRequestViewModel>> GetClientRequests();
+        Task<IEnumerable<ClientRequestViewModel>> GetClientRequestsAsync();
+        Task ProcessRequest(Guid id);
+        Task<ClientRequestViewModel> GetClientRequestByIdAsync(Guid ClientRequestId);
     }
 }

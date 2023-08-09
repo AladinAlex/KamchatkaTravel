@@ -21,10 +21,22 @@ namespace KamchatkaTravel.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ClientRequestViewModel>> GetClientRequests()
+        public async Task<IEnumerable<ClientRequestViewModel>> GetClientRequestsAsync()
         {
-            var result = await _dashboardRepository.SelectClientRequestAll();
+            var result = await _dashboardRepository.SelectClientRequestAllAsync();
             return _mapper.Map<IEnumerable<ClientRequestViewModel>>(result);
+        }
+
+        public async Task ProcessRequest(Guid ClientRequestId)
+        {
+            await _dashboardRepository.UpdateClientRequestAsync(ClientRequestId);
+        }
+
+        public async Task<ClientRequestViewModel> GetClientRequestByIdAsync(Guid ClientRequestId)
+        {
+            var cl = await _dashboardRepository.SelectClientRequestByIdAsync(ClientRequestId);
+            ClientRequestViewModel result = _mapper.Map<ClientRequestViewModel>(cl);
+            return result;
         }
     }
 }

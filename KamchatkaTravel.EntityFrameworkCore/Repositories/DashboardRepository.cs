@@ -17,10 +17,23 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
         {
             _context = context;
         }
-        public async Task<IEnumerable<ClientRequest>> SelectClientRequestAll()
+        public async Task<IEnumerable<ClientRequest>> SelectClientRequestAllAsync()
         {
             var result = await _context.ClientRequests.AsNoTracking().Where(x => x.Visible).Include(x => x.tour).ToListAsync();
             return result;
+        }
+
+        public async Task UpdateClientRequestAsync(Guid Id)
+        {
+            var cl = await _context.ClientRequests.Where(x => x.Id == Id).FirstAsync();
+            cl.isProcessed = !cl.isProcessed;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<ClientRequest> SelectClientRequestByIdAsync(Guid Id)
+        {
+            var cl = await _context.ClientRequests.Where(x => x.Id == Id).FirstAsync();
+            return cl;
         }
     }
 }

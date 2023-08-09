@@ -19,10 +19,10 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ClientRequest()
+        public async Task<IActionResult> MainClientRequest()
         {
             MainClientRequestModel model = new();
-            model.clientRequests = await _dashboardService.GetClientRequests();
+            model.clientRequests = await _dashboardService.GetClientRequestsAsync();
             return View("~/Views/ClientRequest/MainClientRequest.cshtml", model);
         }
 
