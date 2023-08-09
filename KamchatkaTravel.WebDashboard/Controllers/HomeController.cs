@@ -30,5 +30,10 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         {
             return View("~/Views/Tours/MainTour.cshtml");
         }
+
+        public async Task<IActionResult> MainClients()
+        {
+            return View("~/Views/Clients/MainClients.cshtml");
+        }
     }
 }

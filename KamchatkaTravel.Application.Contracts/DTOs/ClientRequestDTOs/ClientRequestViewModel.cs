@@ -16,5 +16,6 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.ClientRequestDTOs
         public Guid? TourId { get; set; }
         public string? comment { get; set; }
         public string? tourName { get; set; }
+        public DateTime CreateDt { get; set; }
     }
 }
