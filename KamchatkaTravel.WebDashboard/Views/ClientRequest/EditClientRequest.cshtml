@@ -14,17 +14,19 @@
                 <li class="list-group-item"><b>Тур:</b> @Model.clientRequest.tourName</li>
                 <li class="list-group-item">
                     <div class="row">
-                        <div class="col-12 col-lg-2">
+                        <div class="col-lg-2">
                             <b>Комментарий:</b>
                         </div>
-                        <div class="col-12 col-lg-10">
+                        <div class="col-lg-10">
                             <textarea class="form-control w-100" asp-for="@Model.clientRequest.comment" name="comment" rows="2">@Model.clientRequest.comment</textarea>
                         </div>
                     </div>
                 </li>
             </ul>
+            <button class="btn btn-dark mb-4" type="submit">
+                <span>Сохранить</span>
+            </button>
         </form>
     </div>
 
 </div>
-@*<input class="form-control" asp-for="@Model.clientRequest.comment" type="text" name="comment" value="@Model.clientRequest.comment">*@
