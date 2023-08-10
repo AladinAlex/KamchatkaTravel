@@ -1,18 +1,30 @@
 ﻿@model EditClientRequestModel;
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <H3>Редактирование заявки клиента</H3>
+
+    <div class="col-12">
+        <H3>Редактирование заявки клиента</H3>
+        <form asp-action="" asp-controller="" method="post">
             <ul class="list-group">
                 <li class="list-group-item"><b>Дата:</b> @Model.clientRequest.CreateDt.ToString("f");</li>
-                <li class="list-group-item"><b>Метод:</b> @Model.clientRequest.FirstName</li>
-                <li class="list-group-item"><b>NumberPublic:</b> @Model.clientRequest.Email</li>
-                <li class="list-group-item"><b>Object ID:</b> @Model.clientRequest.Phone</li>
+                <li class="list-group-item"><b>Имя:</b> @Model.clientRequest.FirstName</li>
+                <li class="list-group-item"><b>Эл. почта:</b> @Model.clientRequest.Email</li>
+                <li class="list-group-item"><b>Телефон:</b> @Model.clientRequest.Phone</li>
                 <li class="list-group-item"><b>Обработано:</b> @(Model.clientRequest.isProcessed ? "Нет" : "Да")</li>
                 <li class="list-group-item"><b>Тур:</b> @Model.clientRequest.tourName</li>
-                <li class="list-group-item"><b>Комментарий:</b> @Model.clientRequest.comment</li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-12 col-lg-2">
+                            <b>Комментарий:</b>
+                        </div>
+                        <div class="col-12 col-lg-10">
+                            <textarea class="form-control w-100" asp-for="@Model.clientRequest.comment" name="comment" rows="2">@Model.clientRequest.comment</textarea>
+                        </div>
+                    </div>
+                </li>
             </ul>
-        </div>
+        </form>
     </div>
+
 </div>
+@*<input class="form-control" asp-for="@Model.clientRequest.comment" type="text" name="comment" value="@Model.clientRequest.comment">*@
