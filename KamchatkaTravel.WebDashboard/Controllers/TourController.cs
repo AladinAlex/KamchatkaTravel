@@ -78,6 +78,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         public async Task<GetToursResponse> GetTours()
         {
             var response = await _dataService.GetTours();
+
             return response;
         }
     }
