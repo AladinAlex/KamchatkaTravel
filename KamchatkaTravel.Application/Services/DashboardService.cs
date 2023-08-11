@@ -29,7 +29,7 @@ namespace KamchatkaTravel.Application.Services
 
         public async Task ProcessRequest(Guid ClientRequestId)
         {
-            await _dashboardRepository.UpdateClientRequestAsync(ClientRequestId);
+            await _dashboardRepository.UpdateProcessClientRequestAsync(ClientRequestId);
         }
 
         public async Task<ClientRequestViewModel> GetClientRequestByIdAsync(Guid ClientRequestId)
@@ -37,6 +37,11 @@ namespace KamchatkaTravel.Application.Services
             var cl = await _dashboardRepository.SelectClientRequestByIdAsync(ClientRequestId);
             ClientRequestViewModel result = _mapper.Map<ClientRequestViewModel>(cl);
             return result;
+        }
+
+        public async Task EditClientRequest(Guid ClientRequestId, string comment)
+        {
+            await _dashboardRepository.UpdateClientRequestByIdAsync(ClientRequestId, comment);
         }
     }
 }

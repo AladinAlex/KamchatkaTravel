@@ -10,7 +10,8 @@ namespace KamchatkaTravel.Domain.Interfaces
     public interface IDashboardRepository
     {
         Task<IEnumerable<ClientRequest>> SelectClientRequestAllAsync();
-        Task UpdateClientRequestAsync(Guid Id);
+        Task UpdateProcessClientRequestAsync(Guid Id);
         Task<ClientRequest> SelectClientRequestByIdAsync(Guid Id);
+        Task UpdateClientRequestByIdAsync(Guid ClientRequestId, string comment);
     }
 }

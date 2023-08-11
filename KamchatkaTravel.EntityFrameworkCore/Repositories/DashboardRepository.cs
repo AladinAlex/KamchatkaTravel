@@ -23,7 +23,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             return result;
         }
 
-        public async Task UpdateClientRequestAsync(Guid Id)
+        public async Task UpdateProcessClientRequestAsync(Guid Id)
         {
             var cl = await _context.ClientRequests.Where(x => x.Id == Id).FirstAsync();
             cl.isProcessed = !cl.isProcessed;
@@ -34,6 +34,17 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
         {
             var cl = await _context.ClientRequests.Where(x => x.Id == Id).FirstAsync();
             return cl;
+        }
+
+        public async Task UpdateClientRequestByIdAsync(Guid Id, string comment)
+        {
+            var cl = await _context.ClientRequests.Where(x => x.Id == Id).FirstAsync();
+            
+            if(cl.comment != comment)
+            {
+                cl.comment = comment;
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

@@ -35,10 +35,10 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         /// <param name="id">ClientRequestId</param>
         /// <param name="comment">Комметарий</param>
         /// <returns></returns>
-        public async Task<IActionResult> EditClientRequest(Guid id, string comment)
+        public async Task<IActionResult> EditClientRequest(Guid clientRequestID, string comment)
         {
-            //await _dashboardService.EditRequest();
-            return RedirectToAction("GetEditClientRequestView");
+            await _dashboardService.EditClientRequest(clientRequestID, comment);
+            return RedirectToAction("GetEditClientRequestView", new { clientRequestID = clientRequestID });
         }
     }
 }

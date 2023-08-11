@@ -12,5 +12,6 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
         Task<IEnumerable<ClientRequestViewModel>> GetClientRequestsAsync();
         Task ProcessRequest(Guid id);
         Task<ClientRequestViewModel> GetClientRequestByIdAsync(Guid ClientRequestId);
+        Task EditClientRequest(Guid ClientRequestId, string comment);
     }
 }
