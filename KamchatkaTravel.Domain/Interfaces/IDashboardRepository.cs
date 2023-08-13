@@ -1,4 +1,5 @@
 ﻿using KamchatkaTravel.Domain.ClientRequests;
+using KamchatkaTravel.Domain.Tours;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace KamchatkaTravel.Domain.Interfaces
         Task UpdateProcessClientRequestAsync(Guid Id);
         Task<ClientRequest> SelectClientRequestByIdAsync(Guid Id);
         Task UpdateClientRequestByIdAsync(Guid ClientRequestId, string comment);
+        Task DeleteClientRequestByIdAsync(Guid ClientRequestId);
+        Task<IEnumerable<Tour>> SelectTourAllAsync(bool? isVisible = null);
     }
 }

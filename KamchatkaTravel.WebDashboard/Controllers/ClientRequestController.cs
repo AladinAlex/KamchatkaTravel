@@ -40,5 +40,15 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             await _dashboardService.EditClientRequest(clientRequestID, comment);
             return RedirectToAction("GetEditClientRequestView", new { clientRequestID = clientRequestID });
         }
+        /// <summary>
+        /// Удалить (скрыть заявку клиента)
+        /// </summary>
+        /// <param name="clientRequestID"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> DeleteClientRequest(Guid clientRequestID)
+        {
+            await _dashboardService.DeleteClientRequest(clientRequestID);
+            return RedirectToAction("MainClientRequest", "Home");
+        }
     }
 }

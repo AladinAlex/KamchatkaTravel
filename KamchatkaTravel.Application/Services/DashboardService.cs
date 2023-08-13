@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using KamchatkaTravel.Application.Contracts.DTOs.ClientRequestDTOs;
+using KamchatkaTravel.Application.Contracts.DTOs.TourDTOs;
 using KamchatkaTravel.Application.Contracts.Interfaces;
 using KamchatkaTravel.Domain.ClientRequests;
 using KamchatkaTravel.Domain.Interfaces;
@@ -42,6 +43,17 @@ namespace KamchatkaTravel.Application.Services
         public async Task EditClientRequest(Guid ClientRequestId, string comment)
         {
             await _dashboardRepository.UpdateClientRequestByIdAsync(ClientRequestId, comment);
+        }
+
+        public async Task DeleteClientRequest(Guid ClientRequestId)
+        {
+            await _dashboardRepository.DeleteClientRequestByIdAsync(ClientRequestId);
+        }
+        public async Task<IEnumerable<TourViewModel>> GetToursAsync()
+        {
+            var t = await _dashboardRepository.SelectTourAllAsync();
+            var result = _mapper.Map<IEnumerable<TourViewModel>>(t);
+            return result;
         }
     }
 }

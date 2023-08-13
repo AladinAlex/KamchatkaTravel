@@ -58,6 +58,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 q.ToTable(nameof(Tour), TourConsts.DbSchema);
                 q.HasKey(x => x.Id);
                 q.HasIndex(tour => tour.Id).IsUnique(true);
+                q.HasIndex(tour => tour.Visible).IsUnique(false);
                 q.Property(tour => tour.Id).HasDefaultValueSql("newid()");
                 q.Property(tour => tour.Name).IsRequired().HasColumnType("nvarchar(64)");
                 q.Property(tour => tour.Tagline).IsRequired().HasColumnType("nvarchar(128)");
@@ -78,6 +79,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 d.ToTable(nameof(Day), TourConsts.DbSchema);
                 d.HasKey(d => d.Id);
                 d.HasIndex(d => d.Id).IsUnique(true);
+                d.HasIndex(d => d.Visible).IsUnique(false);
                 d.Property(d => d.Id).HasDefaultValueSql("newid()");
                 d.Property(d => d.Name).IsRequired().HasColumnType("nvarchar(64)");
                 d.Property(d => d.Number).IsRequired().HasColumnType("nvarchar(64)");
@@ -94,6 +96,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 d.ToTable(nameof(Image), TourConsts.DbSchema);
                 d.HasKey(d => d.Id);
                 d.HasIndex(d => d.Id).IsUnique(true);
+                d.HasIndex(d => d.Visible).IsUnique(false);
                 d.Property(d => d.Id).HasDefaultValueSql("newid()");
                 d.Property(d => d.Img).IsRequired().HasColumnType("varbinary(max)");
                 //d.Property(d => d.Tour).IsRequired();
@@ -108,6 +111,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 d.ToTable(nameof(Include), TourConsts.DbSchema);
                 d.HasKey(d => d.Id);
                 d.HasIndex(d => d.Id).IsUnique(true);
+                d.HasIndex(d => d.Visible).IsUnique(false);
                 d.Property(d => d.Number).IsRequired();
                 d.Property(d => d.Id).HasDefaultValueSql("newid()");
                 d.Property(d => d.Text).IsRequired().HasColumnType("nvarchar(256)");
@@ -122,6 +126,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 q.ToTable(nameof(Question), TourConsts.DbSchema);
                 q.HasKey(q => q.Id);
                 q.HasIndex(q => q.Id).IsUnique(true);
+                q.HasIndex(q => q.Visible).IsUnique(false);
                 q.Property(q => q.Id).HasDefaultValueSql("newid()");
                 q.Property(q => q.Name).IsRequired().HasColumnType("nvarchar(512)");
                 q.Property(q => q.Answer).IsRequired().HasColumnType("nvarchar(512)");
@@ -135,6 +140,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 v.ToTable(nameof(View), TourConsts.DbSchema);
                 v.HasKey(v => v.Id);
                 v.HasIndex(v => v.Id).IsUnique(true);
+                v.HasIndex(v => v.Visible).IsUnique(false);
                 v.Property(v => v.Id).HasDefaultValueSql("newid()");
                 v.Property(v => v.Name).IsRequired().HasColumnType("nvarchar(128)");
                 v.Property(v => v.Description).IsRequired().HasColumnType("nvarchar(max)");
@@ -148,6 +154,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 r.ToTable(nameof(Review), TourConsts.DbSchema);
                 r.HasKey(r => r.Id);
                 r.HasIndex(r => r.Id).IsUnique(true);
+                r.HasIndex(r => r.Visible).IsUnique(false);
                 r.Property(r => r.Id).HasDefaultValueSql("newid()");
                 r.Property(r => r.FirstName).IsRequired().HasColumnType("nvarchar(64)");
                 r.Property(r => r.LastName).IsRequired(false).HasColumnType("nvarchar(64)");
@@ -163,6 +170,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 cl.ToTable(nameof(ClientRequest), TourConsts.DbSchema);
                 cl.HasKey(cl => cl.Id);
                 cl.HasIndex(cl => cl.Id).IsUnique(true);
+                cl.HasIndex(cl => cl.Visible).IsUnique(false);
                 cl.Property(cl => cl.Id).HasDefaultValueSql("newid()");
                 cl.Property(cl => cl.FirstName).IsRequired().HasColumnType("nvarchar(64)");
                 cl.Property(cl => cl.Email).IsRequired().HasColumnType("nvarchar(64)");

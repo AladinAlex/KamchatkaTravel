@@ -28,7 +28,9 @@ namespace KamchatkaTravel.WebDashboard.Controllers
 
         public async Task<IActionResult> MainTour()
         {
-            return View("~/Views/Tours/MainTour.cshtml");
+            MainTourModel model = new();
+            model.tours = await _dashboardService.GetToursAsync();
+            return View("~/Views/Tours/MainTour.cshtml", model);
         }
 
         public async Task<IActionResult> MainClients()

@@ -1,4 +1,5 @@
 ﻿using KamchatkaTravel.Application.Contracts.DTOs.ClientRequestDTOs;
+using KamchatkaTravel.Application.Contracts.DTOs.TourDTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
         Task ProcessRequest(Guid id);
         Task<ClientRequestViewModel> GetClientRequestByIdAsync(Guid ClientRequestId);
         Task EditClientRequest(Guid ClientRequestId, string comment);
+        Task DeleteClientRequest(Guid ClientRequestId);
+        Task<IEnumerable<TourViewModel>> GetToursAsync();
     }
 }

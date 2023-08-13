@@ -4,7 +4,7 @@
 
     <div class="col-12">
         <H3>Редактирование заявки клиента</H3>
-        <form asp-action="EditClientRequest" asp-controller="ClientRequest" method="post">
+        <form method="post">
             <ul class="list-group mb-2">
                 <li class="list-group-item"><b>Дата:</b> @Model.clientRequest.CreateDt.ToString("f");</li>
                 <li class="list-group-item"><b>Имя:</b> @Model.clientRequest.FirstName</li>
@@ -23,9 +23,18 @@
                     </div>
                 </li>
             </ul>
-            <button class="btn btn-dark" type="submit">
-                <span>Сохранить</span>
-            </button>
+            <div class="row">
+                <div class="col-1">
+                    <button class="btn btn-dark" type="submit" asp-action="EditClientRequest" asp-controller="ClientRequest">
+                        <span>Сохранить</span>
+                    </button>
+                </div>
+                <div class="col-1">
+                    <button class="btn btn-dark" type="submit" asp-action="DeleteClientRequest" asp-controller="ClientRequest">
+                        <span>Удалить</span>
+                    </button>
+                </div>
+            </div>
             <input type="hidden" value="@Model.clientRequest.Id" name="clientRequestID"></input>
         </form>
     </div>
