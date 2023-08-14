@@ -20,6 +20,7 @@
             <th scope="col">Картинка описания</th>
             <th scope="col">Ссылка на оборудование</th>
             <th scope="col">Дата создания</th>
+            <th scope="col">Редактировать</th>
         </tr>
     </thead>
     <tbody>
@@ -31,15 +32,21 @@
                 <tr>
                     <th class=@color>@cnt</th>
                     <td class=@color>@t.Name</td>
-                    <td class=@color>@t.Tagline</td>
+                    <td class=@color>@t.Tagline.ToTruncateText()</td>
                     <td class=@color>**здесь будет логотип**</td>
                     <td class=@color>@t.SeasonType.GetDescription()</td>
                     <td class=@color>@t.NightType.GetDescription()</td>
                     <td class=@color>@t.Price</td>
-                    <td class=@color>@t.Description</td>
-                    <td class=@color>@t.DescriptionImage</td>
+                    <td class=@color>@t.Description.ToTruncateText(0, 100)</td>
+                    <td class=@color>**здесь будет картинка**</td>
                     <td class=@color>@t.LinkEquipment</td>
                     <th class=@color>@t.CreateDt.ToString("f")</th>
+                    <th class=@color>
+                        <form asp-controller="Tour" asp-action="EditTour" method="post">
+                            <input type="hidden" value="@t.Id" name="TourId"></input>
+                            <button class="btn btn-dark">Редактировать</button>
+                        </form>
+                    </th>
                 </tr>
                 cnt++;
             }

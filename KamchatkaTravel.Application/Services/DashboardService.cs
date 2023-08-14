@@ -55,5 +55,11 @@ namespace KamchatkaTravel.Application.Services
             var result = _mapper.Map<IEnumerable<TourViewModel>>(t);
             return result;
         }
+        public async Task<TourViewModel> GetTourByIdAsync(Guid tourID)
+        {
+            var t = await _dashboardRepository.GetTourByIdAsync(tourID);
+            var result = _mapper.Map<TourViewModel>(t);
+            return result;
+        }
     }
 }

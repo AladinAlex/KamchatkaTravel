@@ -16,5 +16,6 @@ namespace KamchatkaTravel.Domain.Interfaces
         Task UpdateClientRequestByIdAsync(Guid ClientRequestId, string comment);
         Task DeleteClientRequestByIdAsync(Guid ClientRequestId);
         Task<IEnumerable<Tour>> SelectTourAllAsync(bool? isVisible = null);
+        Task<Tour> GetTourByIdAsync(Guid Id);
     }
 }

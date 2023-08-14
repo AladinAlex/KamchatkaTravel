@@ -61,5 +61,10 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
                 result = result.Where(x => x.Visible == isVisible);
             return await result.ToListAsync();
         }
+        public async Task<Tour> GetTourByIdAsync(Guid Id)
+        {
+            var t = await _context.Tours.AsNoTracking().Where(x => x.Id == Id).FirstAsync();
+            return t;
+        }
     }
 }

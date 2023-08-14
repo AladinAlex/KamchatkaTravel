@@ -1,0 +1,46 @@
+﻿@model EditTourModel;
+
+@{
+    ViewData["Title"] = "Редактирование тура: " + Model.tour.Id;
+}
+
+<div class="container-fluid">
+
+    <div class="col-12">
+        <h3>Редактирование тура</h3>
+        <form method="post">
+@*            <ul class="list-group mb-2">
+                <li class="list-group-item"><b>Дата:</b> @Model.clientRequest.CreateDt.ToString("f");</li>
+                <li class="list-group-item"><b>Имя:</b> @Model.clientRequest.FirstName</li>
+                <li class="list-group-item"><b>Эл. почта:</b> @Model.clientRequest.Email</li>
+                <li class="list-group-item"><b>Телефон:</b> @Model.clientRequest.Phone</li>
+                <li class="list-group-item"><b>Обработано:</b> @(Model.clientRequest.isProcessed ? "Нет" : "Да")</li>
+                <li class="list-group-item"><b>Тур:</b> @Model.clientRequest.tourName</li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Комментарий:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <textarea class="form-control w-100" asp-for="@Model.clientRequest.comment" name="comment" rows="2">@Model.clientRequest.comment</textarea>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="row">
+                <div class="col-1">
+                    <button class="btn btn-dark" type="submit" asp-action="EditClientRequest" asp-controller="ClientRequest">
+                        <span>Сохранить</span>
+                    </button>
+                </div>
+                <div class="col-1">
+                    <button class="btn btn-dark" type="submit" asp-action="DeleteClientRequest" asp-controller="ClientRequest">
+                        <span>Удалить</span>
+                    </button>
+                </div>
+            </div>
+            <input type="hidden" value="@Model.clientRequest.Id" name="clientRequestID"></input>*@
+        </form>
+    </div>
+
+</div>
