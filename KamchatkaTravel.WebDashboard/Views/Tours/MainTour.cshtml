@@ -1,4 +1,5 @@
-﻿@model KamchatkaTravel.WebDashboard.Models.MainTourModel;
+﻿@using KamchatkaTravel.Domain.Shared.Extensions;
+@model KamchatkaTravel.WebDashboard.Models.MainTourModel;
 
 @{
     ViewData["Title"] = "Управление турами";
@@ -18,44 +19,30 @@
             <th scope="col">Описание</th>
             <th scope="col">Картинка описания</th>
             <th scope="col">Ссылка на оборудование</th>
-            <th scope="col">Видимость</th>
-
+            <th scope="col">Дата создания</th>
         </tr>
     </thead>
     <tbody>
         @{
             int cnt = 1;
-            foreach (var req in Model.tours.OrderBy(x => x.Visible).OrderByDescending(x => x.CreateDt))
+            foreach (var t in Model.tours.OrderBy(x => x.Visible).OrderByDescending(x => x.CreateDt))
             {
-                //string color = req.isProcessed ? "table-danger" : "table-success";
-                //<tr>
-                //    <th class=@color>@cnt</th>
-                //    <th class=@color>@req.CreateDt.ToString("f")</th>
-                //    <td class=@color>@req.FirstName</td>
-                //    <td class=@color>@req.Email</td>
-                //    <td class=@color>@req.Phone</td>
-                //    <td class=@color>@req.tourName</td>
-                //    <td class=@color>@req.comment</td>
-                //    <td class=@color>
-                //        @if (req.isProcessed)
-                //        {
-                //            <form asp-controller="ClientRequest" asp-action="ProcessRequest" method="post">
-                //                <input type="hidden" value="@req.Id" name="clientRequestID"></input>
-                //                <button class="btn btn-dark">Обработать</button>
-                //            </form>
-                //        }
-                //    </td>
-                //    <td class=@color>
-                //        <form asp-controller="ClientRequest" asp-action="GetEditClientRequestView" method="post">
-                //            <input type="hidden" value="@req.Id" name="clientRequestID"></input>
-                //            <button class="btn btn-dark">Редактировать</button>
-                //        </form>
-                //    </td>
-                //    <td class="hidden">@req.Id</td>
-                //</tr>
+                string color = !t.Visible ? "table-danger" : "";
+                <tr>
+                    <th class=@color>@cnt</th>
+                    <td class=@color>@t.Name</td>
+                    <td class=@color>@t.Tagline</td>
+                    <td class=@color>**здесь будет логотип**</td>
+                    <td class=@color>@t.SeasonType.GetDescription()</td>
+                    <td class=@color>@t.NightType.GetDescription()</td>
+                    <td class=@color>@t.Price</td>
+                    <td class=@color>@t.Description</td>
+                    <td class=@color>@t.DescriptionImage</td>
+                    <td class=@color>@t.LinkEquipment</td>
+                    <th class=@color>@t.CreateDt.ToString("f")</th>
+                </tr>
                 cnt++;
             }
         }
-
     </tbody>
 </table>

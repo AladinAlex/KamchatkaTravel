@@ -16,7 +16,7 @@ namespace KamchatkaTravel.Domain.Shared.Extensions
             FieldInfo fieldInfo = value.GetType().GetField(value.ToString());
             if (fieldInfo == null) return null;
             var attribute = fieldInfo.GetCustomAttribute<DisplayAttribute>();
-            return attribute.Name;
+            return attribute != null ? (attribute.Name ?? "") : "";
         }
     }
 }

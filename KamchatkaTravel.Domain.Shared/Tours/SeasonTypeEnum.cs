@@ -13,15 +13,15 @@ namespace KamchatkaTravel.Domain.Shared.Tours
     /// </summary>
     public enum SeasonType
     {
+        [Display(Name = "Все")]
         All = 0,
-
+        [Display(Name = "Лето")]
         Summer = 1,
-
+        [Display(Name = "Осень")]
         Autumn = 2,
-
+        [Display(Name = "Зима")]
         Winter = 3,
-
+        [Display(Name = "Весна")]
         Spring = 4
-
     }
 }
