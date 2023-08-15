@@ -28,8 +28,8 @@
             {
                 string color = req.isProcessed ? "table-danger" : "table-success";
                 <tr>
-                    <th class=@color>@cnt</th>
-                    <th class=@color>@req.CreateDt.ToString("f")</th>
+                    <td class=@color>@cnt</td>
+                    <td class=@color>@req.CreateDt.ToString("f")</td>
                     <td class=@color>@req.FirstName</td>
                     <td class=@color>@req.Email</td>
                     <td class=@color>@req.Phone</td>

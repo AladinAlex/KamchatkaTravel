@@ -30,7 +30,7 @@
             {
                 string color = !t.Visible ? "table-danger" : "";
                 <tr>
-                    <th class=@color>@cnt</th>
+                    <td class=@color>@cnt</td>
                     <td class=@color>@t.Name</td>
                     <td class=@color>@t.Tagline.ToTruncateText()</td>
                     <td class=@color>**здесь будет логотип**</td>
@@ -40,13 +40,15 @@
                     <td class=@color>@t.Description.ToTruncateText(0, 100)</td>
                     <td class=@color>**здесь будет картинка**</td>
                     <td class=@color>@t.LinkEquipment</td>
-                    <th class=@color>@t.CreateDt.ToString("f")</th>
-                    <th class=@color>
-                        <form asp-controller="Tour" asp-action="EditTour" method="post">
-                            <input type="hidden" value="@t.Id" name="TourId"></input>
-                            <button class="btn btn-dark">Редактировать</button>
-                        </form>
-                    </th>
+                    <td class=@color>@t.CreateDt.ToString("f")</td>
+                    <td class=@color>
+                        <div>
+                            <form asp-controller="Tour" asp-action="GetEditTourView" method="post">
+                                <input type="hidden" name="TourId" value="@t.Id"></input>
+                                <button class="btn btn-dark">Редактировать</button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
                 cnt++;
             }

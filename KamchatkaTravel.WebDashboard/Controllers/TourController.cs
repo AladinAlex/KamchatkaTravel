@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KamchatkaTravel.WebDashboard.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
+    //[ApiController]
+    //[Route("api/[controller]")]
     public class TourController : Controller
     {
         //readonly IDataService _dataService;
@@ -87,7 +87,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         //[HttpPost]
         //[Produces("application/json")]
         //[Route("EditTour")]
-        public async Task<IActionResult> EditTour(Guid TourId)
+        public async Task<IActionResult> GetEditTourView(Guid TourId)
         {
             EditTourModel model = new();
             model.tour = await _dashboardService.GetTourByIdAsync(TourId);
