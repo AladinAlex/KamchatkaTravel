@@ -26,20 +26,20 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
 
         public async Task UpdateProcessClientRequestAsync(Guid Id)
         {
-            var cl = await _context.ClientRequests.Where(x => x.Id == Id).FirstAsync();
+            var cl = await _context.ClientRequests.FirstAsync(x => x.Id == Id);
             cl.isProcessed = !cl.isProcessed;
             await _context.SaveChangesAsync();
         }
 
         public async Task<ClientRequest> SelectClientRequestByIdAsync(Guid Id)
         {
-            var cl = await _context.ClientRequests.Where(x => x.Id == Id && x.Visible).FirstAsync();
+            var cl = await _context.ClientRequests.FirstAsync(x => x.Id == Id && x.Visible);
             return cl;
         }
 
         public async Task UpdateClientRequestByIdAsync(Guid Id, string comment)
         {
-            var cl = await _context.ClientRequests.Where(x => x.Id == Id).FirstAsync();
+            var cl = await _context.ClientRequests.FirstAsync(x => x.Id == Id);
 
             if (cl.comment != comment)
             {
@@ -50,21 +50,43 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
 
         public async Task DeleteClientRequestByIdAsync(Guid Id)
         {
-            var cl = await _context.ClientRequests.Where(x => x.Id == Id).FirstAsync();
+            var cl = await _context.ClientRequests.FirstAsync(x => x.Id == Id);
             cl.Visible = false;
             await _context.SaveChangesAsync();
         }
         public async Task<IEnumerable<Tour>> SelectTourAllAsync(bool? isVisible = null)
         {
-            var result = _context.Tours.AsNoTracking().Where(x => x.Visible);
+            var result = _context.Tours.AsNoTracking();
             if (isVisible != null)
                 result = result.Where(x => x.Visible == isVisible);
             return await result.ToListAsync();
         }
         public async Task<Tour> GetTourByIdAsync(Guid Id)
         {
-            var t = await _context.Tours.AsNoTracking().Where(x => x.Id == Id).FirstAsync();
+            var t = await _context.Tours.AsNoTracking().FirstAsync(x => x.Id == Id);
             return t;
+        }
+        public async Task UpdateTourAsync(Tour newTour)
+        {
+            var t = await _context.Tours.FirstAsync(x => x.Id == newTour.Id);
+
+            t.Name = newTour.Name;
+            t.Tagline = newTour.Tagline;
+            
+            if (newTour.LogoImage != null && newTour.LogoImage.Any())
+                t.LogoImage = newTour.LogoImage;
+
+            t.SeasonType = newTour.SeasonType;
+            t.NightType = newTour.NightType;
+            t.Price = newTour.Price;
+            t.Description = newTour.Description;
+
+            if(newTour.DescriptionImage != null && newTour.DescriptionImage.Any())
+                t.DescriptionImage = newTour.DescriptionImage;
+            
+            t.LinkEquipment = newTour.LinkEquipment;
+            t.Visible = newTour.Visible;
+            await _context.SaveChangesAsync();
         }
     }
 }

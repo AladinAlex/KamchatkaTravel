@@ -4,6 +4,7 @@ using KamchatkaTravel.Application.Contracts.DTOs.TourDTOs;
 using KamchatkaTravel.Application.Contracts.Interfaces;
 using KamchatkaTravel.Domain.ClientRequests;
 using KamchatkaTravel.Domain.Interfaces;
+using KamchatkaTravel.Domain.Tours;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,12 @@ namespace KamchatkaTravel.Application.Services
             var t = await _dashboardRepository.GetTourByIdAsync(tourID);
             var result = _mapper.Map<TourViewModel>(t);
             return result;
+        }
+
+        public async Task EditTourAsync(TourViewModel model)
+        {
+            var t = _mapper.Map<Tour>(model);
+            await _dashboardRepository.UpdateTourAsync(t);
         }
     }
 }

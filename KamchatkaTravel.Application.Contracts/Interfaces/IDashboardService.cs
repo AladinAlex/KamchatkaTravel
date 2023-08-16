@@ -17,5 +17,6 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
         Task DeleteClientRequest(Guid ClientRequestId);
         Task<IEnumerable<TourViewModel>> GetToursAsync();
         Task<TourViewModel> GetTourByIdAsync(Guid tourID);
+        Task EditTourAsync(TourViewModel model);
     }
 }

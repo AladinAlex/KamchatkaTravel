@@ -49,7 +49,7 @@ namespace KamchatkaTravel.Application
             CreateMap<ClientRequest, ClientRequestViewModel>()
                 .ForMember(dto => dto.tourName, opt => opt.MapFrom(x => x.tour != null ? x.tour.Name : ""));
 
-            CreateMap<Tour, TourViewModel>();
+            CreateMap<Tour, TourViewModel>().ReverseMap();
         }
     }
 }

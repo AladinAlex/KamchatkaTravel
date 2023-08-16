@@ -12,12 +12,10 @@
             <th scope="col">#</th>
             <th scope="col">тур</th>
             <th scope="col">Слоган</th>
-            <th scope="col">Логотип</th>
             <th scope="col">Сезон</th>
             <th scope="col">Тип ночевки</th>
             <th scope="col">Цена</th>
             <th scope="col">Описание</th>
-            <th scope="col">Картинка описания</th>
             <th scope="col">Ссылка на оборудование</th>
             <th scope="col">Дата создания</th>
             <th scope="col">Редактировать</th>
@@ -33,12 +31,10 @@
                     <td class=@color>@cnt</td>
                     <td class=@color>@t.Name</td>
                     <td class=@color>@t.Tagline.ToTruncateText()</td>
-                    <td class=@color>**здесь будет логотип**</td>
                     <td class=@color>@t.SeasonType.GetDescription()</td>
                     <td class=@color>@t.NightType.GetDescription()</td>
                     <td class=@color>@t.Price</td>
                     <td class=@color>@t.Description.ToTruncateText(0, 100)</td>
-                    <td class=@color>**здесь будет картинка**</td>
                     <td class=@color>@t.LinkEquipment</td>
                     <td class=@color>@t.CreateDt.ToString("f")</td>
                     <td class=@color>
