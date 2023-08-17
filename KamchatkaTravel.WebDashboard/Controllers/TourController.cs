@@ -1,5 +1,6 @@
 ﻿using KamchatkaTravel.Application.Contracts.DTOs.DataDTOs;
 using KamchatkaTravel.Application.Contracts.Interfaces;
+using KamchatkaTravel.EntityFrameworkCore.Migrations;
 using KamchatkaTravel.WebDashboard.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -96,8 +97,12 @@ namespace KamchatkaTravel.WebDashboard.Controllers
 
         public async Task<IActionResult> EditTour(EditTourModel model)
         {
+            // Костыль: при RedirectToAction не переходит, временно сделал так
             await _dashboardService.EditTourAsync(model.tour);
-            return RedirectToAction("GetEditTourView", new { TourId = model.tour.Id });
+            //return RedirectToAction("GetEditTourView", new { TourId = model.tour.Id });
+            EditTourModel modelView = new();
+            modelView.tour = await _dashboardService.GetTourByIdAsync(model.tour.Id);
+            return View("~/Views/Tours/EditTour.cshtml", modelView);
         }
     }
 }
