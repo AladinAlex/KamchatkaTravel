@@ -104,5 +104,16 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             modelView.tour = await _dashboardService.GetTourByIdAsync(model.tour.Id);
             return View("~/Views/Tours/EditTour.cshtml", modelView);
         }
+
+        public async Task<IActionResult> AddTourView()
+        {
+            return View("~/Views/Tours/AddTour.cshtml");
+        }
+
+        public async Task<IActionResult> AddTour(AddTourModel model)
+        {
+            //await _dash
+            return RedirectToAction("MainTour", "Home");
+        }
     }
 }

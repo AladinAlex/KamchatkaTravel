@@ -1,8 +1,8 @@
 ﻿@using KamchatkaTravel.Domain.Shared.Extensions;
-@model EditTourModel;
+@model AddTourModel;
 
 @{
-    ViewData["Title"] = "Редактирование тура: " + Model.tour.Name;
+    ViewData["Title"] = "Создание тура";
 }
 
 <div class="container-fluid">
@@ -29,7 +29,7 @@
                             <b>Слоган:</b>
                         </div>
                         <div class="col-lg-10">
-                            <textarea class="form-control w-100" asp-for="@Model.tour.Tagline" name="tour.Tagline" style="height: 50px">@Model.tour.Tagline</textarea>
+                            <textarea class="form-control w-100" asp-for="@Model.tour.Tagline" name="tour.Tagline" style="height: 50px"></textarea>
                         </div>
                     </div>
                 </li>
@@ -40,10 +40,7 @@
                             <b>Логотип:</b>
                         </div>
                         <div class="form-file col-lg-3">
-                            <input class="form-control" type="file" id="formFile" asp-for="@Model.tour.LogoImage" name="tour.LogoImage" accept="image/png, image/gif, image/jpeg">
-                        </div>
-                        <div class="col-lg-7">
-                            <img src="data:image; base64, @(Convert.ToBase64String(Model.tour.LogoImage))" class="img-fluid mx-auto d-block" style="height: 200px">
+                            <input class="form-control" type="file" asp-for="@Model.tour.LogoImage" name="tour.LogoImage" accept="image/png, image/gif, image/jpeg">
                         </div>
                     </div>
                 </li>
@@ -101,7 +98,7 @@
                             <b>Описание:</b>
                         </div>
                         <div class="col-lg-10">
-                            <textarea class="form-control w-100" asp-for="@Model.tour.Description" name="tour.Description" style="height: 125px">@Model.tour.Description</textarea>
+                            <textarea class="form-control w-100" asp-for="@Model.tour.Description" name="tour.Description" style="height: 125px"></textarea>
                         </div>
                     </div>
                 </li>
@@ -112,10 +109,7 @@
                             <b>Картинка описания:</b>
                         </div>
                         <div class="form-file col-lg-3">
-                            <input class="form-control" type="file" asp-for="@Model.tour.DescriptionImage" name="tour.DescriptionImage" accept="image/png, image/gif, image/jpeg">
-                        </div>
-                        <div class="col-lg-7">
-                            <img src="data:image; base64, @(Convert.ToBase64String(Model.tour.DescriptionImage))" class="img-fluid mx-auto d-block" style="height: 200px">
+                            <input class="form-control" type="file" asp-for="@Model.tour.LogoImage" name="tour.LogoImage" accept="image/png, image/gif, image/jpeg">
                         </div>
                     </div>
                 </li>
@@ -131,36 +125,12 @@
                     </div>
                 </li>
 
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <b>Видимость:</b>
-                        </div>
-                        <div class="form-check form-switch col-lg-10">
-                            <input class="form-check-input" type="checkbox" asp-for="@Model.tour.Visible" name="tour.Visible">
-                            <label class="form-check-label">Видимость</label>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <b>Дата создания:</b>
-                        </div>
-                        <div class="col-lg-10">
-                            <label class="form-check-label" asp-for="@Model.tour.CreateDt" name="tour.CreateDt">@Model.tour.CreateDt.ToString("f")</label>
-                        </div>
-                    </div>
-                </li>
-
             </ul>
             <div>
-                <button class="btn btn-dark" type="submit" asp-action="EditTour" asp-controller="Tour">
+                <button class="btn btn-dark" type="submit" asp-action="AddTour" asp-controller="Tour">
                     <span>Сохранить</span>
                 </button>
             </div>
-            <input type="hidden" name="tour.Id" value="@Model.tour.Id" asp-for="@Model.tour.Id"></input>
         </form>
     </div>
 
