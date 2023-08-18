@@ -40,7 +40,7 @@
                             <b>Логотип:</b>
                         </div>
                         <div class="form-file col-lg-3">
-                            <input class="form-control" type="file" asp-for="@Model.tour.LogoImage" name="tour.LogoImage" accept="image/png, image/gif, image/jpeg">
+                            <input class="form-control" type="file" asp-for="@Model.tour.LogoImg" name="tour.LogoImg" accept="image/png, image/gif, image/jpeg">
                         </div>
                     </div>
                 </li>
@@ -109,7 +109,7 @@
                             <b>Картинка описания:</b>
                         </div>
                         <div class="form-file col-lg-3">
-                            <input class="form-control" type="file" asp-for="@Model.tour.LogoImage" name="tour.LogoImage" accept="image/png, image/gif, image/jpeg">
+                            <input class="form-control" type="file" asp-for="@Model.tour.DescriptionImg" name="tour.DescriptionImg" accept="image/png, image/gif, image/jpeg">
                         </div>
                     </div>
                 </li>
@@ -127,7 +127,7 @@
 
             </ul>
             <div>
-                <button class="btn btn-dark" type="submit" asp-action="AddTour" asp-controller="Tour">
+                <button class="btn btn-dark" type="submit" asp-action="AddTour" asp-controller="Tour" formenctype="multipart/form-data">
                     <span>Сохранить</span>
                 </button>
             </div>
