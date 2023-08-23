@@ -94,5 +94,10 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             await _context.Tours.AddAsync(tour);
             await _context.SaveChangesAsync();
         }
+        public async Task InsertViewAsync(View view)
+        {
+            await _context.Views.AddAsync(view);
+            await _context.SaveChangesAsync();
+        }
     }
 }

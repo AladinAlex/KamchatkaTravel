@@ -164,4 +164,51 @@
         </form>
     </div>
 
+    <hr />
+    <div class="col-12">
+        <h3>Виды</h3>
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col">Картинка</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int cnt = 1;
+                    foreach (var t in Model.views.OrderBy(x => x.Visible))
+                    {
+                        string color = !t.Visible ? "table-danger" : "";
+                        <tr>
+                            <td class=@color>@cnt</td>
+                            <td class=@color>@t.Name</td>
+                            <td class=@color>@t.Description.ToTruncateText()</td>
+                            <td class=@color>
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <b>Картинка описания:</b>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <img src="data:image; base64, @(Convert.ToBase64String(Model.tour.DescriptionImage))" class="img-fluid mx-auto d-block" style="height: 100px">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class=@color>
+                                <div>
+                                    <form asp-controller="Tour" asp-action="GetEditTourView" method="post">
+                                        <input type="hidden" name="TourId" value="@Model.tour.Id"></input>
+                                        <button class="btn btn-dark">Редактировать</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        cnt++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

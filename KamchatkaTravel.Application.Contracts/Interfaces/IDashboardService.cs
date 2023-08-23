@@ -20,5 +20,6 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
         Task<TourViewModel> GetTourByIdAsync(Guid tourID);
         Task EditTourAsync(TourViewModel model);
         Task CreateTourAsync(CreateTourDto model);
+        Task CreateTourViewAsync(CreateViewDto model);
     }
 }

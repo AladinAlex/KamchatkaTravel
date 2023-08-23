@@ -4,7 +4,6 @@ namespace KamchatkaTravel.WebDashboard.Models
 {
     public class AddTourViewModel
     {
-        public CreateTourDto tour { get; set; }
-        public CreateDayDto day { get; set; }
+        public CreateViewDto view { get; set; }
     }
 }

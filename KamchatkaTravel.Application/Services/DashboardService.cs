@@ -8,6 +8,7 @@ using KamchatkaTravel.Domain.Interfaces;
 using KamchatkaTravel.Domain.Tours;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -78,6 +79,12 @@ namespace KamchatkaTravel.Application.Services
             t.DescriptionImage = WriteBytes(model.DescriptionImg);
             await _dashboardRepository.InsertTourAsync(t);
         }
+        public async Task CreateTourViewAsync(CreateViewDto model)
+        {
+            var v = _mapper.Map<View>(model);
+            v.Image = WriteBytes(model.Image);
+            await _dashboardRepository.InsertViewAsync(v);
+        }
 
         private byte[] WriteBytes(IFormFile? ifile)
         {
@@ -96,5 +103,6 @@ namespace KamchatkaTravel.Application.Services
 
             return result;
         }
+
     }
 }

@@ -19,5 +19,6 @@ namespace KamchatkaTravel.Domain.Interfaces
         Task<Tour> GetTourByIdAsync(Guid Id);
         Task UpdateTourAsync(Tour newTour);
         Task InsertTourAsync(Tour tour);
+        Task InsertViewAsync(View tour);
     }
 }
