@@ -88,5 +88,11 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             t.Visible = newTour.Visible;
             await _context.SaveChangesAsync();
         }
+
+        public async Task InsertTourAsync(Tour tour)
+        {
+            await _context.Tours.AddAsync(tour);
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using KamchatkaTravel.Application.Contracts.DTOs.ClientRequestDTOs;
+using KamchatkaTravel.Application.Contracts.DTOs.DataDTOs;
 using KamchatkaTravel.Application.Contracts.DTOs.TourDTOs;
 using KamchatkaTravel.Application.Contracts.Interfaces;
 using KamchatkaTravel.Domain.ClientRequests;
 using KamchatkaTravel.Domain.Interfaces;
 using KamchatkaTravel.Domain.Tours;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +69,32 @@ namespace KamchatkaTravel.Application.Services
         {
             var t = _mapper.Map<Tour>(model);
             await _dashboardRepository.UpdateTourAsync(t);
+        }
+
+        public async Task CreateTourAsync(CreateTourDto model)
+        {
+            var t = _mapper.Map<Tour>(model);
+            t.LogoImage = WriteBytes(model.LogoImg);
+            t.DescriptionImage = WriteBytes(model.DescriptionImg);
+            await _dashboardRepository.InsertTourAsync(t);
+        }
+
+        private byte[] WriteBytes(IFormFile? ifile)
+        {
+            byte[] result = new byte[0];
+            if (ifile != null)
+                return result;
+
+            string ImageName = Guid.NewGuid().ToString() + Path.GetExtension(ifile.FileName);
+            //string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", ImageName);
+            if (ifile.Length > 0)
+                using (var ms = new MemoryStream())
+                {
+                    ifile.CopyTo(ms);
+                    result = ms.ToArray();
+                }
+
+            return result;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using KamchatkaTravel.Application.Contracts.DTOs.ClientRequestDTOs;
+using KamchatkaTravel.Application.Contracts.DTOs.DataDTOs;
 using KamchatkaTravel.Application.Contracts.DTOs.TourDTOs;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,6 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
         Task<IEnumerable<TourViewModel>> GetToursAsync();
         Task<TourViewModel> GetTourByIdAsync(Guid tourID);
         Task EditTourAsync(TourViewModel model);
+        Task CreateTourAsync(CreateTourDto model);
     }
 }

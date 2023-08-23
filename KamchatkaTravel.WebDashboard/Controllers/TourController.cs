@@ -112,7 +112,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
 
         public async Task<IActionResult> AddTour(AddTourModel model)
         {
-            //await _dash
+            await _dashboardService.CreateTourAsync(model.tour);
             return RedirectToAction("MainTour", "Home");
         }
     }
