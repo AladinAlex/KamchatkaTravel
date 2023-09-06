@@ -69,7 +69,15 @@ namespace KamchatkaTravel.Application.Services
         public async Task EditTourAsync(TourViewModel model)
         {
             var t = _mapper.Map<Tour>(model);
+            t.LogoImage = WriteBytes(model.LogoImageFile);
+            t.DescriptionImage = WriteBytes(model.DescriptionImageFile);
             await _dashboardRepository.UpdateTourAsync(t);
+        }
+        public async Task EditViewAsync(ViewModel model)
+        {
+            var v = _mapper.Map<View>(model);
+            v.Image = WriteBytes(model.ImageFile);
+            await _dashboardRepository.UpdateViewAsync(v);
         }
 
         public async Task CreateTourAsync(CreateTourDto model)
@@ -86,10 +94,24 @@ namespace KamchatkaTravel.Application.Services
             await _dashboardRepository.InsertViewAsync(v);
         }
 
+        public async Task CreateTourImageAsync(CreateImageDto model)
+        {
+            var v = _mapper.Map<Image>(model);
+            v.Img = WriteBytes(model.Image);
+            await _dashboardRepository.InsertImageAsync(v);
+        }
+
+        public async Task<ViewModel> GetViewByIdAsync(Guid viewID)
+        {
+            var t = await _dashboardRepository.GetViewByIdAsync(viewID);
+            var result = _mapper.Map<ViewModel>(t);
+            return result;
+        }
+
         private byte[] WriteBytes(IFormFile? ifile)
         {
             byte[] result = new byte[0];
-            if (ifile != null)
+            if (ifile == null)
                 return result;
 
             string ImageName = Guid.NewGuid().ToString() + Path.GetExtension(ifile.FileName);
@@ -103,6 +125,5 @@ namespace KamchatkaTravel.Application.Services
 
             return result;
         }
-
     }
 }

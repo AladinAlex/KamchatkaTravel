@@ -37,7 +37,9 @@ namespace KamchatkaTravel.Application
             CreateMap<CreateDayDto, Day>().ReverseMap();
             CreateMap<CreateImageDto, Image>().ReverseMap();
             CreateMap<CreateIncludeDto, Include>().ReverseMap();
-            CreateMap<CreateViewDto, View>().ReverseMap();
+            CreateMap<CreateViewDto, View>()
+                 .ForMember(dto => dto.Image, s => s.Ignore())
+                .ReverseMap();
 
             CreateMap<Tour, SimpleTour>().ReverseMap();
             CreateMap<IEnumerable<Tour>, GetToursResponse>()
@@ -50,6 +52,8 @@ namespace KamchatkaTravel.Application
                 .ForMember(dto => dto.tourName, opt => opt.MapFrom(x => x.tour != null ? x.tour.Name : ""));
 
             CreateMap<Tour, TourViewModel>().ReverseMap();
+            CreateMap<Tour, UpdateTourDto>().ReverseMap();
+            CreateMap<View, ViewModel>().ReverseMap();
         }
     }
 }

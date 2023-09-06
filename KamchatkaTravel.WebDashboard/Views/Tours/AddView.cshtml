@@ -1,4 +1,4 @@
-﻿@using KamchatkaTravel.Application.Contracts.DTOs.DataDTOs;
+﻿@using KamchatkaTravel.WebDashboard.Models.ForAddView;
 @model AddTourViewModel;
 
 @{
@@ -47,9 +47,10 @@
 
             </ul>
             <div>
-                <button class="btn btn-dark" type="submit" asp-action="AddTourView" asp-controller="Tour" formenctype="multipart/form-data">
+                <button class="btn btn-dark" type="submit" asp-action="AddView" asp-controller="Tour" formenctype="multipart/form-data">
                     <span>Сохранить</span>
                 </button>
+                <input type="hidden" name="view.TourId" value="@Model.view.TourId" asp-for="@Model.view.TourId">
             </div>
         </form>
     </div>

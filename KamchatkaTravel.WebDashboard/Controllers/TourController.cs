@@ -2,6 +2,9 @@
 using KamchatkaTravel.Application.Contracts.Interfaces;
 using KamchatkaTravel.EntityFrameworkCore.Migrations;
 using KamchatkaTravel.WebDashboard.Models;
+using KamchatkaTravel.WebDashboard.Models.ForAdd;
+using KamchatkaTravel.WebDashboard.Models.ForAddView;
+using KamchatkaTravel.WebDashboard.Models.ForEditView;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KamchatkaTravel.WebDashboard.Controllers
@@ -17,109 +20,100 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             _dashboardService = dashboardService;
         }
 
-        //[HttpPost]
-        //[Consumes("multipart/form-data")]
-        //[Route("CreateTour")]
-        //public async Task CreateTour([FromForm] CreateTourDto request)
-        //{
-        //    await _dataService.CreateTour(request);
-        //    //return View("/Views/Home/Index.cshtml");
-        //}
-
-        //[HttpPost]
-        //[Consumes("multipart/form-data")]
-        //[Route("CreateDay")]
-        //public async Task CreateDay([FromForm] CreateDayDto request)
-        //{
-        //    await _dataService.CreateDay(request);
-        //}
-
-        //[HttpPost]
-        //[Produces("application/json")]
-        //[Route("CreateQuestion")]
-        //public async Task CreateQuestion(CreateQuestionDto request)
-        //{
-        //    await _dataService.CreateQuestion(request);
-        //}
-
-        //[HttpPost]
-        //[Produces("application/json")]
-        //[Route("CreateReview")]
-        //public async Task CreateReview(CreateReviewDto request)
-        //{
-        //    await _dataService.CreateReview(request);
-        //}
-
-        //[HttpPost]
-        //[Produces("application/json")]
-        //[Route("CreateImage")]
-        //public async Task CreateImage(CreateImageDto request)
-        //{
-        //    await _dataService.CreateImage(request);
-        //}
-
-
-        //[HttpPost]
-        //[Produces("application/json")]
-        //[Route("CreateInclude")]
-        //public async Task CreateInclude(CreateIncludeDto request)
-        //{
-        //    await _dataService.CreateInclude(request);
-        //}
-
-        [HttpPost]
-        //[Produces("application/json")]
-        //[Route("CreateView")]
-        //public async Task CreateView(CreateViewDto request)
-        //{
-        //    await _dataService.CreateView(request);
-        //}
-
-        //[HttpGet]
-        //[Produces("application/json")]
-        //[Route("GetTours")]
-        //public async Task<GetToursResponse> GetTours()
-        //{
-        //    var response = await _dataService.GetTours();
-
-        //    return response;
-        //}
-
-        //[HttpPost]
-        //[Produces("application/json")]
-        //[Route("EditTour")]
+        #region Tour
+        /// <summary>
+        /// Получение представления для изменения тура
+        /// А также для добавления и редактирования видов, дней, включено/невключено, вопросов, картинок и т.п.
+        /// </summary>
+        /// <param name="TourId"></param>
+        /// <returns></returns>
         public async Task<IActionResult> GetEditTourView(Guid TourId)
         {
-            EditTourModel model = new();
+            EditTourViewModel model = new();
             model.tour = await _dashboardService.GetTourByIdAsync(TourId);
+            //добавить виды, картинки, дни, вопросы, вкл/не вкл
             return View("~/Views/Tours/EditTour.cshtml", model);
         }
 
-        public async Task<IActionResult> EditTour(EditTourModel model)
+        /// <summary>
+        /// Редактирование тура, получает новые данные, обновляет в базе
+        /// Возвращает туже страницу
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> EditTour(EditTourViewModel model)
         {
-            // Костыль: при RedirectToAction не переходит, временно сделал так
             await _dashboardService.EditTourAsync(model.tour);
             //return RedirectToAction("GetEditTourView", new { TourId = model.tour.Id });
-            EditTourModel modelView = new();
+            EditTourViewModel modelView = new();
             modelView.tour = await _dashboardService.GetTourByIdAsync(model.tour.Id);
+            // Костыль: при RedirectToAction не переходит, временно сделал так
             return View("~/Views/Tours/EditTour.cshtml", modelView);
         }
 
+        /// <summary>
+        /// Получение представления для создания тура
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> AddTourView()
         {
             return View("~/Views/Tours/AddTour.cshtml");
         }
 
+        /// <summary>
+        /// Создание тура, возвращает страницу со списком туров
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public async Task<IActionResult> AddTour(AddTourModel model)
         {
             await _dashboardService.CreateTourAsync(model.tour);
             return RedirectToAction("MainTour", "Home");
         }
+        #endregion
 
-        public async Task<IActionResult> AddTourView(AddTourViewModel model)
+        #region View
+        public async Task<IActionResult> AddView(AddTourViewModel model)
         {
+            // тут после добавления нужно идти на edit tour текущий(model.view.tourId)
             await _dashboardService.CreateTourViewAsync(model.view);
             return RedirectToAction("MainTour", "Home");
         }
+        public async Task<IActionResult> GetAddView(Guid TourId)
+        {
+            AddTourViewModel model = new();
+            model.view.TourId = TourId;
+            return View("~/Views/Tours/AddView.cshtml", model);
+        }
+        public async Task<IActionResult> GetEditView(Guid ViewId)
+        {
+            EditViewModel model = new();
+            model.view = await _dashboardService.GetViewByIdAsync(ViewId);
+            //model.tour = await _dashboardService.GetTourByIdAsync(TourId);
+            return View("~/Views/Tours/EditView.cshtml", model);
+        }
+        public async Task<IActionResult> EditView(EditViewModel model)
+        {
+            await _dashboardService.EditViewAsync(model.view);
+            return RedirectToAction("GetEditView", new { ViewId = model.view.Id });
+        }
+        #endregion
+
+        #region Image
+        //public async Task<IActionResult> AddImage(AddTourImageModel model)
+        //{
+        //    await _dashboardService.CreateTourImageAsync();
+        //}
+
+        //public async Task<IActionResult> GetEditImage(Guid ImageId)
+        //{
+
+        //}
+
+        //public async Task<IActionResult> GetAddImage(Guid TourId)
+        //{
+
+        //}
+        #endregion
     }
 }

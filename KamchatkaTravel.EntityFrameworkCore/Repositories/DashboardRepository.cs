@@ -63,7 +63,9 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
         }
         public async Task<Tour> GetTourByIdAsync(Guid Id)
         {
-            var t = await _context.Tours.AsNoTracking().FirstAsync(x => x.Id == Id);
+            var t = await _context.Tours.AsNoTracking()
+                .Include(x => x.Views)
+                .FirstAsync(x => x.Id == Id);
             return t;
         }
         public async Task UpdateTourAsync(Tour newTour)
@@ -88,6 +90,18 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             t.Visible = newTour.Visible;
             await _context.SaveChangesAsync();
         }
+        public async Task UpdateViewAsync(View newView)
+        {
+            var v = await _context.Views.FirstAsync(x => x.Id == newView.Id);
+            v.Visible = newView.Visible;
+
+            if (newView.Image != null && newView.Image.Any())
+                v.Image = newView.Image;
+
+            v.Description = newView.Description;
+            v.Name = newView.Name;
+            await _context.SaveChangesAsync();
+        }
 
         public async Task InsertTourAsync(Tour tour)
         {
@@ -97,6 +111,17 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
         public async Task InsertViewAsync(View view)
         {
             await _context.Views.AddAsync(view);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<View> GetViewByIdAsync(Guid Id)
+        {
+            var t = await _context.Views.AsNoTracking().FirstAsync(x => x.Id == Id);
+            return t;
+        }
+        public async Task InsertImageAsync(Image img)
+        {
+            await _context.Images.AddAsync(img);
             await _context.SaveChangesAsync();
         }
     }
