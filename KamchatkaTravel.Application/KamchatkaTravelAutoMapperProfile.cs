@@ -54,6 +54,7 @@ namespace KamchatkaTravel.Application
             CreateMap<Tour, TourViewModel>().ReverseMap();
             CreateMap<Tour, UpdateTourDto>().ReverseMap();
             CreateMap<View, ViewModel>().ReverseMap();
+            CreateMap<Image, ImageModel>().ReverseMap();
         }
     }
 }

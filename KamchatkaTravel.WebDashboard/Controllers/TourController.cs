@@ -100,20 +100,34 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         #endregion
 
         #region Image
-        //public async Task<IActionResult> AddImage(AddTourImageModel model)
-        //{
-        //    await _dashboardService.CreateTourImageAsync();
-        //}
 
-        //public async Task<IActionResult> GetEditImage(Guid ImageId)
-        //{
+        public async Task<IActionResult> AddImage(AddTourImageModel model)
+        {
+            await _dashboardService.CreateTourImageAsync(model.image);
+            return RedirectToAction("MainTour", "Home");
+        }
 
-        //}
+        public async Task<IActionResult> GetAddImage(Guid TourId)
+        {
+            AddTourImageModel model = new AddTourImageModel();
+            model.image.TourId = TourId;
+            return View("~/Views/Tours/AddImage.cshtml", model);
+        }
 
-        //public async Task<IActionResult> GetAddImage(Guid TourId)
-        //{
+        public async Task<IActionResult> GetEditImage(Guid ImageId)
+        {
+            EditImageModel model = new();
+            model.image = await _dashboardService.GetImageByIdAsync(ImageId);
+            return View("~/Views/Tours/EditImage.cshtml", model);   
+        }
 
-        //}
+        public async Task<IActionResult> EditImage(EditImageModel model)
+        {
+            await _dashboardService.EditImageAsync(model.image);
+            return RedirectToAction("GetEditImage", new { ImageId = model.image.Id });
+        }
+
+
         #endregion
     }
 }

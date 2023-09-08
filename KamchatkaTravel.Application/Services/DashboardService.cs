@@ -125,5 +125,19 @@ namespace KamchatkaTravel.Application.Services
 
             return result;
         }
+
+        public async Task<ImageModel> GetImageByIdAsync(Guid ImageId)
+        {
+            var t = await _dashboardRepository.GetImageByIdAsync(ImageId);
+            var result = _mapper.Map<ImageModel>(t);
+            return result;
+        }
+
+        public async Task EditImageAsync(ImageModel model)
+        {
+            var i = _mapper.Map<Image>(model);
+            i.Img = WriteBytes(model.ImgFile);
+            await _dashboardRepository.UpdateImageAsync(i);
+        }
     }
 }

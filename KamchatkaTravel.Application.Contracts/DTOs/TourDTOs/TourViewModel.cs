@@ -24,10 +24,7 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.TourDTOs
         public string LinkEquipment { get; set; }
         public bool Visible { get; set; }
         public DateTime CreateDt { get; set; }
-        //public List<Day> Days { get; set; }
-        //public List<Image> Images { get; set; }
-        //public List<Include> Includes { get; set; }
-        //public List<Question> Questions { get; set; }
         public List<ViewModel> views { get; set; }
+        public List<ImageModel> images { get; set; }
     }
 }

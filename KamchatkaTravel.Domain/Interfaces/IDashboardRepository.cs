@@ -19,9 +19,11 @@ namespace KamchatkaTravel.Domain.Interfaces
         Task<Tour> GetTourByIdAsync(Guid Id);
         Task UpdateTourAsync(Tour newTour);
         Task UpdateViewAsync(View newView);
+        Task UpdateImageAsync(Image newImage);
         Task InsertTourAsync(Tour tour);
         Task InsertViewAsync(View tour);
         Task InsertImageAsync(Image tour);
         Task<View> GetViewByIdAsync(Guid Id);
+        Task<Image> GetImageByIdAsync(Guid Id);
     }
 }

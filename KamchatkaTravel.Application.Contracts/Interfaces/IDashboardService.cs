@@ -17,12 +17,14 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
         Task EditClientRequest(Guid ClientRequestId, string comment);
         Task DeleteClientRequest(Guid ClientRequestId);
         Task<IEnumerable<TourViewModel>> GetToursAsync();
-        Task<TourViewModel> GetTourByIdAsync(Guid tourID);
+        Task<TourViewModel> GetTourByIdAsync(Guid tourId);
         Task EditTourAsync(TourViewModel model);
         Task EditViewAsync(ViewModel model);
+        Task EditImageAsync(ImageModel model);
         Task CreateTourAsync(CreateTourDto model);
         Task CreateTourViewAsync(CreateViewDto model);
         Task CreateTourImageAsync(CreateImageDto model);
-        Task<ViewModel> GetViewByIdAsync(Guid viewID);
+        Task<ViewModel> GetViewByIdAsync(Guid viewId);
+        Task<ImageModel> GetImageByIdAsync(Guid ImageId);
     }
 }

@@ -1,0 +1,36 @@
+﻿@using KamchatkaTravel.WebDashboard.Models.ForAddView;
+@model AddTourImageModel;
+
+@{
+    ViewData["Title"] = "Создание картинки";
+}
+
+<div class="container-fluid">
+
+    <div class="col-12">
+        <h3>Создание вида</h3>
+        <form method="post">
+            <ul class="list-group mb-2">
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Картинка:</b>
+                        </div>
+                        <div class="form-file col-lg-3">
+                            <input class="form-control" type="file" asp-for="@Model.image.Image" name="image.Image" accept="image/png, image/gif, image/jpeg">
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+            <div>
+                <button class="btn btn-dark" type="submit" asp-action="AddImage" asp-controller="Tour" formenctype="multipart/form-data">
+                    <span>Сохранить</span>
+                </button>
+                <input type="hidden" name="image.TourId" value="@Model.image.TourId" asp-for="@Model.image.TourId">
+            </div>
+        </form>
+    </div>
+
+</div>

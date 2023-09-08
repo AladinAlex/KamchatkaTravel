@@ -230,22 +230,32 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Картинка</th>
+                    <th scope="col">Редактировать</th>
                 </tr>
             </thead>
             <tbody>
                 @{
                     cnt = 1;
-                    foreach (var t in Model.tour.views.OrderBy(x => x.Visible))
+                    foreach (var t in Model.tour.images.OrderBy(x => x.Visible))
                     {
                         <tr>
+                            <td>@cnt</td>
                             <td>
                                 <div class="row">
                                     <div class="col-lg-2">
                                         <b>Картинка:</b>
                                     </div>
                                     <div class="col-lg-10">
-                                        <img src="data:image; base64, @(Convert.ToBase64String(t.Image))" class="img-fluid mx-auto d-block" style="height: 100px">
+                                        <img src="data:image; base64, @(Convert.ToBase64String(t.Img))" class="img-fluid mx-auto d-block" style="height: 100px">
                                     </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <form asp-controller="Tour" asp-action="GetEditImage" method="post">
+                                        <input type="hidden" name="ImageId" value="@t.Id"></input>
+                                        <button class="btn btn-dark">Редактировать</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -255,7 +265,7 @@
             </tbody>
         </table>
         <div>
-            <form asp-action="GetAddView" asp-controller="Tour" method="post">
+            <form asp-action="GetAddImage" asp-controller="Tour" method="post">
                 <button class="btn btn-dark" type="submit">
                     <span>Создать</span>
                 </button>
