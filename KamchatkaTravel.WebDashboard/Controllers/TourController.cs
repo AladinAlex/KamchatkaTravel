@@ -1,5 +1,6 @@
 ﻿using KamchatkaTravel.Application.Contracts.DTOs.DataDTOs;
 using KamchatkaTravel.Application.Contracts.Interfaces;
+using KamchatkaTravel.Domain.Tours;
 using KamchatkaTravel.EntityFrameworkCore.Migrations;
 using KamchatkaTravel.WebDashboard.Models;
 using KamchatkaTravel.WebDashboard.Models.ForAdd;
@@ -127,7 +128,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         }
         #endregion
 
-        #region Image
+        #region Day
         public async Task<IActionResult> AddDay(AddTourDayModel model)
         {
             await _dashboardService.CreateTourDayAsync(model.day);
@@ -150,6 +151,32 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         {
             await _dashboardService.EditDayAsync(model.day);
             return RedirectToAction("GetEditDay", new { DayId = model.day.Id });
+        }
+        #endregion
+
+        #region Question
+        public async Task<IActionResult> AddQuestion(AddTourQuestionModel model)
+        {
+            await _dashboardService.CreateTourQuestionAsync(model.question);
+            return RedirectToAction("MainTour", "Home");
+        }
+        public async Task<IActionResult> GetAddQuestion(Guid TourId)
+        {
+            AddTourQuestionModel model = new();
+            model.question.TourId = TourId;
+            return View("~/Views/Tours/AddQuestion.cshtml", model);
+        }
+        public async Task<IActionResult> GetEditQuestion(Guid QuestionId)
+        {
+            EditQuestionModel model = new();
+            model.question = await _dashboardService.GetQuestionByIdAsync(QuestionId);
+            return View("~/Views/Tours/EditQuestion.cshtml", model);
+        }
+
+        public async Task<IActionResult> EditQuestion(EditQuestionModel model)
+        {
+            await _dashboardService.EditQuestionAsync(model.question);
+            return RedirectToAction("GetEditQuestion", new { QuestionId = model.question.Id });
         }
         #endregion
     }

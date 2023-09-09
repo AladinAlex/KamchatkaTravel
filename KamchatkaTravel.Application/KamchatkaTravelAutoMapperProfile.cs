@@ -57,6 +57,7 @@ namespace KamchatkaTravel.Application
             CreateMap<View, ViewModel>().ReverseMap();
             CreateMap<Image, ImageModel>().ReverseMap();
             CreateMap<Day, DayModel>().ReverseMap();
+            CreateMap<Question, QuestionModel>().ReverseMap();
 
         }
     }

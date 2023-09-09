@@ -1,0 +1,58 @@
+﻿@using KamchatkaTravel.WebDashboard.Models.ForAddView;
+@model AddTourQuestionModel;
+
+@{
+    ViewData["Title"] = "Создание вопроса";
+}
+
+<div class="container-fluid">
+
+    <div class="col-12">
+        <h3>Создание вопроса</h3>
+        <form method="post">
+            <ul class="list-group mb-2">
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Вопрос:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <input class="form-control w-100" asp-for="@Model.question.Name" name="question.Name"></input>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Ответ:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <textarea class="form-control w-100" asp-for="@Model.question.Answer" name="question.Answer" style="height: 125px"></textarea>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Порядок:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <input class="form-control w-100" asp-for="@Model.question.Ord" name="question.Ord" type="number" />
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+            <div>
+                <button class="btn btn-dark" type="submit" asp-action="AddQuestion" asp-controller="Tour" formenctype="multipart/form-data">
+                    <span>Сохранить</span>
+                </button>
+                <input type="hidden" name="question.TourId" value="@Model.question.TourId" asp-for="@Model.question.TourId" />
+            </div>
+        </form>
+    </div>
+
+</div>

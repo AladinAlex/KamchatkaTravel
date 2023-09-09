@@ -67,6 +67,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
                 .Include(x => x.Views)
                 .Include(x => x.Images)
                 .Include(x => x.Days)
+                .Include(x => x.Questions)
+                .Include(x => x.Includes)
                 .FirstAsync(x => x.Id == Id);
             return t;
         }
@@ -109,6 +111,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
         {
             var v = await _context.Images.FirstAsync(x => x.Id == newImage.Id);
             v.Visible = newImage.Visible;
+            v.Ord = newImage.Ord;
 
             if (newImage.Img != null && newImage.Img.Any())
                 v.Img = newImage.Img;
@@ -125,6 +128,17 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
 
             if (newDay.Image != null && newDay.Image.Any())
                 d.Image = newDay.Image;
+
+            await _context.SaveChangesAsync();
+        }
+        public async Task UpdateQuestionAsync(Question newQuestion)
+        {
+            var q = await _context.Questions.FirstAsync(x => x.Id == newQuestion.Id);
+
+            q.Name = newQuestion.Name;
+            q.Answer = newQuestion.Answer;
+            q.Ord = newQuestion.Ord;
+            q.Visible = newQuestion.Visible;
 
             await _context.SaveChangesAsync();
         }
@@ -155,6 +169,11 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             await _context.Days.AddAsync(day);
             await _context.SaveChangesAsync();
         }
+        public async Task InsertQuestionAsync(Question question)
+        {
+            await _context.Questions.AddAsync(question);
+            await _context.SaveChangesAsync();
+        }
 
         public async Task<Image> GetImageByIdAsync(Guid Id)
         {
@@ -165,6 +184,11 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
         {
             var t = await _context.Days.AsNoTracking().FirstAsync(x => x.Id == Id);
             return t;
+        }
+        public async Task<Question> GetQuestionByIdAsync(Guid Id)
+        {
+            var q = await _context.Questions.AsNoTracking().FirstAsync(x => x.Id == Id);
+            return q;
         }
     }
 }

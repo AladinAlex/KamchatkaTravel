@@ -23,6 +23,17 @@
                     </div>
                 </li>
 
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Порядок:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <input class="form-control w-100" asp-for="@Model.image.Ord" name="image.Ord" type="number" />
+                        </div>
+                    </div>
+                </li>
+
             </ul>
             <div>
                 <button class="btn btn-dark" type="submit" asp-action="AddImage" asp-controller="Tour" formenctype="multipart/form-data">

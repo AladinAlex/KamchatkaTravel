@@ -106,6 +106,11 @@ namespace KamchatkaTravel.Application.Services
             d.Image = WriteBytes(model.Img);
             await _dashboardRepository.InsertDayAsync(d);
         }
+        public async Task CreateTourQuestionAsync(CreateQuestionDto model)
+        {
+            var q = _mapper.Map<Question>(model);
+            await _dashboardRepository.InsertQuestionAsync(q);
+        }
 
         public async Task<ViewModel> GetViewByIdAsync(Guid viewID)
         {
@@ -144,6 +149,12 @@ namespace KamchatkaTravel.Application.Services
             var result = _mapper.Map<DayModel>(t);
             return result;
         }
+        public async Task<QuestionModel> GetQuestionByIdAsync(Guid QuestionId)
+        {
+            var t = await _dashboardRepository.GetQuestionByIdAsync(QuestionId);
+            var result = _mapper.Map<QuestionModel>(t);
+            return result;
+        }
 
         public async Task EditImageAsync(ImageModel model)
         {
@@ -156,6 +167,11 @@ namespace KamchatkaTravel.Application.Services
             var d = _mapper.Map<Day>(model);
             d.Image = WriteBytes(model.ImageFile);
             await _dashboardRepository.UpdateDayAsync(d);
+        }
+        public async Task EditQuestionAsync(QuestionModel model)
+        {
+            var q = _mapper.Map<Question>(model);
+            await _dashboardRepository.UpdateQuestionAsync(q);
         }
     }
 }
