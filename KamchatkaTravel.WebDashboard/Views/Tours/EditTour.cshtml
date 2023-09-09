@@ -189,14 +189,7 @@
                             <td class=@color>@t.Name</td>
                             <td class=@color>@t.Description.ToTruncateText()</td>
                             <td class=@color>
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <b>Картинка:</b>
-                                    </div>
-                                    <div class="col-lg-10">
-                                        <img src="data:image; base64, @(Convert.ToBase64String(t.Image))" class="img-fluid mx-auto d-block" style="height: 100px">
-                                    </div>
-                                </div>
+                                <img src="data:image; base64, @(Convert.ToBase64String(t.Image))" class="img-fluid  d-block" style="height: 100px">
                             </td>
                             <td class=@color>
                                 <div>
@@ -241,14 +234,7 @@
                         <tr>
                             <td>@cnt</td>
                             <td>
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <b>Картинка:</b>
-                                    </div>
-                                    <div class="col-lg-10">
-                                        <img src="data:image; base64, @(Convert.ToBase64String(t.Img))" class="img-fluid mx-auto d-block" style="height: 100px">
-                                    </div>
-                                </div>
+                                <img src="data:image; base64, @(Convert.ToBase64String(t.Img))" class="img-fluid d-block" style="height: 100px">
                             </td>
                             <td>
                                 <div>
@@ -266,6 +252,58 @@
         </table>
         <div>
             <form asp-action="GetAddImage" asp-controller="Tour" method="post">
+                <button class="btn btn-dark" type="submit">
+                    <span>Создать</span>
+                </button>
+                <input type="hidden" name="TourId" value="@Model.tour.Id" asp-for="@Model.tour.Id">
+            </form>
+        </div>
+    </div>
+
+    <hr />
+    <div class="col-12">
+        <h3>Дни</h3>
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Номер</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col">Картинка</th>
+                    <th scope="col">Редактировать</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    cnt = 1;
+                    foreach (var t in Model.tour.days.OrderBy(x => x.Number))
+                    {
+                        string color = !t.Visible ? "table-danger" : "";
+                        <tr>
+                            <td class=@color>@cnt</td>
+                            <td class=@color>@t.Name</td>
+                            <td class=@color>@t.Number</td>
+                            <td class=@color>@t.Description.ToTruncateText()</td>
+                            <td class=@color>
+                                <img src="data:image; base64, @(Convert.ToBase64String(t.Image))" class="img-fluid d-block" style="height: 100px">
+                            </td>
+                            <td class=@color>
+                                <div>
+                                    <form asp-controller="Tour" asp-action="GetEditDay" method="post">
+                                        <input type="hidden" name="DayId" value="@t.Id" />
+                                        <button class="btn btn-dark">Редактировать</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        cnt++;
+                    }
+                }
+            </tbody>
+        </table>
+        <div>
+            <form asp-action="GetAddDay" asp-controller="Tour" method="post">
                 <button class="btn btn-dark" type="submit">
                     <span>Создать</span>
                 </button>

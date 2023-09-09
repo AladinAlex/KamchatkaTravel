@@ -73,23 +73,23 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             //st.Stop();
 
             var tour = await _context.Tours
+                //.Include(x => x.Days.Where(u => u.Visible))
+                //.Include(x => x.Includes.Where(u => u.Visible))
+                //.Include(x => x.Questions.Where(u => u.Visible))
+                //.Include(x => x.Images.Where(u => u.Visible))
+                //.Include(x => x.Views.Where(u => u.Visible))
                 .Where(t => t.Visible && t.Id == id)
-                .FirstOrDefaultAsync();
+                .FirstAsync();
 
-            tour.Days = await _context.Tours.Where(t => t.Visible && t.Id == id)
-                .Select(t => t.Days).FirstOrDefaultAsync();
+            tour.Days = await _context.Days.Where(t => t.Visible && t.TourId == id).ToListAsync();
 
-            tour.Includes = await _context.Tours.Where(t => t.Visible && t.Id == id)
-                .Select(t => t.Includes).FirstOrDefaultAsync();
+            tour.Includes = await _context.Includes.Where(t => t.Visible && t.TourId == id).ToListAsync();
 
-            tour.Questions = await _context.Tours.Where(t => t.Visible && t.Id == id)
-                .Select(t => t.Questions).FirstOrDefaultAsync();
+            tour.Questions = await _context.Questions.Where(t => t.Visible && t.TourId == id).ToListAsync();
 
-            tour.Images = await _context.Tours.Where(t => t.Visible && t.Id == id)
-                .Select(t => t.Images).FirstOrDefaultAsync();
+            tour.Images = await _context.Images.Where(t => t.Visible && t.TourId == id).ToListAsync();
 
-            tour.Views = await _context.Tours.Where(t => t.Visible && t.Id == id)
-                .Select(t => t.Views).FirstOrDefaultAsync();
+            tour.Views = await _context.Views.Where(t => t.Visible && t.TourId == id).ToListAsync();
 
             return tour;
         }

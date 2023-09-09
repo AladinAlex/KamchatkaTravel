@@ -1,13 +1,13 @@
-﻿@model EditViewModel;
+﻿@model EditDayModel;
 
 @{
-    ViewData["Title"] = "Редактирование вида";
+    ViewData["Title"] = "Редактирование дня";
 }
 
 <div class="container-fluid">
 
     <div class="col-12">
-        <h3>Редактирование вида</h3>
+        <h3>Редактирование дня</h3>
         <form method="post">
             <ul class="list-group mb-2">
 
@@ -17,7 +17,18 @@
                             <b>Название:</b>
                         </div>
                         <div class="col-lg-10">
-                            <input class="form-control w-100" asp-for="@Model.view.Name" name="view.Name" />
+                            <input class="form-control w-100" asp-for="@Model.day.Name" name="day.Name" />
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Номер:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <input class="form-control w-100" asp-for="@Model.day.Number" name="day.Number" type="number" />
                         </div>
                     </div>
                 </li>
@@ -28,7 +39,7 @@
                             <b>Описание:</b>
                         </div>
                         <div class="col-lg-10">
-                            <textarea class="form-control w-100" asp-for="@Model.view.Description" name="view.Description" style="height: 125px">@Model.view.Description</textarea>
+                            <textarea class="form-control w-100" asp-for="@Model.day.Description" name="day.Description" style="height: 125px">@Model.day.Description</textarea>
                         </div>
                     </div>
                 </li>
@@ -39,10 +50,10 @@
                             <b>Картинка:</b>
                         </div>
                         <div class="form-file col-lg-3">
-                            <input class="form-control" type="file" asp-for="@Model.view.ImageFile" name="view.ImageFile" accept="image/png, image/gif, image/jpeg">
+                            <input class="form-control" type="file" asp-for="@Model.day.ImageFile" name="day.ImageFile" accept="image/png, image/gif, image/jpeg">
                         </div>
                         <div class="col-lg-7">
-                            <img src="data:image; base64, @(Convert.ToBase64String(Model.view.Image))" class="img-fluid mx-auto d-block" style="height: 200px">
+                            <img src="data:image; base64, @(Convert.ToBase64String(Model.day.Image))" class="img-fluid mx-auto d-block" style="height: 200px">
                         </div>
                     </div>
                 </li>
@@ -53,7 +64,7 @@
                             <b>Видимость:</b>
                         </div>
                         <div class="form-check form-switch col-lg-10">
-                            <input class="form-check-input" type="checkbox" asp-for="@Model.view.Visible" name="tour.Visible">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.day.Visible" name="day.Visible">
                             <label class="form-check-label">Видимость</label>
                         </div>
                     </div>
@@ -61,10 +72,10 @@
 
             </ul>
             <div>
-                <button class="btn btn-dark" type="submit" asp-action="EditView" asp-controller="Tour" formenctype="multipart/form-data">
+                <button class="btn btn-dark" type="submit" asp-action="EditDay" asp-controller="Tour" formenctype="multipart/form-data">
                     <span>Сохранить</span>
                 </button>
-                <input type="hidden" name="view.Id" value="@Model.view.Id" asp-for="@Model.view.Id">
+                <input type="hidden" name="day.Id" value="@Model.day.Id" asp-for="@Model.day.Id">
             </div>
         </form>
     </div>

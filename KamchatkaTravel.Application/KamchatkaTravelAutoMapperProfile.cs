@@ -34,8 +34,9 @@ namespace KamchatkaTravel.Application
                 //.ForSourceMember(x=> x.LogoImage, opt => opt.DoNotValidate())
                 //.ForMember(x => x.LogoImage,opt => opt.Ignore())
                 .ReverseMap();
-            CreateMap<CreateDayDto, Day>().ReverseMap();
             CreateMap<CreateImageDto, Image>().ReverseMap();
+            CreateMap<CreateDayDto, Day>().ReverseMap();
+
             CreateMap<CreateIncludeDto, Include>().ReverseMap();
             CreateMap<CreateViewDto, View>()
                  .ForMember(dto => dto.Image, s => s.Ignore())
@@ -55,6 +56,8 @@ namespace KamchatkaTravel.Application
             CreateMap<Tour, UpdateTourDto>().ReverseMap();
             CreateMap<View, ViewModel>().ReverseMap();
             CreateMap<Image, ImageModel>().ReverseMap();
+            CreateMap<Day, DayModel>().ReverseMap();
+
         }
     }
 }

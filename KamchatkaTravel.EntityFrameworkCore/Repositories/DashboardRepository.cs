@@ -66,6 +66,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             var t = await _context.Tours.AsNoTracking()
                 .Include(x => x.Views)
                 .Include(x => x.Images)
+                .Include(x => x.Days)
                 .FirstAsync(x => x.Id == Id);
             return t;
         }
@@ -114,6 +115,19 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
 
             await _context.SaveChangesAsync();
         }
+        public async Task UpdateDayAsync(Day newDay)
+        {
+            var d = await _context.Days.FirstAsync(x => x.Id == newDay.Id);
+            d.Visible = newDay.Visible;
+            d.Name = newDay.Name;
+            d.Description = newDay.Description;
+            d.Number = newDay.Number;
+
+            if (newDay.Image != null && newDay.Image.Any())
+                d.Image = newDay.Image;
+
+            await _context.SaveChangesAsync();
+        }
 
         public async Task InsertTourAsync(Tour tour)
         {
@@ -136,10 +150,20 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             await _context.Images.AddAsync(img);
             await _context.SaveChangesAsync();
         }
+        public async Task InsertDayAsync(Day day)
+        {
+            await _context.Days.AddAsync(day);
+            await _context.SaveChangesAsync();
+        }
 
         public async Task<Image> GetImageByIdAsync(Guid Id)
         {
             var t = await _context.Images.AsNoTracking().FirstAsync(x => x.Id == Id);
+            return t;
+        }
+        public async Task<Day> GetDayByIdAsync(Guid Id)
+        {
+            var t = await _context.Days.AsNoTracking().FirstAsync(x => x.Id == Id);
             return t;
         }
     }

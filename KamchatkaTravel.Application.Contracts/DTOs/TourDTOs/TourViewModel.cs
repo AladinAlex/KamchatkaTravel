@@ -26,5 +26,6 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.TourDTOs
         public DateTime CreateDt { get; set; }
         public List<ViewModel> views { get; set; }
         public List<ImageModel> images { get; set; }
+        public List<DayModel> days { get; set; }
     }
 }

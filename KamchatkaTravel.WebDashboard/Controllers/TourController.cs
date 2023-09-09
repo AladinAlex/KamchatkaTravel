@@ -100,7 +100,6 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         #endregion
 
         #region Image
-
         public async Task<IActionResult> AddImage(AddTourImageModel model)
         {
             await _dashboardService.CreateTourImageAsync(model.image);
@@ -109,7 +108,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
 
         public async Task<IActionResult> GetAddImage(Guid TourId)
         {
-            AddTourImageModel model = new AddTourImageModel();
+            AddTourImageModel model = new();
             model.image.TourId = TourId;
             return View("~/Views/Tours/AddImage.cshtml", model);
         }
@@ -126,8 +125,32 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             await _dashboardService.EditImageAsync(model.image);
             return RedirectToAction("GetEditImage", new { ImageId = model.image.Id });
         }
+        #endregion
 
+        #region Image
+        public async Task<IActionResult> AddDay(AddTourDayModel model)
+        {
+            await _dashboardService.CreateTourDayAsync(model.day);
+            return RedirectToAction("MainTour", "Home");
+        }
+        public async Task<IActionResult> GetAddDay(Guid TourId)
+        {
+            AddTourDayModel model = new();
+            model.day.TourId = TourId;
+            return View("~/Views/Tours/AddDay.cshtml", model);
+        }
+        public async Task<IActionResult> GetEditDay(Guid DayId)
+        {
+            EditDayModel model = new();
+            model.day = await _dashboardService.GetDayByIdAsync(DayId);
+            return View("~/Views/Tours/EditDay.cshtml", model);
+        }
 
+        public async Task<IActionResult> EditDay(EditDayModel model)
+        {
+            await _dashboardService.EditDayAsync(model.day);
+            return RedirectToAction("GetEditDay", new { DayId = model.day.Id });
+        }
         #endregion
     }
 }

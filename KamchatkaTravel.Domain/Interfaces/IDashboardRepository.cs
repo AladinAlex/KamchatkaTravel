@@ -20,10 +20,13 @@ namespace KamchatkaTravel.Domain.Interfaces
         Task UpdateTourAsync(Tour newTour);
         Task UpdateViewAsync(View newView);
         Task UpdateImageAsync(Image newImage);
+        Task UpdateDayAsync(Day newDay);
         Task InsertTourAsync(Tour tour);
-        Task InsertViewAsync(View tour);
-        Task InsertImageAsync(Image tour);
+        Task InsertViewAsync(View view);
+        Task InsertImageAsync(Image image);
+        Task InsertDayAsync(Day day);
         Task<View> GetViewByIdAsync(Guid Id);
         Task<Image> GetImageByIdAsync(Guid Id);
+        Task<Day> GetDayByIdAsync(Guid Id);
     }
 }
