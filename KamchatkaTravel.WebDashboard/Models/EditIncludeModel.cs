@@ -2,8 +2,8 @@
 
 namespace KamchatkaTravel.WebDashboard.Models
 {
-    public class EditQuestionModel
+    public class EditIncludeModel
     {
-        public QuestionModel question { get; set; } = new();
+        public IncludeModel include { get; set; } = new();
     }
 }

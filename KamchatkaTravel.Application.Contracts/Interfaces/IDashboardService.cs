@@ -23,14 +23,17 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
         Task EditImageAsync(ImageModel model);
         Task EditDayAsync(DayModel model);
         Task EditQuestionAsync(QuestionModel model);
+        Task EditIncludeAsync(IncludeModel model);
         Task CreateTourAsync(CreateTourDto model);
         Task CreateTourViewAsync(CreateViewDto model);
         Task CreateTourImageAsync(CreateImageDto model);
         Task CreateTourDayAsync(CreateDayDto model);
         Task CreateTourQuestionAsync(CreateQuestionDto model);
+        Task CreateTourIncludeAsync(CreateIncludeDto model);
         Task<ViewModel> GetViewByIdAsync(Guid viewId);
         Task<ImageModel> GetImageByIdAsync(Guid ImageId);
         Task<DayModel> GetDayByIdAsync(Guid DayId);
         Task<QuestionModel> GetQuestionByIdAsync(Guid QuestionId);
+        Task<IncludeModel> GetIncludeByIdAsync(Guid IncludeId);
     }
 }

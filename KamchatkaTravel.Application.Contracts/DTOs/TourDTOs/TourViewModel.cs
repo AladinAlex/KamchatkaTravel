@@ -28,5 +28,6 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.TourDTOs
         public List<ImageModel> images { get; set; }
         public List<DayModel> days { get; set; }
         public List<QuestionModel> questions { get; set; }
+        public List<IncludeModel> includes { get; set; }
     }
 }

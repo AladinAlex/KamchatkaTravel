@@ -111,6 +111,11 @@ namespace KamchatkaTravel.Application.Services
             var q = _mapper.Map<Question>(model);
             await _dashboardRepository.InsertQuestionAsync(q);
         }
+        public async Task CreateTourIncludeAsync(CreateIncludeDto model)
+        {
+            var i = _mapper.Map<Include>(model);
+            await _dashboardRepository.InsertIncludeAsync(i);
+        }
 
         public async Task<ViewModel> GetViewByIdAsync(Guid viewID)
         {
@@ -155,6 +160,12 @@ namespace KamchatkaTravel.Application.Services
             var result = _mapper.Map<QuestionModel>(t);
             return result;
         }
+        public async Task<IncludeModel> GetIncludeByIdAsync(Guid IncludeId)
+        {
+            var i = await _dashboardRepository.GetIncludeByIdAsync(IncludeId);
+            var result = _mapper.Map<IncludeModel>(i);
+            return result;
+        }
 
         public async Task EditImageAsync(ImageModel model)
         {
@@ -172,6 +183,11 @@ namespace KamchatkaTravel.Application.Services
         {
             var q = _mapper.Map<Question>(model);
             await _dashboardRepository.UpdateQuestionAsync(q);
+        }
+        public async Task EditIncludeAsync(IncludeModel model)
+        {
+            var i = _mapper.Map<Include>(model);
+            await _dashboardRepository.UpdateIncludeAsync(i);
         }
     }
 }

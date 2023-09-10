@@ -179,5 +179,32 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             return RedirectToAction("GetEditQuestion", new { QuestionId = model.question.Id });
         }
         #endregion
+
+        #region Include
+        public async Task<IActionResult> AddInclude(AddTourIncludeModel model)
+        {
+            await _dashboardService.CreateTourIncludeAsync(model.include);
+            return RedirectToAction("MainTour", "Home");
+        }
+        public async Task<IActionResult> GetAddInclude(Guid TourId)
+        {
+            AddTourIncludeModel model = new();
+            model.include.TourId = TourId;
+            return View("~/Views/Tours/AddInclude.cshtml", model);
+        }
+        public async Task<IActionResult> GetEditInclude(Guid IncludeId)
+        {
+            EditIncludeModel model = new();
+            model.include = await _dashboardService.GetIncludeByIdAsync(IncludeId);
+            return View("~/Views/Tours/EditInclude.cshtml", model);
+        }
+
+        public async Task<IActionResult> EditInclude(EditIncludeModel model)
+        {
+            await _dashboardService.EditIncludeAsync(model.include);
+            return RedirectToAction("GetEditInclude", new { IncludeId = model.include.Id });
+        }
+        #endregion
+
     }
 }

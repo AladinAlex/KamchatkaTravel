@@ -362,4 +362,52 @@
             </form>
         </div>
     </div>
+
+    <hr />
+    <div>
+        <h3>Включено/не включено</h3>
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Номер</th>
+                    <th scope="col">Текст</th>
+                    <th scope="col">Включено/Не включено</th>
+                    <th scope="col">Редактировать</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    cnt = 1;
+                    foreach (var t in Model.tour.includes.OrderBy(x => x.isInclude).ThenBy(x => x.Visible))
+                    {
+                        string color = !t.Visible ? "table-danger" : "";
+                        <tr>
+                            <td class=@color>@cnt</td>
+                            <td class=@color>@t.Number</td>
+                            <td class=@color>@t.Text</td>
+                            <td class=@color>@(t.isInclude ? "Включено" : "Не включено")</td>
+                            <td class=@color>
+                                <div>
+                                    <form asp-controller="Tour" asp-action="GetEditInclude" method="post">
+                                        <input type="hidden" name="IncludeId" value="@t.Id" />
+                                        <button class="btn btn-dark">Редактировать</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        cnt++;
+                    }
+                }
+            </tbody>
+        </table>
+        <div>
+            <form asp-action="GetAddInclude" asp-controller="Tour" method="post">
+                <button class="btn btn-dark" type="submit">
+                    <span>Создать</span>
+                </button>
+                <input type="hidden" name="TourId" value="@Model.tour.Id" asp-for="@Model.tour.Id">
+            </form>
+        </div>
+    </div>
 </div>

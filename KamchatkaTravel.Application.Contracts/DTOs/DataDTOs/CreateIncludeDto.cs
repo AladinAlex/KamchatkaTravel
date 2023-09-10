@@ -10,6 +10,8 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.DataDTOs
     {
         public int Number { get; set; }
         public string Text { get; set; }
-        public bool isInclude { get; set; } // включено/не включено
+        public bool isInclude { get; set; }
+        public Guid? TourId { get; set; }
+
     }
 }

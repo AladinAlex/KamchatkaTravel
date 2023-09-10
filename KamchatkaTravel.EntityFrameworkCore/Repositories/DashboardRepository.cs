@@ -142,6 +142,16 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
 
             await _context.SaveChangesAsync();
         }
+        public async Task UpdateIncludeAsync(Include newInclude)
+        {
+            var q = await _context.Includes.FirstAsync(x => x.Id == newInclude.Id);
+
+            q.Number = newInclude.Number;
+            q.Text = newInclude.Text;
+            q.Visible = newInclude.Visible;
+
+            await _context.SaveChangesAsync();
+        }
 
         public async Task InsertTourAsync(Tour tour)
         {
@@ -174,6 +184,11 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             await _context.Questions.AddAsync(question);
             await _context.SaveChangesAsync();
         }
+        public async Task InsertIncludeAsync(Include include)
+        {
+            await _context.Includes.AddAsync(include);
+            await _context.SaveChangesAsync();
+        }
 
         public async Task<Image> GetImageByIdAsync(Guid Id)
         {
@@ -189,6 +204,11 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
         {
             var q = await _context.Questions.AsNoTracking().FirstAsync(x => x.Id == Id);
             return q;
+        }
+        public async Task<Include> GetIncludeByIdAsync(Guid Id)
+        {
+            var i = await _context.Includes.AsNoTracking().FirstAsync(x => x.Id == Id);
+            return i;
         }
     }
 }
