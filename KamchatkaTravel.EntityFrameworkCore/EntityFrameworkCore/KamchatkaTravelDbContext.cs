@@ -55,7 +55,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
 
             builder.Entity<Tour>(q =>
             {
-                q.ToTable(nameof(Tour), TourConsts.DbSchema);
+                q.ToTable(nameof(Tour), TourConsts.TourDbSchema);
                 q.HasKey(x => x.Id);
                 q.HasIndex(tour => tour.Id).IsUnique(true);
                 q.HasIndex(tour => tour.Visible).IsUnique(false);
@@ -76,7 +76,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
 
             builder.Entity<Day>(d =>
             {
-                d.ToTable(nameof(Day), TourConsts.DbSchema);
+                d.ToTable(nameof(Day), TourConsts.TourDbSchema);
                 d.HasKey(d => d.Id);
                 d.HasIndex(d => d.Id).IsUnique(true);
                 d.HasIndex(d => d.Visible).IsUnique(false);
@@ -93,7 +93,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
 
             builder.Entity<Image>(d =>
             {
-                d.ToTable(nameof(Image), TourConsts.DbSchema);
+                d.ToTable(nameof(Image), TourConsts.TourDbSchema);
                 d.HasKey(d => d.Id);
                 d.HasIndex(d => d.Id).IsUnique(true);
                 d.HasIndex(d => d.Visible).IsUnique(false);
@@ -108,7 +108,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
 
             builder.Entity<Include>(d =>
             {
-                d.ToTable(nameof(Include), TourConsts.DbSchema);
+                d.ToTable(nameof(Include), TourConsts.TourDbSchema);
                 d.HasKey(d => d.Id);
                 d.HasIndex(d => d.Id).IsUnique(true);
                 d.HasIndex(d => d.Visible).IsUnique(false);
@@ -123,7 +123,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
             });
 
             builder.Entity<Question>(q => {
-                q.ToTable(nameof(Question), TourConsts.DbSchema);
+                q.ToTable(nameof(Question), TourConsts.TourDbSchema);
                 q.HasKey(q => q.Id);
                 q.HasIndex(q => q.Id).IsUnique(true);
                 q.HasIndex(q => q.Visible).IsUnique(false);
@@ -137,7 +137,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
             });
 
             builder.Entity<View>(v => {
-                v.ToTable(nameof(View), TourConsts.DbSchema);
+                v.ToTable(nameof(View), TourConsts.TourDbSchema);
                 v.HasKey(v => v.Id);
                 v.HasIndex(v => v.Id).IsUnique(true);
                 v.HasIndex(v => v.Visible).IsUnique(false);
@@ -151,7 +151,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
             });
 
             builder.Entity<Review>(r => {
-                r.ToTable(nameof(Review), TourConsts.DbSchema);
+                r.ToTable(nameof(Review), TourConsts.TourDbSchema);
                 r.HasKey(r => r.Id);
                 r.HasIndex(r => r.Id).IsUnique(true);
                 r.HasIndex(r => r.Visible).IsUnique(false);
@@ -167,7 +167,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
 
             builder.Entity<ClientRequest>(cl =>
             {
-                cl.ToTable(nameof(ClientRequest), TourConsts.DbSchema);
+                cl.ToTable(nameof(ClientRequest), TourConsts.TourDbSchema);
                 cl.HasKey(cl => cl.Id);
                 cl.HasIndex(cl => cl.Id).IsUnique(true);
                 cl.HasIndex(cl => cl.Visible).IsUnique(false);

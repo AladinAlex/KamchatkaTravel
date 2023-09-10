@@ -28,6 +28,7 @@
     <ProjectReference Include="..\KamchatkaTravel.Application.Contracts\KamchatkaTravel.Application.Contracts.csproj" />
     <ProjectReference Include="..\KamchatkaTravel.Application\KamchatkaTravel.Application.csproj" />
     <ProjectReference Include="..\KamchatkaTravel.EntityFrameworkCore\KamchatkaTravel.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\KamchatkaTravel.Identity\KamchatkaTravel.Identity.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,15 +6,6 @@ using KamchatkaTravel.Domain.Interfaces;
 using KamchatkaTravel.Domain.Reviews;
 using KamchatkaTravel.Domain.Tours;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 using Image = KamchatkaTravel.Domain.Tours.Image;
 
 namespace KamchatkaTravel.Application.Services

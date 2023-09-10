@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.Web", "Kamc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.WebDashboard", "KamchatkaTravel.WebDashboard\KamchatkaTravel.WebDashboard.csproj", "{1B8F5C16-9DEF-4F3E-AE9A-3C64AB12F617}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KamchatkaTravel.Identity", "KamchatkaTravel.Identity\KamchatkaTravel.Identity.csproj", "{E5715A4F-86C7-4BEB-95BD-E8C9291F25F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{1B8F5C16-9DEF-4F3E-AE9A-3C64AB12F617}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B8F5C16-9DEF-4F3E-AE9A-3C64AB12F617}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B8F5C16-9DEF-4F3E-AE9A-3C64AB12F617}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5715A4F-86C7-4BEB-95BD-E8C9291F25F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5715A4F-86C7-4BEB-95BD-E8C9291F25F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5715A4F-86C7-4BEB-95BD-E8C9291F25F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5715A4F-86C7-4BEB-95BD-E8C9291F25F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

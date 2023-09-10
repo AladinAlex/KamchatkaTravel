@@ -9,6 +9,6 @@ namespace KamchatkaTravel.Domain
     public static class TourConsts
     {
         //public const string DbTablePrefix = "travel";
-        public const string DbSchema = "Travel";
+        public const string TourDbSchema = "Travel";
     }
 }

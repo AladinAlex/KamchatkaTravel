@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\KamchatkaTravel.Application.Contracts\KamchatkaTravel.Application.Contracts.csproj" />
     <ProjectReference Include="..\KamchatkaTravel.Domain\KamchatkaTravel.Domain.csproj" />
+    <ProjectReference Include="..\KamchatkaTravel.Identity\KamchatkaTravel.Identity.csproj" />
   </ItemGroup>
 
 </Project>

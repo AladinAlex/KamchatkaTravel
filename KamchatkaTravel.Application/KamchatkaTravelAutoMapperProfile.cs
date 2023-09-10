@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using KamchatkaTravel.Application.Contracts.DTOs;
 using KamchatkaTravel.Application.Contracts.DTOs.ClientRequestDTOs;
 using KamchatkaTravel.Domain.ClientRequests;
+using KamchatkaTravel.Identity.Models;
+using KamchatkaTravel.Application.Contracts.Common;
+using System;
 
 namespace KamchatkaTravel.Application
 {
@@ -59,6 +62,12 @@ namespace KamchatkaTravel.Application
             CreateMap<Day, DayModel>().ReverseMap();
             CreateMap<Question, QuestionModel>().ReverseMap();
             CreateMap<Include, IncludeModel>().ReverseMap();
+
+            
+            CreateMap<IdentityResponse, ServiceResponse>()
+                .ForMember(dto => dto.ResponseId, opt => opt.MapFrom(x => x.ResponseId))
+                .ForMember(dto => dto.Error, opt => opt.MapFrom(x => x.Error))
+                .ForMember(dto => dto.ResponseCode, opt => opt.MapFrom(x => (ResponseCode)Enum.Parse(typeof(ResponseCode), x.Status.ToString()) )); // выглядит очень не надежно
         }
     }
 }
