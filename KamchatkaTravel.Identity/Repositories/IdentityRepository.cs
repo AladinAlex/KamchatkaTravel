@@ -13,12 +13,10 @@ namespace KamchatkaTravel.Identity.Repositories
 {
     public class IdentityRepository : IIdentityRepository
     {
-        readonly KamchatkaTravelIdentityDbContext _context;
         readonly UserManager<IdentityPerson> _userManager;
         readonly RoleManager<IdentityRole> _roleManager;
-        public IdentityRepository(KamchatkaTravelIdentityDbContext context, UserManager<IdentityPerson> userManager, RoleManager<IdentityRole> roleManager)
+        public IdentityRepository(UserManager<IdentityPerson> userManager, RoleManager<IdentityRole> roleManager)
         {
-            _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
         }

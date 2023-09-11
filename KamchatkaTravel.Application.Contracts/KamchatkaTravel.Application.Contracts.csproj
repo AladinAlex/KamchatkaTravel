@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KamchatkaTravel.Domain.Shared\KamchatkaTravel.Domain.Shared.csproj" />
+    <ProjectReference Include="..\KamchatkaTravel.Identity\KamchatkaTravel.Identity.csproj" />
   </ItemGroup>
 
 </Project>

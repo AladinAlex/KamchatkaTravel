@@ -264,3 +264,15 @@ textarea {
 .hidden {
     display: none;
 }
+
+.header__container {
+    justify-content: space-between;
+}
+
+.header__container .left-element {
+        margin-right: auto; /* Это вытолкнет элемент слева к левому краю контейнера */
+    }
+
+.header__container .right-element {
+        margin-left: auto; /* Это вытолкнет элемент справа к правому краю контейнера */
+    }
