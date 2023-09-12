@@ -25,7 +25,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         {
 
         }
-        public async Task SignIn(LoginModel model)
+        public async Task SignIn(SignInModel model)
         {
 
         }
