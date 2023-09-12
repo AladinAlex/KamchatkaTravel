@@ -29,6 +29,17 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         {
 
         }
+
+        [HttpPost("CreatePerson")]
+        public async Task<IActionResult> CreatePerson(CreatePersonModel request)
+        {
+            return RedirectToAction("Login");
+        }
+
+        public async Task<IActionResult> Registration()
+        {
+            return View("AddPerson");
+        }
     }
 }
 
