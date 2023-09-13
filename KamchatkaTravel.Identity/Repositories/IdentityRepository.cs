@@ -57,5 +57,12 @@ namespace KamchatkaTravel.Identity.Repositories
             var result = await _userManager.CreateAsync(user, password);
             return Helpers.BaseResponse(result, "AddUser");
         }
+
+
+        public async Task<IdentityPerson?> GetUserByLogin(string username)
+        {
+            var result = await _userManager.FindByNameAsync(username);
+            return result;
+        }
     }
 }

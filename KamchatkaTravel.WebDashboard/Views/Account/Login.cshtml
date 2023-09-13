@@ -9,6 +9,10 @@
                 <input class="form-control mt-1" type="password" asp-for="@Model.Password" name="Password" />
                 <button class="btn btn-dark btn-lg btn-block mt-3" asp-controller="Account" asp-action="SignIn">Войти</button>
             </form>
+            @if (ViewData.ContainsKey("Error") && !String.IsNullOrEmpty(ViewData["Error"].ToString()))
+            {
+                <h3 class="h3 mb-1 text-danger">@ViewData["Error"].ToString()</h3>
+            }
         </div>
     </div>
 </div>   

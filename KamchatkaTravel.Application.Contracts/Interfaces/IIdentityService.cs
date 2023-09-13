@@ -12,6 +12,7 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
     {
         Task<ServiceResponse> AddRole(string name, string NormalizedName = null);
         Task<ServiceResponse> AddUserRole(IdentityPerson user, string role);
-        Task<ServiceResponse> AddUser(string Name, string login, string password, string Surname = null, string Comment = null, string Email = null);
+        Task<ServiceResponse> AddUser(string Name, string username, string password, string Surname = null, string Comment = null, string Email = null);
+        Task<IdentityPerson?> GetUserByLogin(string username);
     }
 }

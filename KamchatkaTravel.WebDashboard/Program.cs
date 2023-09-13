@@ -9,6 +9,8 @@ using KamchatkaTravel.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using KamchatkaTravel.Identity.Models;
+using KamchatkaTravel.Identity.Interfaces;
+using KamchatkaTravel.Identity.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +22,19 @@ builder.Services.AddDbContext<KamchatkaTravelDbContext>(
 builder.Services.AddDbContext<KamchatkaTravelIdentityDbContext>(
     c => c.UseSqlServer(builder.Configuration.GetConnectionString("DbIdentity")));
 
-builder.Services.AddIdentity<IdentityPerson, IdentityRole>()
+builder.Services.AddIdentity<IdentityPerson, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 6;
+    options.Password.RequiredUniqueChars = 1;
+
+    options.User.AllowedUserNameCharacters =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    options.User.RequireUniqueEmail = false;
+})
     .AddEntityFrameworkStores<KamchatkaTravelIdentityDbContext>()
     .AddDefaultTokenProviders();
 // Add services to the container.
@@ -29,6 +43,10 @@ builder.Services.AddScoped<IDataRepository, DataRepository>();
 builder.Services.AddTransient<IDataService, DataService>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddTransient<IDashboardService, DashboardService>();
+
+builder.Services.AddScoped<IIdentityRepository, IdentityRepository>();
+builder.Services.AddTransient<IIdentityService, IdentityService>();
+
 
 builder.Services.AddSwaggerGen();
 

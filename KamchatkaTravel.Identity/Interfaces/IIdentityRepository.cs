@@ -12,5 +12,6 @@ namespace KamchatkaTravel.Identity.Interfaces
         Task<IdentityResponse> AddRole(string name, string NormalizedName = null);
         Task<IdentityResponse> AddUserRole(IdentityPerson user, string role);
         Task<IdentityResponse> AddUser(string Name, string login, string password, string Surname = null, string Comment = null, string Email = null);
+        Task<IdentityPerson?> GetUserByLogin(string username);
     }
 }

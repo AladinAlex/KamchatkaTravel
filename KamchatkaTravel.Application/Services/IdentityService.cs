@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace KamchatkaTravel.Application.Services
 {
@@ -33,10 +34,16 @@ namespace KamchatkaTravel.Application.Services
             return _mapper.Map<ServiceResponse>(result);
         }
 
-        public async Task<ServiceResponse> AddUser(string Name, string login, string password, string Surname = null, string Comment = null, string Email = null)
+        public async Task<ServiceResponse> AddUser(string Name, string username, string password, string Surname = null, string Comment = null, string Email = null)
         {
-            var result = await _identityRepository.AddUser(Name, login, password, Surname, Comment, Email);
+            var result = await _identityRepository.AddUser(Name, username, password, Surname, Comment, Email);
             return _mapper.Map<ServiceResponse>(result);
+        }
+
+        public async Task<IdentityPerson?> GetUserByLogin(string username)
+        {
+            var result = await _identityRepository.GetUserByLogin(username);
+            return result;
         }
     }
 }
