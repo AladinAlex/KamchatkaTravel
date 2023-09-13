@@ -6,12 +6,14 @@ using KamchatkaTravel.WebDashboard.Models;
 using KamchatkaTravel.WebDashboard.Models.ForAdd;
 using KamchatkaTravel.WebDashboard.Models.ForAddView;
 using KamchatkaTravel.WebDashboard.Models.ForEditView;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KamchatkaTravel.WebDashboard.Controllers
 {
     //[ApiController]
     //[Route("api/[controller]")]
+    [Authorize(Roles = "SuperAdmin")]
     public class TourController : Controller
     {
         //readonly IDataService _dataService;

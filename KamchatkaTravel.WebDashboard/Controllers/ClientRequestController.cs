@@ -1,9 +1,12 @@
 ﻿using KamchatkaTravel.Application.Contracts.Interfaces;
 using KamchatkaTravel.WebDashboard.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace KamchatkaTravel.WebDashboard.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class ClientRequestController : Controller
     {
         readonly IDashboardService _dashboardService;

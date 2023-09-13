@@ -1,11 +1,13 @@
 ﻿using KamchatkaTravel.Application.Contracts.Interfaces;
 using KamchatkaTravel.Application.Services;
 using KamchatkaTravel.WebDashboard.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace KamchatkaTravel.WebDashboard.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class HomeController : Controller
     {
         readonly IDashboardService _dashboardService;
@@ -14,6 +16,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             _dashboardService = dashboardService;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();

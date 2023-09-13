@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using KamchatkaTravel.Identity.Models;
 using KamchatkaTravel.Identity.Interfaces;
 using KamchatkaTravel.Identity.Repositories;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +37,13 @@ builder.Services.AddIdentity<IdentityPerson, IdentityRole>(options =>
     options.User.RequireUniqueEmail = false;
 })
     .AddEntityFrameworkStores<KamchatkaTravelIdentityDbContext>()
-    .AddDefaultTokenProviders();
+.AddDefaultTokenProviders();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ElevatedRights", policy =>
+        policy.RequireRole("SuperAdmin", "Admin", "User"));
+});
 // Add services to the container.
 
 builder.Services.AddScoped<IDataRepository, DataRepository>();
