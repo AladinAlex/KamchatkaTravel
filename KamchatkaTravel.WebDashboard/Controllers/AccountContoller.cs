@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
+using System.Security.Claims;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KamchatkaTravel.WebDashboard.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = "SuperAdmin,Admin,User,Visitor")]
     public class AccountController : Controller
     {
         readonly UserManager<IdentityPerson> _userManager;
@@ -59,9 +61,10 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             if(result.IsNotAllowed)
                 return RedirectToAction("Login", new { error = "Не верный пароль!" });
 
-            return RedirectToAction("Login");
+            return Redirect("/");
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         [HttpPost("CreatePerson")]
         public async Task<IActionResult> CreatePerson(CreatePersonModel request)
         {
@@ -69,26 +72,32 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             return RedirectToAction("Login");
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Registration()
         {
             return View("Registration");
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> AddRole()
         {
             return View("AddRole");
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> CreateRole(AddRoleModel model)
         {
             var result = await _identityService.AddRole(model.Name, model.NormalizedName);
             return View("Registration");
         }
+
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> AddUserRole(string error = null)
         {
             return View("AddUserRole", error);
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> CreateUserRole(AddUserRoleModel model)
         {
             var user = await _identityService.GetUserByLogin(model.Username);
@@ -97,6 +106,28 @@ namespace KamchatkaTravel.WebDashboard.Controllers
 
             var result = await _identityService.AddUserRole(user, model.RoleName);
             return RedirectToAction("Login");
+        }
+
+        public async Task<IActionResult> Profile()
+        {
+            var model = new ProfileModel();
+   
+
+            var user = await _identityService.GetUserByLogin(User.Identity.Name);
+            if (user == null)
+                return Redirect("/");
+
+            var roles = ((ClaimsIdentity)User.Identity).Claims
+               .Where(c => c.Type == ClaimTypes.Role)
+               .Select(c => c.Value);
+
+            model.Username = user.UserName;
+            model.Name = user.Name;
+            model.Surname = user.Surname;
+            model.Email = user.Email;
+            model.Roles = roles;
+
+            return View("Profile", model);
         }
     }
 }

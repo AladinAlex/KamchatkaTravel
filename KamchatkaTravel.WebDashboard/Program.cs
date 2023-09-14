@@ -42,7 +42,7 @@ builder.Services.AddIdentity<IdentityPerson, IdentityRole>(options =>
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("ElevatedRights", policy =>
-        policy.RequireRole("SuperAdmin", "Admin", "User"));
+        policy.RequireRole("SuperAdmin", "Admin", "User", "Visitor"));
 });
 // Add services to the container.
 

@@ -1,0 +1,66 @@
+﻿@using KamchatkaTravel.WebDashboard.Models.ForAddView;
+@model ProfileModel;
+
+@{
+    ViewData["Title"] = "Профиль пользователя";
+}
+
+<div class="container-fluid">
+
+    <div class="col-12">
+        <h3>Пользователь: @Model.Username</h3>
+        <ul class="list-group mb-2">
+
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <b>Имя:</b>
+                    </div>
+                    <div class="col-lg-10">
+                        <label>@Model.Name</label>
+                    </div>
+                </div>
+            </li>
+
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <b>Фамилия:</b>
+                    </div>
+                    <div class="col-lg-10">
+                        <label>@Model.Surname</label>
+                    </div>
+                </div>
+            </li>
+
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <b>Почта:</b>
+                    </div>
+                    <div class="col-lg-10">
+                        <label>@Model.Email</label>
+                    </div>
+                </div>
+            </li>
+
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <b>Роли:</b>
+                    </div>
+                    <div class="col-lg-10">
+                        @foreach(var r in Model.Roles)
+                        {
+                            <label>@r</label>
+                        }
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+
+    </div>
+
+</div>

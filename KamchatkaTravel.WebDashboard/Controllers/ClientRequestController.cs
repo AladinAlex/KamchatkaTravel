@@ -6,7 +6,7 @@ using System.Data;
 
 namespace KamchatkaTravel.WebDashboard.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = "SuperAdmin,Admin,User,Visitor")]
     public class ClientRequestController : Controller
     {
         readonly IDashboardService _dashboardService;
@@ -19,12 +19,14 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         /// </summary>
         /// <param name="clientRequestID">Id заявки</param>
         /// <returns></returns>
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> ProcessRequest(Guid clientRequestID)
         {
             await _dashboardService.ProcessRequest(clientRequestID);
             return RedirectToAction("MainClientRequest", "Home");
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetEditClientRequestView(Guid clientRequestID)
         {
             EditClientRequestModel model = new();
@@ -38,6 +40,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         /// <param name="id">ClientRequestId</param>
         /// <param name="comment">Комметарий</param>
         /// <returns></returns>
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditClientRequest(Guid clientRequestID, string comment)
         {
             await _dashboardService.EditClientRequest(clientRequestID, comment);
@@ -48,6 +51,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         /// </summary>
         /// <param name="clientRequestID"></param>
         /// <returns></returns>
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> DeleteClientRequest(Guid clientRequestID)
         {
             await _dashboardService.DeleteClientRequest(clientRequestID);

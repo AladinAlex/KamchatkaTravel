@@ -33,8 +33,18 @@
                     <ul class="navbar-nav flex-grow-1 justify-content-end">
                         @if (User.Identity.IsAuthenticated)
                         {
+                            @* <li class="nav-item dropdown">
+                                <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">@User.Identity.Name</a>
+                                <div class="dropdown-menu">
+                                    <a class ="dropdown-item" asp-controller="Account" asp-action="Logout">Профиль</a>
+                                    <a class="dropdown-item"  asp-controller="Account" asp-action="Logout">Выйти</a>
+                                </div>
+                            </li>*@
                             <li class="nav-item ml-auto">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">@User.Identity.Name</a>
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Profile">@User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Выйти</a>
                             </li>
                         }
                         else

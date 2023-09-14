@@ -13,7 +13,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
 {
     //[ApiController]
     //[Route("api/[controller]")]
-    [Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = "SuperAdmin,Admin,User,Visitor")]
     public class TourController : Controller
     {
         //readonly IDataService _dataService;
@@ -30,6 +30,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         /// </summary>
         /// <param name="TourId"></param>
         /// <returns></returns>
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetEditTourView(Guid TourId)
         {
             EditTourViewModel model = new();
@@ -44,6 +45,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditTour(EditTourViewModel model)
         {
             await _dashboardService.EditTourAsync(model.tour);
@@ -58,6 +60,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         /// Получение представления для создания тура
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> AddTourView()
         {
             return View("~/Views/Tours/AddTour.cshtml");
@@ -68,6 +71,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> AddTour(AddTourModel model)
         {
             await _dashboardService.CreateTourAsync(model.tour);
@@ -76,18 +80,21 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         #endregion
 
         #region View
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> AddView(AddTourViewModel model)
         {
             // тут после добавления нужно идти на edit tour текущий(model.view.tourId)
             await _dashboardService.CreateTourViewAsync(model.view);
             return RedirectToAction("MainTour", "Home");
         }
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetAddView(Guid TourId)
         {
             AddTourViewModel model = new();
             model.view.TourId = TourId;
             return View("~/Views/Tours/AddView.cshtml", model);
         }
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetEditView(Guid ViewId)
         {
             EditViewModel model = new();
@@ -95,6 +102,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             //model.tour = await _dashboardService.GetTourByIdAsync(TourId);
             return View("~/Views/Tours/EditView.cshtml", model);
         }
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditView(EditViewModel model)
         {
             await _dashboardService.EditViewAsync(model.view);
@@ -103,12 +111,14 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         #endregion
 
         #region Image
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> AddImage(AddTourImageModel model)
         {
             await _dashboardService.CreateTourImageAsync(model.image);
             return RedirectToAction("MainTour", "Home");
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetAddImage(Guid TourId)
         {
             AddTourImageModel model = new();
@@ -116,6 +126,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             return View("~/Views/Tours/AddImage.cshtml", model);
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetEditImage(Guid ImageId)
         {
             EditImageModel model = new();
@@ -123,6 +134,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             return View("~/Views/Tours/EditImage.cshtml", model);   
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditImage(EditImageModel model)
         {
             await _dashboardService.EditImageAsync(model.image);
@@ -131,17 +143,20 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         #endregion
 
         #region Day
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> AddDay(AddTourDayModel model)
         {
             await _dashboardService.CreateTourDayAsync(model.day);
             return RedirectToAction("MainTour", "Home");
         }
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetAddDay(Guid TourId)
         {
             AddTourDayModel model = new();
             model.day.TourId = TourId;
             return View("~/Views/Tours/AddDay.cshtml", model);
         }
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetEditDay(Guid DayId)
         {
             EditDayModel model = new();
@@ -149,6 +164,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             return View("~/Views/Tours/EditDay.cshtml", model);
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditDay(EditDayModel model)
         {
             await _dashboardService.EditDayAsync(model.day);
@@ -157,17 +173,20 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         #endregion
 
         #region Question
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> AddQuestion(AddTourQuestionModel model)
         {
             await _dashboardService.CreateTourQuestionAsync(model.question);
             return RedirectToAction("MainTour", "Home");
         }
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetAddQuestion(Guid TourId)
         {
             AddTourQuestionModel model = new();
             model.question.TourId = TourId;
             return View("~/Views/Tours/AddQuestion.cshtml", model);
         }
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetEditQuestion(Guid QuestionId)
         {
             EditQuestionModel model = new();
@@ -175,6 +194,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             return View("~/Views/Tours/EditQuestion.cshtml", model);
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditQuestion(EditQuestionModel model)
         {
             await _dashboardService.EditQuestionAsync(model.question);
@@ -183,17 +203,20 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         #endregion
 
         #region Include
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> AddInclude(AddTourIncludeModel model)
         {
             await _dashboardService.CreateTourIncludeAsync(model.include);
             return RedirectToAction("MainTour", "Home");
         }
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetAddInclude(Guid TourId)
         {
             AddTourIncludeModel model = new();
             model.include.TourId = TourId;
             return View("~/Views/Tours/AddInclude.cshtml", model);
         }
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> GetEditInclude(Guid IncludeId)
         {
             EditIncludeModel model = new();
@@ -201,6 +224,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             return View("~/Views/Tours/EditInclude.cshtml", model);
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditInclude(EditIncludeModel model)
         {
             await _dashboardService.EditIncludeAsync(model.include);

@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace KamchatkaTravel.WebDashboard.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = "SuperAdmin,Admin,User,Visitor")]
     public class HomeController : Controller
     {
         readonly IDashboardService _dashboardService;
