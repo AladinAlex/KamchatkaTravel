@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using KamchatkaTravel.Application.Contracts.DTOs.ClientRequestDTOs;
 using KamchatkaTravel.Application.Contracts.DTOs.DataDTOs;
+using KamchatkaTravel.Application.Contracts.DTOs.ReviewDTOs;
 using KamchatkaTravel.Application.Contracts.DTOs.TourDTOs;
 using KamchatkaTravel.Application.Contracts.Interfaces;
 using KamchatkaTravel.Domain.ClientRequests;
 using KamchatkaTravel.Domain.Interfaces;
+using KamchatkaTravel.Domain.Reviews;
 using KamchatkaTravel.Domain.Tours;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -59,6 +61,12 @@ namespace KamchatkaTravel.Application.Services
             var result = _mapper.Map<IEnumerable<TourViewModel>>(t);
             return result;
         }
+        public async Task<IEnumerable<ReviewViewModel>> GetReviewsAsync()
+        {
+            var t = await _dashboardRepository.SelectReviewAllAsync();
+            var result = _mapper.Map<IEnumerable<ReviewViewModel>>(t);
+            return result;
+        }
         public async Task<TourViewModel> GetTourByIdAsync(Guid tourID)
         {
             var t = await _dashboardRepository.GetTourByIdAsync(tourID);
@@ -105,6 +113,12 @@ namespace KamchatkaTravel.Application.Services
             var d = _mapper.Map<Day>(model);
             d.Image = WriteBytes(model.Img);
             await _dashboardRepository.InsertDayAsync(d);
+        }
+        public async Task CreateReviewAsync(CreateReviewDto model)
+        {
+            var r = _mapper.Map<Review>(model);
+            r.LogoImage = WriteBytes(model.LogoImg);
+            await _dashboardRepository.InsertReviewAsync(r);
         }
         public async Task CreateTourQuestionAsync(CreateQuestionDto model)
         {
@@ -154,6 +168,12 @@ namespace KamchatkaTravel.Application.Services
             var result = _mapper.Map<DayModel>(t);
             return result;
         }
+        public async Task<ReviewModel> GetReviewByIdAsync(Guid ReviewId)
+        {
+            var t = await _dashboardRepository.GetReviewByIdAsync(ReviewId);
+            var result = _mapper.Map<ReviewModel>(t);
+            return result;
+        }
         public async Task<QuestionModel> GetQuestionByIdAsync(Guid QuestionId)
         {
             var t = await _dashboardRepository.GetQuestionByIdAsync(QuestionId);
@@ -178,6 +198,12 @@ namespace KamchatkaTravel.Application.Services
             var d = _mapper.Map<Day>(model);
             d.Image = WriteBytes(model.ImageFile);
             await _dashboardRepository.UpdateDayAsync(d);
+        }
+        public async Task EditReviewAsync(ReviewModel model)
+        {
+            var r = _mapper.Map<Review>(model);
+            r.LogoImage = WriteBytes(model.ImageFile);
+            await _dashboardRepository.UpdateReviewAsync(r);
         }
         public async Task EditQuestionAsync(QuestionModel model)
         {

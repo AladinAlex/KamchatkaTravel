@@ -1,5 +1,6 @@
 ﻿using KamchatkaTravel.Domain.ClientRequests;
 using KamchatkaTravel.Domain.Interfaces;
+using KamchatkaTravel.Domain.Reviews;
 using KamchatkaTravel.Domain.Tours;
 using KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -57,6 +58,13 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
         public async Task<IEnumerable<Tour>> SelectTourAllAsync(bool? isVisible = null)
         {
             var result = _context.Tours.AsNoTracking();
+            if (isVisible != null)
+                result = result.Where(x => x.Visible == isVisible);
+            return await result.ToListAsync();
+        }
+        public async Task<IEnumerable<Review>> SelectReviewAllAsync(bool? isVisible = null)
+        {
+            var result = _context.Reviews.AsNoTracking();
             if (isVisible != null)
                 result = result.Where(x => x.Visible == isVisible);
             return await result.ToListAsync();
@@ -131,6 +139,20 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
 
             await _context.SaveChangesAsync();
         }
+        public async Task UpdateReviewAsync(Review newReview)
+        {
+            var d = await _context.Reviews.FirstAsync(x => x.Id == newReview.Id);
+            d.Visible = newReview.Visible;
+            d.FirstName = newReview.FirstName;
+            d.LastName = newReview.LastName;
+            d.Text = newReview.Text;
+            d.Date = newReview.Date;
+
+            if (newReview.LogoImage != null && newReview.LogoImage.Any())
+                d.LogoImage = newReview.LogoImage;
+
+            await _context.SaveChangesAsync();
+        }
         public async Task UpdateQuestionAsync(Question newQuestion)
         {
             var q = await _context.Questions.FirstAsync(x => x.Id == newQuestion.Id);
@@ -179,6 +201,11 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             await _context.Days.AddAsync(day);
             await _context.SaveChangesAsync();
         }
+        public async Task InsertReviewAsync(Review review)
+        {
+            await _context.Reviews.AddAsync(review);
+            await _context.SaveChangesAsync();
+        }
         public async Task InsertQuestionAsync(Question question)
         {
             await _context.Questions.AddAsync(question);
@@ -198,6 +225,11 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
         public async Task<Day> GetDayByIdAsync(Guid Id)
         {
             var t = await _context.Days.AsNoTracking().FirstAsync(x => x.Id == Id);
+            return t;
+        }
+        public async Task<Review> GetReviewByIdAsync(Guid Id)
+        {
+            var t = await _context.Reviews.AsNoTracking().FirstAsync(x => x.Id == Id);
             return t;
         }
         public async Task<Question> GetQuestionByIdAsync(Guid Id)

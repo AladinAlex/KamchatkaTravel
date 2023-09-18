@@ -68,6 +68,10 @@ namespace KamchatkaTravel.Application
                 .ForMember(dto => dto.ResponseId, opt => opt.MapFrom(x => x.ResponseId))
                 .ForMember(dto => dto.Error, opt => opt.MapFrom(x => x.Error))
                 .ForMember(dto => dto.ResponseCode, opt => opt.MapFrom(x => (ResponseCode)Enum.Parse(typeof(ResponseCode), x.Status.ToString()) )); // выглядит очень не надежно
+
+            CreateMap<CreateReviewDto, Review>();
+            CreateMap<ReviewViewModel, Review>().ReverseMap();
+            CreateMap<Review, ReviewModel>().ReverseMap();
         }
     }
 }

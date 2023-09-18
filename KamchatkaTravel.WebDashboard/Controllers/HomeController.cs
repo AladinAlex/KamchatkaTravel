@@ -40,5 +40,12 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         {
             return View("~/Views/Clients/MainClients.cshtml");
         }
+            
+        public async Task<IActionResult> MainReviews()
+        {
+            MainReviewModel model = new();
+            model.reviews = await _dashboardService.GetReviewsAsync();
+            return View("~/Views/Reviews/MainReviews.cshtml", model);
+        }
     }
 }

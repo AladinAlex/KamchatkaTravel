@@ -1,4 +1,5 @@
 ﻿using KamchatkaTravel.Domain.ClientRequests;
+using KamchatkaTravel.Domain.Reviews;
 using KamchatkaTravel.Domain.Tours;
 using System;
 using System.Collections.Generic;
@@ -16,22 +17,26 @@ namespace KamchatkaTravel.Domain.Interfaces
         Task UpdateClientRequestByIdAsync(Guid ClientRequestId, string comment);
         Task DeleteClientRequestByIdAsync(Guid ClientRequestId);
         Task<IEnumerable<Tour>> SelectTourAllAsync(bool? isVisible = null);
+        Task<IEnumerable<Review>> SelectReviewAllAsync(bool? isVisible = null);
         Task<Tour> GetTourByIdAsync(Guid Id);
         Task UpdateTourAsync(Tour newTour);
         Task UpdateViewAsync(View newView);
         Task UpdateImageAsync(Image newImage);
         Task UpdateDayAsync(Day newDay);
+        Task UpdateReviewAsync(Review newReview);
         Task UpdateQuestionAsync(Question newQuestion);
         Task UpdateIncludeAsync(Include newInclude);
         Task InsertTourAsync(Tour tour);
         Task InsertViewAsync(View view);
         Task InsertImageAsync(Image image);
         Task InsertDayAsync(Day day);
+        Task InsertReviewAsync(Review review);
         Task InsertQuestionAsync(Question question);
         Task InsertIncludeAsync(Include include);
         Task<View> GetViewByIdAsync(Guid Id);
         Task<Image> GetImageByIdAsync(Guid Id);
         Task<Day> GetDayByIdAsync(Guid Id);
+        Task<Review> GetReviewByIdAsync(Guid Id);
         Task<Question> GetQuestionByIdAsync(Guid Id);
         Task<Include> GetIncludeByIdAsync(Guid Id);
     }

@@ -31,8 +31,4 @@
     <ProjectReference Include="..\KamchatkaTravel.Identity\KamchatkaTravel.Identity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\img\" />
-  </ItemGroup>
-
 </Project>

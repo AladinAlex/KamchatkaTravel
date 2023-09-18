@@ -1,0 +1,55 @@
+﻿@using KamchatkaTravel.Domain.Shared.Extensions;
+@model MainReviewModel;
+
+@{
+    ViewData["Title"] = "Управление отзывами";
+}
+<h1>Отзывы</h1>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Отзыв</th>
+            <th scope="col">Лого</th>
+            <th scope="col">Дата отзыва</th>
+            <th scope="col">Редактировать</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int cnt = 1;
+            foreach (var t in Model.reviews.OrderBy(x => x.Visible).OrderByDescending(x => x.Date))
+            {
+                string color = !t.Visible ? "table-danger" : "";
+                <tr>
+                    <td class=@color>@cnt</td>
+                    <td class=@color>@t.FirstName</td>
+                    <td class=@color>@t.LastName</td>
+                    <td class=@color>@t.Text.ToTruncateText(0, 100)</td>
+                    <td class=@color>
+                        <div>
+                            <img src=@(t.LogoImage != null && t.LogoImage.Count() > 0 ? "data:image; base64, " + Convert.ToBase64String(t.LogoImage) : "../img/Default_review_logo.jpg") class="img-fluid mx-auto d-block" style="max-height: 200px">
+                        </div>
+                    </td>
+                    <td class=@color>@t.Date</td>
+                    <td class=@color>
+                        <div>
+                            <form asp-controller="Review" asp-action="GetEditReview" method="post">
+                                <input type="hidden" name="ReviewId" value="@t.Id" />
+                                <button class="btn btn-dark">Редактировать</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                cnt++;  
+            }
+        }
+    </tbody>
+</table>
+
+<form asp-controller="Review" asp-action="GetAddReview" method="post">
+    <button class="btn btn-dark">Создать</button>
+</form>

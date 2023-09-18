@@ -1,0 +1,94 @@
+﻿@model EditReviewModel;
+
+@{
+    ViewData["Title"] = "Редактирование отзыва";
+}
+
+<div class="container-fluid">
+
+    <div class="col-12">
+        <h3>Редактирование отзыва</h3>
+        <form method="post">
+            <ul class="list-group mb-2">
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Имя:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <input class="form-control w-100" asp-for="@Model.review.FirstName" name="review.FirstName" />
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Фамилия:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <input class="form-control w-100" asp-for="@Model.review.LastName" name="review.LastName" />
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Отзыв:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <textarea class="form-control w-100" asp-for="@Model.review.Text" name="review.Text" style="height: 125px">@Model.review.Text</textarea>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Фото:</b>
+                        </div>
+                        <div class="form-file col-lg-3">
+                            <input class="form-control" type="file" asp-for="@Model.review.ImageFile" name="review.ImageFile" accept="image/png, image/gif, image/jpeg">
+                        </div>
+                        <div class="col-lg-7">
+                            <img src="data:image; base64, @(Convert.ToBase64String(Model.review.LogoImage))" class="img-fluid mx-auto d-block" style="height: 200px">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Дата:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <input class="form-control" type="date" asp-for="@Model.review.Date" name="review.Date" />
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Видимость:</b>
+                        </div>
+                        <div class="form-check form-switch col-lg-10">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.review.Visible" name="review.Visible">
+                            <label class="form-check-label">Видимость</label>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+            <div>
+                <button class="btn btn-dark" type="submit" asp-action="EditReview" asp-controller="Review" formenctype="multipart/form-data">
+                    <span>Сохранить</span>
+                </button>
+                <input type="hidden" name="review.Id" value="@Model.review.Id" asp-for="@Model.review.Id">
+            </div>
+        </form>
+    </div>
+
+</div>

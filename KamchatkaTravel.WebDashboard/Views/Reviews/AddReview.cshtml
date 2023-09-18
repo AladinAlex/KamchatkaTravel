@@ -1,0 +1,79 @@
+﻿@using KamchatkaTravel.WebDashboard.Models.ForAddView;
+@model AddReviewModel;
+
+@{
+    ViewData["Title"] = "Создание отзыва";
+}
+
+<div class="container-fluid">
+
+    <div class="col-12">
+        <h3>Создание отзыва</h3>
+        <form method="post">
+            <ul class="list-group mb-2">
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Имя:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <input class="form-control w-100" asp-for="@Model.review.FirstName" name="review.FirstName"></input>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Фамилия:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <input class="form-control w-100" asp-for="@Model.review.LastName" name="review.LastName"></input>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Отзыв:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <textarea class="form-control w-100" asp-for="@Model.review.Text" name="review.Text" style="height: 125px"></textarea>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Фото:</b>
+                        </div>
+                        <div class="form-file col-lg-3">
+                            <input class="form-control" type="file" asp-for="@Model.review.LogoImg" name="review.LogoImg" accept="image/png, image/gif, image/jpeg">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Дата:</b>
+                        </div>
+                        <div class="col-lg-3">
+                            <input class="form-control" type="date" asp-for="@Model.review.Date" name="review.Date" />
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+            <div>
+                <button class="btn btn-dark" type="submit" asp-action="AddReview" asp-controller="Review" formenctype="multipart/form-data">
+                    <span>Сохранить</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>
