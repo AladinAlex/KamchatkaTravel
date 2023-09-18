@@ -1,4 +1,5 @@
 ﻿@using KamchatkaTravel.Domain.Shared.Extensions;
+@using System.Globalization;
 @model MainReviewModel;
 
 @{
@@ -34,7 +35,7 @@
                             <img src=@(t.LogoImage != null && t.LogoImage.Count() > 0 ? "data:image; base64, " + Convert.ToBase64String(t.LogoImage) : "../img/Default_review_logo.jpg") class="img-fluid mx-auto d-block" style="max-height: 200px">
                         </div>
                     </td>
-                    <td class=@color>@t.Date</td>
+                    <td class=@color>@t.Date.ToString("D", new CultureInfo("en-US"))</td>
                     <td class=@color>
                         <div>
                             <form asp-controller="Review" asp-action="GetEditReview" method="post">

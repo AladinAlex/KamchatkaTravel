@@ -1,5 +1,6 @@
 ﻿@using KamchatkaTravel.Application.Contracts.DTOs;
 @using KamchatkaTravel.Domain.Shared.Extensions;
+@using System.Globalization;
 @model IndexDto;
 
 @{
@@ -177,7 +178,7 @@
                                             <img src=@(rv.LogoImage != null && rv.LogoImage.Count() > 0 ? "data:image; base64, " + Convert.ToBase64String(rv.LogoImage) : "images/Default_review_logo.jpg") class="review-card__image" alt="">
                                         </div>
                                         <span class="review-card__name">@rv.FirstName @rv.LastName.FirstChar().</span>
-                                        <span class="review-card__date">@rv.Date.ToString("D")</span>
+                                        <span class="review-card__date">@rv.Date.ToString("D", new CultureInfo("en-US"))</span>
                                         <div class="review-card__text">
                                             <p>
                                                 @rv.Text
