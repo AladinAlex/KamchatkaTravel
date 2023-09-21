@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/KamchatkaTravel.sln
+/KamchatkaTravel.Web/appsettings.json
+/KamchatkaTravel.WebDashboard/appsettings.json
