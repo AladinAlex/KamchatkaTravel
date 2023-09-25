@@ -6,8 +6,8 @@ EXPOSE 44310 #внутри контейнера будут знаты порты 1710 и 44310
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build #«десь начинаетс€ новый этап сборки, обозначенный как "build". »спользуетс€ образ sdk дл€ .NET 7.0 от Microsoft, который предоставл€ет инструменты дл€ сборки .NET приложений.
 WORKDIR /src #”станавливает рабочий каталог дл€ этапа "build" в /src
-COPY ["KamchatkaTravel.Web/KamchatkaTravel.Web.csproj", "KamchatkaTravel.Web/"] # опирует файл проекта KamchatkaTravel.Web.csproj внутрь контейнера в каталог KamchatkaTravel.Web/.
-RUN dotnet restore "KamchatkaTravel.Web/KamchatkaTravel.Web.csproj" #¬ыполн€ет команду dotnet restore дл€ восстановлени€ зависимостей проекта.
+COPY ["KamchatkaTravel.Web.csproj", "KamchatkaTravel.Web/"] # опирует файл проекта KamchatkaTravel.Web.csproj внутрь контейнера в каталог KamchatkaTravel.Web/.
+RUN dotnet restore "KamchatkaTravel.Web.csproj" #¬ыполн€ет команду dotnet restore дл€ восстановлени€ зависимостей проекта.
 COPY . . # опирует все файлы из текущего каталога (где находитс€ Dockerfile) внутрь контейнера.
 WORKDIR "/src/KamchatkaTravel.Web" #”станавливает рабочий каталог дл€ этапа "build" внутри контейнера на /src/KamchatkaTravel.Web.
 RUN dotnet build "KamchatkaTravel.Web.csproj" -c Release -o /app/build #¬ыполн€ет сборку проекта с конфигурацией "Release" и выводит результаты сборки в /app/build внутри контейнера.

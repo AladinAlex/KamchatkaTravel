@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  kamchatkatravel.webdashboard:
+    image: ${DOCKER_REGISTRY-}kamchatkatravelwebdashboard
+    build:
+      context: .
+      dockerfile: KamchatkaTravel.WebDashboard/Dockerfile
+
+  kamchatkatravel.web:
+    image: ${DOCKER_REGISTRY-}kamchatkatravelweb
+    build:
+      context: .
+      dockerfile: KamchatkaTravel.Web/Dockerfile
+
