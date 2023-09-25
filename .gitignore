@@ -364,3 +364,5 @@ FodyWeavers.xsd
 /KamchatkaTravel.sln
 /KamchatkaTravel.Web/appsettings.json
 /KamchatkaTravel.WebDashboard/appsettings.json
+/KamchatkaTravel.WebDashboard/appsettings.Development.json
+/KamchatkaTravel.Web/appsettings.Development.json
