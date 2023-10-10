@@ -23,7 +23,7 @@ namespace KamchatkaTravel.Application.Contracts.DTOs
                 //return Environment.CurrentDirectory;
                 IList<string> result = new List<string>();
 
-                var path = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\images\\MainPicturesSeparate";
+                var path = System.IO.Directory.GetCurrentDirectory() + "/wwwroot/images/MainPicturesSeparate";
                 foreach (var file in Directory.GetFiles(path, "*kamchatka*"))
                 {
                     result.Add(System.IO.Path.GetFileName(file));
