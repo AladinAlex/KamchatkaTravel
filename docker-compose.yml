@@ -1,15 +1,31 @@
-version: '3.4'
+version: '3.5'
 
 services:
-  kamchatkatravel.webdashboard:
-    image: ${DOCKER_REGISTRY-}kamchatkatravelwebdashboard
-    build:
-      context: .
-      dockerfile: KamchatkaTravel.WebDashboard/Dockerfile
-
-  kamchatkatravel.web:
-    image: ${DOCKER_REGISTRY-}kamchatkatravelweb
+  web:
+    #image: ${DOCKER_REGISTRY-}kamchatkatravelweb
     build:
       context: .
       dockerfile: KamchatkaTravel.Web/Dockerfile
+      #network: webnetwork
+    ports:
+        - "8080:80"
+    restart: unless-stopped
+    
 
+  admin:
+    #image: ${DOCKER_REGISTRY-}kamchatkatravelwebdashboard
+    build:
+      context: .
+      dockerfile: KamchatkaTravel.WebDashboard/Dockerfile
+      #network: adminnetwork
+    ports:
+        - "8081:80"
+    restart: unless-stopped
+
+#networks:
+#  webnetwork:
+#    name: webnetwork
+#    driver: bridge
+#  adminnetwork:
+#    name: adminnetwork
+#    driver: bridge

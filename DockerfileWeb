@@ -11,7 +11,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["KamchatkaTravel.Web/KamchatkaTravel.Web.csproj", "KamchatkaTravel.Web/"]
-COPY ["KamchatkaTravel.Web/wwwroot", "wwwroot/"]
 COPY ["KamchatkaTravel.Application/KamchatkaTravel.Application.csproj", "KamchatkaTravel.Application/"]
 COPY ["KamchatkaTravel.Application.Contracts/KamchatkaTravel.Application.Contracts.csproj", "KamchatkaTravel.Application.Contracts/"]
 COPY ["KamchatkaTravel.Domain.Shared/KamchatkaTravel.Domain.Shared.csproj", "KamchatkaTravel.Domain.Shared/"]
