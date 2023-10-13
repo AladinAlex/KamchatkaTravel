@@ -17,5 +17,6 @@ KamchatkaTravel.WebDashboard - это веб-приложение, админ п
 Оба приложения запущены на хостинге:
 KamchatkaTravel.Web: https://landintheocean.ru/
 KamchatkaTravel.WebDashboard: https://admin.landintheocean.ru/ (Для просмотра работоспособности можно использовать логин: "guest" и пароль: "guest1")
+Так как приложения запущены на хостинге, а в appsettings.json хранится строка подключения к базе, файл appsettings.json был добавлен в .gitignore.
 
 Для каждого приложения писал Dockerfile и запускал их. Также есть Docker Compose для запуска сразу 2-x контейнеров.
