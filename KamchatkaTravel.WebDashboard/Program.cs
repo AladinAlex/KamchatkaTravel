@@ -39,6 +39,11 @@ builder.Services.AddIdentity<IdentityPerson, IdentityRole>(options =>
     .AddEntityFrameworkStores<KamchatkaTravelIdentityDbContext>()
 .AddDefaultTokenProviders();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/";
+});
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("ElevatedRights", policy =>
