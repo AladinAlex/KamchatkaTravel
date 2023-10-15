@@ -620,6 +620,13 @@ namespace KamchatkaTravel.Web.Tests
                     Visible = true
                 }
             );
+            context.SaveChanges();
+            return context;
+        }
+        public static void Destroy(KamchatkaTravelDbContext context)
+        {
+            context.Database.EnsureDeleted();
+            context.Dispose();
         }
     }
 }
