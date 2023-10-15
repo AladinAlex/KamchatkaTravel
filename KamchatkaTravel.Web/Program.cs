@@ -9,6 +9,13 @@ using Microsoft.EntityFrameworkCore.Design;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration
+#if DEBUG
+    .AddJsonFile("appsettings.Development.json");
+#else
+    .AddJsonFile("appsettings.json");
+#endif
+
 builder.Services.AddControllersWithViews();
 //builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddHttpContextAccessor();

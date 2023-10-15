@@ -15,6 +15,13 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration
+#if DEBUG
+    .AddJsonFile("appsettings.Development.json");
+#else
+    .AddJsonFile("appsettings.json");
+#endif
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(KamchatkaTravelAutoMapperProfile));
