@@ -89,7 +89,7 @@ namespace KamchatkaTravel.Web.Tests
                     Visible = true
                 }
             );
-
+            context.SaveChanges();
             context.Days.AddRange(
                 new Day
                 {
@@ -163,8 +163,8 @@ namespace KamchatkaTravel.Web.Tests
                     Number = 6,
                     Description = "dayDescription6",
                     Image = new byte[0],
-                    tour = context.Tours.ElementAt(1),
-                    TourId = context.Tours.ElementAt(1).Id,
+                    tour = context.Tours.Skip(1).Take(1).First(),
+                    TourId = context.Tours.Skip(1).Take(1).First().Id,
                     CreateDt = DateTime.UtcNow,
                     UpdateDt = null,
                     Visible = true
@@ -176,8 +176,8 @@ namespace KamchatkaTravel.Web.Tests
                     Number = 7,
                     Description = "dayDescription7",
                     Image = new byte[0],
-                    tour = context.Tours.ElementAt(1),
-                    TourId = context.Tours.ElementAt(1).Id,
+                    tour = context.Tours.Skip(1).Take(1).First(),
+                    TourId = context.Tours.Skip(1).Take(1).First().Id,
                     CreateDt = DateTime.UtcNow,
                     UpdateDt = null,
                     Visible = true
@@ -223,8 +223,8 @@ namespace KamchatkaTravel.Web.Tests
                     Id = Guid.NewGuid(),
                     Img = new byte[0],
                     Ord = 1,
-                    tour = context.Tours.ElementAt(1),
-                    TourId = context.Tours.ElementAt(1).Id,
+                    tour = context.Tours.Skip(1).Take(1).First(),
+                    TourId = context.Tours.Skip(1).Take(1).First().Id,
                     CreateDt = DateTime.UtcNow,
                     UpdateDt = null,
                     Visible = true
@@ -234,8 +234,8 @@ namespace KamchatkaTravel.Web.Tests
                     Id = Guid.NewGuid(),
                     Img = new byte[0],
                     Ord = null,
-                    tour = context.Tours.ElementAt(1),
-                    TourId = context.Tours.ElementAt(1).Id,
+                    tour = context.Tours.Skip(1).Take(1).First(),
+                    TourId = context.Tours.Skip(1).Take(1).First().Id,
                     CreateDt = DateTime.UtcNow,
                     UpdateDt = null,
                     Visible = true

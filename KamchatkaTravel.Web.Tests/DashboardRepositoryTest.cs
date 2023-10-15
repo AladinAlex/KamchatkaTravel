@@ -9,19 +9,8 @@ using System.Threading.Tasks;
 
 namespace KamchatkaTravel.Web.Tests
 {
-    public abstract class DashboardRepositoryTest : IDisposable
+    public class DashboardRepositoryTest : BaseTest
     {
-        readonly KamchatkaTravelDbContext context;
-        public DashboardRepositoryTest()
-        {
-            context = DbContextFactory.Create();
-            
-        }
-        public void Dispose() 
-        {
-            DbContextFactory.Destroy(context);
-        }
-
         [Fact]
         public async Task SelectClientRequestAllAsync()
         {
