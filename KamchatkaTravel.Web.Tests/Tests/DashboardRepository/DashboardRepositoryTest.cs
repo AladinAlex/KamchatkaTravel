@@ -1,13 +1,8 @@
 ﻿using KamchatkaTravel.Domain.Interfaces;
-using KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore;
+using KamchatkaTravel.Web.Tests.Tests.Base;
 using KamchatkaTravel.EntityFrameworkCore.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace KamchatkaTravel.Web.Tests
+namespace KamchatkaTravel.Web.Tests.Tests.DashboardRepository
 {
     public class DashboardRepositoryTest : BaseTest
     {
@@ -15,7 +10,7 @@ namespace KamchatkaTravel.Web.Tests
         public async Task SelectClientRequestAllAsync()
         {
             // Arrange
-            IDashboardRepository dashboard = new DashboardRepository(context);
+            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
             // Act
             var result = await dashboard.SelectClientRequestAllAsync();
             // Assert
@@ -23,4 +18,3 @@ namespace KamchatkaTravel.Web.Tests
         }
     }
 }
-    

@@ -1,11 +1,6 @@
 ﻿using KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace KamchatkaTravel.Web.Tests
+namespace KamchatkaTravel.Web.Tests.Tests.Base
 {
     public abstract class BaseTest : IDisposable
     {
