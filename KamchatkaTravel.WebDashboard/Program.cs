@@ -59,7 +59,7 @@ builder.Services.AddAuthorization(options =>
 // Add services to the container.
 
 builder.Services.AddScoped<IDataRepository, DataRepository>();
-builder.Services.AddTransient<IDataService, DataService>();
+//builder.Services.AddTransient<IDataService, DataService>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddTransient<IDashboardService, DashboardService>();
 
