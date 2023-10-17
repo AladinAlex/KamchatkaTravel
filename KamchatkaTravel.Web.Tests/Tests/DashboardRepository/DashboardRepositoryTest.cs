@@ -3,6 +3,7 @@ using KamchatkaTravel.Web.Tests.Tests.Base;
 using KamchatkaTravel.EntityFrameworkCore.Repositories;
 using KamchatkaTravel.Domain.Tours;
 using KamchatkaTravel.Domain.Shared.Tours;
+using KamchatkaTravel.Domain.Reviews;
 
 namespace KamchatkaTravel.Web.Tests.Tests.DashboardRepository
 {
@@ -330,7 +331,191 @@ namespace KamchatkaTravel.Web.Tests.Tests.DashboardRepository
             Assert.True(exp == null, $"Error: {exp?.Message}");
         }
 
-        //GetViewByIdAsync
+        [Fact]
+        public async Task GetViewByIdAsync()
+        {
+            // Arrange
+            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
 
+            foreach (var clReq in context.Views)
+            {
+                // Act
+                var result = await dashboard.GetViewByIdAsync(clReq.Id);
+                // Assert
+                Assert.NotNull(result);
+            }
+        }
+
+        [Fact]
+        public async Task InsertDayAsync()
+        {
+            // Arrange
+            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
+            var newDay = new Day
+            {
+                Id = Guid.NewGuid(),
+                Name = Tools.Tools.RandomText(8),
+                Number = Tools.Tools.RandomNumber(1,8),
+                Description = Tools.Tools.RandomText(30),
+                Image = new byte[0],
+                tour = context.Tours.First(),
+                TourId = context.Tours.First().Id,
+                CreateDt = DateTime.UtcNow,
+                UpdateDt = null,
+                Visible = true
+            };
+            // Act
+            var task = dashboard.InsertDayAsync(newDay);
+            var exp = await Record.ExceptionAsync(() => task);
+            // Assert
+            Assert.True(exp == null, $"Error: {exp?.Message}");
+        }
+
+        [Fact]
+        public async Task InsertReviewAsync()
+        {
+            // Arrange
+            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
+            var newReview = new Review
+            {
+                Id = Guid.NewGuid(),
+                FirstName = Tools.Tools.RandomText(8),
+                LastName = Tools.Tools.RandomText(10),
+                Text = Tools.Tools.RandomText(40),
+                LogoImage = new byte[0],
+                Date = DateTime.Now,
+                CreateDt = DateTime.UtcNow,
+                UpdateDt = null,
+                Visible = true
+            };
+            // Act
+            var task = dashboard.InsertReviewAsync(newReview);
+            var exp = await Record.ExceptionAsync(() => task);
+            // Assert
+            Assert.True(exp == null, $"Error: {exp?.Message}");
+        }
+
+        [Fact]
+        public async Task InsertQuestionAsync()
+        {
+            // Arrange
+            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
+            var newQ = new Question
+            {
+                Id = Guid.NewGuid(),
+                Name = Tools.Tools.RandomText(20),
+                Answer = Tools.Tools.RandomText(35),
+                Ord = Tools.Tools.RandomNumber(1, 10),
+                tour = context.Tours.First(),
+                TourId = context.Tours.First().Id,
+                CreateDt = DateTime.UtcNow,
+                UpdateDt = null,
+                Visible = true
+            };
+            // Act
+            var task = dashboard.InsertQuestionAsync(newQ);
+            var exp = await Record.ExceptionAsync(() => task);
+            // Assert
+            Assert.True(exp == null, $"Error: {exp?.Message}");
+        }
+
+        [Fact]
+        public async Task InsertIncludeAsync()
+        {
+            // Arrange
+            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
+            var newInclude = new Include
+            {
+                Id = Guid.NewGuid(),
+                Number = Tools.Tools.RandomNumber(1, 10),
+                Text = Tools.Tools.RandomText(45),
+                isInclude = true,
+                tour = context.Tours.First(),
+                TourId = context.Tours.First().Id,
+                CreateDt = DateTime.UtcNow,
+                UpdateDt = null,
+                Visible = true
+            };
+            // Act
+            var task = dashboard.InsertIncludeAsync(newInclude);
+            var exp = await Record.ExceptionAsync(() => task);
+            // Assert
+            Assert.True(exp == null, $"Error: {exp?.Message}");
+        }
+
+        [Fact]
+        public async Task GetImageByIdAsync()
+        {
+            // Arrange
+            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
+
+            foreach (var image in context.Images)
+            {
+                // Act
+                var result = await dashboard.GetImageByIdAsync(image.Id);
+                // Assert
+                Assert.NotNull(result);
+            }
+        }
+
+        [Fact]
+        public async Task GetDayByIdAsync()
+        {
+            // Arrange
+            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
+
+            foreach (var day in context.Days)
+            {
+                // Act
+                var result = await dashboard.GetDayByIdAsync(day.Id);
+                // Assert
+                Assert.NotNull(result);
+            }
+        }
+
+        [Fact]
+        public async Task GetReviewByIdAsync()
+        {
+            // Arrange
+            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
+
+            foreach (var review in context.Reviews)
+            {
+                // Act
+                var result = await dashboard.GetReviewByIdAsync(review.Id);
+                // Assert
+                Assert.NotNull(result);
+            }
+        }
+
+        [Fact]
+        public async Task GetQuestionByIdAsync()
+        {
+            // Arrange
+            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
+
+            foreach (var q in context.Questions)
+            {
+                // Act
+                var result = await dashboard.GetQuestionByIdAsync(q.Id);
+                // Assert
+                Assert.NotNull(result);
+            }
+        }
+
+        [Fact]
+        public async Task GetIncludeByIdAsync()
+        {
+            // Arrange
+            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
+
+            foreach (var include in context.Includes)
+            {
+                // Act
+                var result = await dashboard.GetIncludeByIdAsync(include.Id);
+                // Assert
+                Assert.NotNull(result);
+            }
+        }
     }
 }
