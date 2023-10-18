@@ -2,10 +2,10 @@
 
 namespace KamchatkaTravel.Web.Tests.Tests.Base
 {
-    public abstract class BaseTest : IDisposable
+    public abstract class BaseRepositoryTest : IDisposable
     {
         protected readonly KamchatkaTravelDbContext context;
-        public BaseTest()
+        public BaseRepositoryTest()
         {
             context = DbContextFactory.Create();
 

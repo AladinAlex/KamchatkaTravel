@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KamchatkaTravel.Application\KamchatkaTravel.Application.csproj" />
     <ProjectReference Include="..\KamchatkaTravel.Domain\KamchatkaTravel.Domain.csproj" />
     <ProjectReference Include="..\KamchatkaTravel.EntityFrameworkCore\KamchatkaTravel.EntityFrameworkCore.csproj" />
   </ItemGroup>

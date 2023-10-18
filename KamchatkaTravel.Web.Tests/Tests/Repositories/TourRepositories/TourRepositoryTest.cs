@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KamchatkaTravel.Web.Tests.Tests.TourRepositories
+namespace KamchatkaTravel.Web.Tests.Tests.Repositories.TourRepositories
 {
-    public class TourRepositoryTest : BaseTest
+    public class TourRepositoryTest : BaseRepositoryTest
     {
         [Fact]
         public async Task GetToursAsync()
         {
             // Arrange
-            ITourRepository rep = new KamchatkaTravel.EntityFrameworkCore.Repositories.TourRepository(context);
+            ITourRepository rep = new EntityFrameworkCore.Repositories.TourRepository(context);
             // Act
             var result = await rep.GetToursAsync();
             // Assert
@@ -26,7 +26,7 @@ namespace KamchatkaTravel.Web.Tests.Tests.TourRepositories
         public async Task GetQuestionsAsync()
         {
             // Arrange
-            ITourRepository rep = new KamchatkaTravel.EntityFrameworkCore.Repositories.TourRepository(context);
+            ITourRepository rep = new EntityFrameworkCore.Repositories.TourRepository(context);
             // Act
             var result = await rep.GetQuestionsAsync();
             // Assert
@@ -38,13 +38,13 @@ namespace KamchatkaTravel.Web.Tests.Tests.TourRepositories
         public async Task CreateClientRequest()
         {
             // Arrange
-            ITourRepository rep = new KamchatkaTravel.EntityFrameworkCore.Repositories.TourRepository(context);
+            ITourRepository rep = new EntityFrameworkCore.Repositories.TourRepository(context);
 
             string FirstName1 = Tools.Tools.RandomText(8);
-            string Email1 = String.Join("", Tools.Tools.RandomText(8), "@", Tools.Tools.RandomText(5), ".", Tools.Tools.RandomText(2));
+            string Email1 = string.Join("", Tools.Tools.RandomText(8), "@", Tools.Tools.RandomText(5), ".", Tools.Tools.RandomText(2));
             string Phone1 = "89897776655";
             string FirstName2 = Tools.Tools.RandomText(8);
-            string Email2 = String.Join("", Tools.Tools.RandomText(8), "@", Tools.Tools.RandomText(5), ".", Tools.Tools.RandomText(2));
+            string Email2 = string.Join("", Tools.Tools.RandomText(8), "@", Tools.Tools.RandomText(5), ".", Tools.Tools.RandomText(2));
             string Phone2 = "89897776655";
             // Act
             var task1 = rep.CreateClientRequest(FirstName1, Email1, Phone1, null);
@@ -62,7 +62,7 @@ namespace KamchatkaTravel.Web.Tests.Tests.TourRepositories
         public async Task GetTop5ReviewsAsync()
         {
             // Arrange
-            ITourRepository rep = new KamchatkaTravel.EntityFrameworkCore.Repositories.TourRepository(context);
+            ITourRepository rep = new EntityFrameworkCore.Repositories.TourRepository(context);
             // Act
             var result = await rep.GetTop5ReviewsAsync();
             // Assert
@@ -74,7 +74,7 @@ namespace KamchatkaTravel.Web.Tests.Tests.TourRepositories
         public async Task GetTourByIdAsync()
         {
             // Arrange
-            IDashboardRepository dashboard = new KamchatkaTravel.EntityFrameworkCore.Repositories.DashboardRepository(context);
+            IDashboardRepository dashboard = new EntityFrameworkCore.Repositories.DashboardRepository(context);
 
             foreach (var tour in context.Tours)
             {
