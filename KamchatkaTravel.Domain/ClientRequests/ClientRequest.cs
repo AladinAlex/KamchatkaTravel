@@ -12,7 +12,7 @@ namespace KamchatkaTravel.Domain.ClientRequests
     {
         public Guid Id { get; set; }
         //public Guid UserId { get; set; } // identityServer 4. От туда UserId
-        public string FirstName { get; set; }
+        public string FirstName { get; set; }   
         public string Email { get; set; }
         public string Phone { get; set; }
         public bool isProcessed { get; set; }
