@@ -12,7 +12,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KamchatkaTravel.Web.Tests
+namespace KamchatkaTravel.Web.Tests.DbContexts
 {
     public class DbContextFactory
     {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using KamchatkaTravel.Application.Contracts.DTOs.DataDTOs;
+using KamchatkaTravel.Application.Contracts.DTOs.ReviewDTOs;
 using KamchatkaTravel.Application.Contracts.DTOs.TourDTOs;
 using KamchatkaTravel.Application.Contracts.Interfaces;
 using KamchatkaTravel.Application.Services;
@@ -9,7 +10,10 @@ using KamchatkaTravel.EntityFrameworkCore.Migrations;
 using KamchatkaTravel.EntityFrameworkCore.Repositories;
 using KamchatkaTravel.Web.Tests.Tests.Base;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KamchatkaTravel.Web.Tests.Tests.Servicies.DashboardServicies
 {
@@ -340,7 +344,200 @@ namespace KamchatkaTravel.Web.Tests.Tests.Servicies.DashboardServicies
                 var result = await service.GetViewByIdAsync(view.Id);
                 // Assert
                 Assert.NotNull(result);
-                Assert.NotNull(result.Id);
+            }
+        }
+
+        [Fact]
+        public async Task GetImageByIdAsync()
+        {
+            // Arrange
+            IDashboardRepository repository = new DashboardRepository(context);
+            IDashboardService service = new DashboardService(repository, mapper);
+            // Act
+            foreach (var img in context.Images)
+            {
+                var result = await service.GetImageByIdAsync(img.Id);
+                // Assert
+                Assert.NotNull(result);
+            }
+        }
+
+        [Fact]
+        public async Task GetDayByIdAsync()
+        {
+            // Arrange
+            IDashboardRepository repository = new DashboardRepository(context);
+            IDashboardService service = new DashboardService(repository, mapper);
+            // Act
+            foreach (var day in context.Days)
+            {
+                var result = await service.GetDayByIdAsync(day.Id);
+                // Assert
+                Assert.NotNull(result);
+            }
+        }
+
+        [Fact]
+        public async Task GetReviewByIdAsync()
+        {
+            // Arrange
+            IDashboardRepository repository = new DashboardRepository(context);
+            IDashboardService service = new DashboardService(repository, mapper);
+            // Act
+            foreach (var review in context.Reviews)
+            {
+                var result = await service.GetReviewByIdAsync(review.Id);
+                // Assert
+                Assert.NotNull(result);
+            }
+        }
+
+        [Fact]
+        public async Task GetQuestionByIdAsync()
+        {
+            // Arrange
+            IDashboardRepository repository = new DashboardRepository(context);
+            IDashboardService service = new DashboardService(repository, mapper);
+            // Act
+            foreach (var q in context.Questions)
+            {
+                var result = await service.GetQuestionByIdAsync(q.Id);
+                // Assert
+                Assert.NotNull(result);
+            }
+        }
+
+        [Fact]
+        public async Task GetIncludeByIdAsync()
+        {
+            // Arrange
+            IDashboardRepository repository = new DashboardRepository(context);
+            IDashboardService service = new DashboardService(repository, mapper);
+            // Act
+            foreach (var include in context.Includes)
+            {
+                var result = await service.GetIncludeByIdAsync(include.Id);
+                // Assert
+                Assert.NotNull(result);
+            }
+        }
+
+        [Fact]
+        public async Task EditImageAsync()
+        {
+            // Arrange
+            IDashboardRepository repository = new DashboardRepository(context);
+            IDashboardService service = new DashboardService(repository, mapper);
+            foreach (var img in context.Images)
+            {
+                // Act
+                var model = new ImageModel
+                {
+                    Id = img.Id,
+                    Visible = true,
+                    TourId = img.TourId,
+                    Ord = Tools.Tools.RandomNumber(1, 20),
+                };
+                var task = service.EditImageAsync(model);
+                var exp = await Record.ExceptionAsync(() => task);
+                // Assert
+                Assert.True(exp == null, $"ErrorError: {exp?.Message}");
+            }
+        }
+
+        [Fact]
+        public async Task EditDayAsync()
+        {
+            // Arrange
+            IDashboardRepository repository = new DashboardRepository(context);
+            IDashboardService service = new DashboardService(repository, mapper);
+            foreach (var day in context.Days)
+            {
+                // Act
+                var model = new DayModel
+                {
+                    Id = day.Id,
+                    Visible = true,
+                    TourId = day.TourId,
+                    Name = Tools.Tools.RandomText(50),
+                    Description = Tools.Tools.RandomText(100),
+                    Number = Tools.Tools.RandomNumber(1, 100),
+                };
+                var task = service.EditDayAsync(model);
+                var exp = await Record.ExceptionAsync(() => task);
+                // Assert
+                Assert.True(exp == null, $"ErrorError: {exp?.Message}");
+            }
+        }
+
+        [Fact]
+        public async Task EditReviewAsync()
+        {
+            // Arrange
+            IDashboardRepository repository = new DashboardRepository(context);
+            IDashboardService service = new DashboardService(repository, mapper);
+            foreach (var review in context.Reviews)
+            {
+                // Act
+                var model = new ReviewModel
+                {
+                    Id = review.Id,
+                    Visible = true,
+                    FirstName = Tools.Tools.RandomText(8),
+                    LastName = Tools.Tools.RandomText(10),
+                    Text = Tools.Tools.RandomText(150),
+                };
+                var task = service.EditReviewAsync(model);
+                var exp = await Record.ExceptionAsync(() => task);
+                // Assert
+                Assert.True(exp == null, $"ErrorError: {exp?.Message}");
+            }
+        }
+
+        [Fact]
+        public async Task EditQuestionAsync()
+        {
+            // Arrange
+            IDashboardRepository repository = new DashboardRepository(context);
+            IDashboardService service = new DashboardService(repository, mapper);
+            foreach (var q in context.Questions)
+            {
+                // Act
+                var model = new QuestionModel
+                {
+                    Id = q.Id,
+                    Visible = true,
+                    Name = Tools.Tools.RandomText(20),
+                    Answer = Tools.Tools.RandomText(40),
+                    Ord = Tools.Tools.RandomNumber(1, 20),
+                };
+                var task = service.EditQuestionAsync(model);
+                var exp = await Record.ExceptionAsync(() => task);
+                // Assert
+                Assert.True(exp == null, $"ErrorError: {exp?.Message}");
+            }
+        }
+
+        [Fact]
+        public async Task EditIncludeAsync()
+        {
+            // Arrange
+            IDashboardRepository repository = new DashboardRepository(context);
+            IDashboardService service = new DashboardService(repository, mapper);
+            foreach (var include in context.Includes)
+            {
+                // Act
+                var model = new IncludeModel
+                {
+                    Id = include.Id,
+                    Visible = true,
+                    Number = Tools.Tools.RandomNumber(1, 20),
+                    Text = Tools.Tools.RandomText(25),
+                };
+                var task = service.EditIncludeAsync(model);
+                var exp = await Record.ExceptionAsync(() => task);
+                // Assert
+                Assert.True(exp == null, $"ErrorError: {exp?.Message}");
             }
         }
     }
