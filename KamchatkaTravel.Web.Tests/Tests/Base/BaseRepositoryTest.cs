@@ -1,4 +1,5 @@
 ﻿using KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore;
+using KamchatkaTravel.Web.Tests.DbContexts;
 
 namespace KamchatkaTravel.Web.Tests.Tests.Base
 {
