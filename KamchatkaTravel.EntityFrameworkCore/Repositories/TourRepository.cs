@@ -31,7 +31,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
 
         public async Task<IEnumerable<Question>> GetQuestionsAsync()
         {
-            var questions = await _context.Questions.Where(t => t.Visible == true).OrderBy(t => t.Name).ToListAsync();
+            var questions = await _context.Questions.Where(t => t.Visible == true && t.TourId == null).OrderBy(t => t.Name).ToListAsync();
             return questions;
         }
 

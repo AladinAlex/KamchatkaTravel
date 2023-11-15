@@ -132,7 +132,7 @@
                     </div>
                 </div>
 
-                @*слайдер о днями*@
+                @*слайдер с днями*@
                 <div class="swiper program__slider" data-program="slider">
                     <div class="swiper-wrapper">
                         @{
@@ -146,7 +146,9 @@
                                                 <img src="data:image; base64, @Convert.ToBase64String(day.Image)" class="program__card-image" alt="">
                                             </div>
                                             <div class="program__card-block-text text">
-                                                @day.Description
+                                                <p>
+                                                    @day.Description
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -172,7 +174,7 @@
                             <span class="price__block-title">Входит в стоимость:</span>
                             <ul class="price__list">
                                 @{
-                                    foreach (var incld in Model.Tour.Includes.Where(i => i.isInclude))
+                                    foreach (var incld in Model.Tour.Includes.Where(i => i.isInclude).OrderBy(x => x.Number))
                                     {
                                         <li class="price__li">@incld.Text</li>
                                     }
@@ -187,7 +189,7 @@
                                 <span class="price__block-title">Не входит в стоимость:</span>
                                 <ul class="price__list">
                                     @{
-                                        foreach (var incld in Model.Tour.Includes.Where(i => !i.isInclude))
+                                        foreach (var incld in Model.Tour.Includes.Where(i => !i.isInclude).OrderBy(x => x.Number))
                                         {
                                             <li class="price__li">@incld.Text</li>
                                         }
@@ -207,7 +209,7 @@
                 <h2 class="title title--h2 title-reset">Частые вопросы о туре</h2>
                 <div class="faq__wrap-cards">
                     @{
-                        foreach (var qn in Model.Tour.Questions)
+                        foreach (var qn in Model.Tour.Questions.OrderBy(x => x.Ord))
                         {
                             <div class="faq__block" data-faq="block">
                                 <div class="faq__block-head" data-faq="head">
@@ -215,7 +217,9 @@
                                     <img src="/images/plus.svg" class="faq__block-icon" alt="">
                                 </div>
                                 <div class="faq__block-body text" data-faq="body">
-                                    @qn.Answer
+                                    <p>
+                                        @qn.Answer
+                                    </p>
                                 </div>
                             </div>
                         }
