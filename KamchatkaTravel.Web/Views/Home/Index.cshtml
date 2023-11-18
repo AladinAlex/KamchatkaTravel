@@ -78,7 +78,7 @@
                                     <img src="data:image; base64, @(Convert.ToBase64String(tour.LogoImage))" class="tour-card__image" alt="">
                                 </div>
                                 <div class="tour-card__wrap-info">
-                                    <span class="tour-card__title">@tour.Name.</span>
+                                    <span class="tour-card__title">@tour.Name</span>
                                     <span class="tour-card__desc">@tour.dayCount.AddWordDay() | @tour.NightType.GetDescription() </span>
                                     <div class="tour-card__block-price">
                                         <span class="tour-card__price">@tour.Price.ToNiceStringFormat() р</span>
