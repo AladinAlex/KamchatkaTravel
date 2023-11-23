@@ -382,7 +382,7 @@ namespace KamchatkaTravel.Web.Tests.Tests.Repositories.DashboardRepositories
                 FirstName = Tools.Tools.RandomText(8),
                 LastName = Tools.Tools.RandomText(10),
                 Text = Tools.Tools.RandomText(40),
-                LogoImage = new byte[0],
+                //LogoImage = new byte[0],
                 Date = DateTime.Now,
                 CreateDt = DateTime.UtcNow,
                 UpdateDt = null,

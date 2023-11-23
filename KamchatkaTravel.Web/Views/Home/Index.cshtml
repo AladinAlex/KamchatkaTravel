@@ -169,7 +169,7 @@
                                 <div class="swiper-slide">
                                     <div class="review-card">
                                         <div class="review-card__block-image">
-                                            <img src=@(rv.LogoImage != null && rv.LogoImage.Count() > 0 ? "data:image; base64, " + Convert.ToBase64String(rv.LogoImage) : "images/Default_review_logo.jpg") class="review-card__image" alt="">
+                                            <img src=@(rv.LogoImageUrl != null && rv.LogoImageUrl.Count() > 0 ? rv.LogoImageUrl : "images/Default_review_logo.jpg") class="review-card__image" alt="">
                                         </div>
                                         <span class="review-card__name">@rv.FirstName @rv.LastName.FirstChar().</span>
                                         <span class="review-card__date">@rv.Date.ToString("D", new CultureInfo("en-US"))</span>

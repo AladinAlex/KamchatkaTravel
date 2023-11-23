@@ -148,8 +148,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             d.Text = newReview.Text;
             d.Date = newReview.Date;
 
-            if (newReview.LogoImage != null && newReview.LogoImage.Any())
-                d.LogoImage = newReview.LogoImage;
+            //if (newReview.LogoImage != null && newReview.LogoImage.Any())
+            //    d.LogoImage = newReview.LogoImage;
 
             await _context.SaveChangesAsync();
         }

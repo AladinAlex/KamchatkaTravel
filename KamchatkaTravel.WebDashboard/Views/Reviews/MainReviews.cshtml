@@ -32,7 +32,7 @@
                     <td class=@color>@t.Text.ToTruncateText(0, 100)</td>
                     <td class=@color>
                         <div>
-                            <img src=@(t.LogoImage != null && t.LogoImage.Count() > 0 ? "data:image; base64, " + Convert.ToBase64String(t.LogoImage) : "../img/Default_review_logo.jpg") class="img-fluid mx-auto d-block" style="max-height: 200px">
+                            <img src=@(!string.IsNullOrWhiteSpace(t.LogoImageUrl) ? t.LogoImageUrl : "../img/Default_review_logo.jpg") class="img-fluid mx-auto d-block" style="max-height: 200px">
                         </div>
                     </td>
                     <td class=@color>@t.Date.ToString("D", new CultureInfo("en-US"))</td>

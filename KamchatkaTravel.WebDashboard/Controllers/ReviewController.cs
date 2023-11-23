@@ -6,6 +6,7 @@ using KamchatkaTravel.WebDashboard.Models;
 using KamchatkaTravel.WebDashboard.Models.ForAdd;
 using KamchatkaTravel.WebDashboard.Models.ForAddView;
 using KamchatkaTravel.WebDashboard.Models.ForEditView;
+using KamchatkaTravel.WebDashboard.Tools;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,14 +19,20 @@ namespace KamchatkaTravel.WebDashboard.Controllers
     {
         //readonly IDataService _dataService;
         readonly IDashboardService _dashboardService;
-        public ReviewController(IDashboardService dashboardService)
+        readonly IWebHostEnvironment _env;
+        public ReviewController(IDashboardService dashboardService, IWebHostEnvironment env)
         {
             _dashboardService = dashboardService;
+            _env = env;
         }
         
         [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> AddReview(AddReviewModel model)
         {
+            //сохраняем файл
+            var path = await MyFile.SaveFile(model.review.LogoImg, _env.ContentRootPath, ImageFolder.Get(Folder.Review), model.review.FirstName + model.review.LastName);
+            //создаем отзыв
+            model.review.LogoPath = path;
             await _dashboardService.CreateReviewAsync(model.review);
             return RedirectToAction("MainReviews", "Home");
         }

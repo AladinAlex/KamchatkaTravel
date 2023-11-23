@@ -13,6 +13,7 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.DataDTOs
         public string LastName { get; set; }
         public string Text { get; set; }
         public IFormFile? LogoImg { get; set; }
+        public string LogoPath { get; set; }
         public DateTime? Date { get; set; }
     }
 }

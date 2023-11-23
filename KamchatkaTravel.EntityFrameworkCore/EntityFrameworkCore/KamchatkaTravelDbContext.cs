@@ -51,7 +51,6 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
 
             builder.Entity<Tour>(q =>
             {
@@ -159,7 +158,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 r.Property(r => r.FirstName).IsRequired().HasColumnType("nvarchar(64)");
                 r.Property(r => r.LastName).IsRequired(false).HasColumnType("nvarchar(64)");
                 r.Property(r => r.Text).IsRequired().HasColumnType("nvarchar(max)");
-                r.Property(r => r.LogoImage).IsRequired(false).HasColumnType("varbinary(max)");
+                //r.Property(r => r.LogoImage).IsRequired(false).HasColumnType("varbinary(max)");
+                r.Property(r => r.LogoImageUrl).IsRequired(false).HasColumnType("nvarchar(max)");
                 r.Property(r => r.Visible).HasDefaultValue(true);
                 r.Property(r => r.CreateDt).IsRequired().HasColumnType("datetime2");
                 r.Property(r => r.UpdateDt).HasColumnType("datetime2");
@@ -182,6 +182,9 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 cl.Property(cl => cl.UpdateDt).HasColumnType("datetime2");
                 cl.Property(cl => cl.comment).HasColumnType("nvarchar(max)");
             });
+
+            base.OnModelCreating(builder);
+
         }
 
     }

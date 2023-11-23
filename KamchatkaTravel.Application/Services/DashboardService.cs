@@ -117,7 +117,8 @@ namespace KamchatkaTravel.Application.Services
         public async Task CreateReviewAsync(CreateReviewDto model)
         {
             var r = _mapper.Map<Review>(model);
-            r.LogoImage = WriteBytes(model.LogoImg);
+            //передать сюда название 
+            //r.LogoImage = WriteBytes(model.LogoImg);
             await _dashboardRepository.InsertReviewAsync(r);
         }
         public async Task CreateTourQuestionAsync(CreateQuestionDto model)
@@ -202,7 +203,7 @@ namespace KamchatkaTravel.Application.Services
         public async Task EditReviewAsync(ReviewModel model)
         {
             var r = _mapper.Map<Review>(model);
-            r.LogoImage = WriteBytes(model.ImageFile);
+            //r.LogoImage = WriteBytes(model.ImageFile);
             await _dashboardRepository.UpdateReviewAsync(r);
         }
         public async Task EditQuestionAsync(QuestionModel model)
