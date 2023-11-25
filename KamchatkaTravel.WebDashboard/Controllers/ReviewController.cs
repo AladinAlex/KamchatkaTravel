@@ -30,7 +30,8 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         public async Task<IActionResult> AddReview(AddReviewModel model)
         {
             //сохраняем файл
-            var path = await MyFile.SaveFile(model.review.LogoImg, _env.ContentRootPath, ImageFolder.Get(Folder.Review), model.review.FirstName + model.review.LastName);
+            var path = await MyFile.SaveFile(model.review.LogoImg, _env.WebRootPath, ImageFolder.Get(Folder.Review), model.review.FirstName + model.review.LastName);
+            //var path = _env.WebRootPath;
             //создаем отзыв
             model.review.LogoPath = path;
             await _dashboardService.CreateReviewAsync(model.review);
@@ -52,6 +53,8 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditReview(EditReviewModel model)
         {
+            var path = await MyFile.SaveFile(model.review.ImageFile, _env.WebRootPath, ImageFolder.Get(Folder.Review), model.review.FirstName + model.review.LastName);
+            model.review.LogoImageUrl = path;
             await _dashboardService.EditReviewAsync(model.review);
             return RedirectToAction("GetEditReview", new { ReviewId = model.review.Id });
         }

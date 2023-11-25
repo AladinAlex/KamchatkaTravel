@@ -59,7 +59,7 @@ namespace KamchatkaTravel.WebDashboard.Tools
             {
                 // Создает уникальное название
                 var title = Guid.NewGuid() + "_" + CleanFileName(file.FileName);
-                var pathToFile = Path.Combine("wwwroot", "dist", "images", entity, CleanFileName(entityInfo));
+                var pathToFile = Path.Combine("img", entity, CleanFileName(entityInfo));
                 var filePath = Path.Combine(path, pathToFile);
                 if (!Directory.Exists(filePath))
                 {
@@ -68,12 +68,13 @@ namespace KamchatkaTravel.WebDashboard.Tools
                 }
                 //полный путь с названием файла
                 filePath = Path.Combine(filePath, title);
+                pathToFile = Path.Combine(pathToFile, title);
                 //сохраняем файл
                 using (var stream = System.IO.File.Create(filePath))
                 {
                     await file.CopyToAsync(stream);
                 }
-                return filePath;
+                return "\\" + pathToFile;
             }
             return string.Empty;
         }

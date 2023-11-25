@@ -12,16 +12,23 @@ namespace KamchatkaTravel.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ITourService _tourService;
+        IConfiguration _config;
 
-        public HomeController(ILogger<HomeController> logger, ITourService tourService)
+        public HomeController(ILogger<HomeController> logger, ITourService tourService, IConfiguration config)
         {
             _logger = logger;
             _tourService = tourService;
+            _config = config;
         }
 
         public async Task<IActionResult> Index()
         {
             IndexDto result = await _tourService.Index();
+            foreach(var r in result.Reviews)
+            {
+                if(!string.IsNullOrWhiteSpace(r.LogoImageUrl))
+                    r.LogoImageUrl = _config["ImageUrl"] + r.LogoImageUrl;
+            }
             return View(result);
         }
 

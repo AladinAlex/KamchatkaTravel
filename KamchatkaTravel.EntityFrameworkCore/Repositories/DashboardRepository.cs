@@ -147,6 +147,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             d.LastName = newReview.LastName;
             d.Text = newReview.Text;
             d.Date = newReview.Date;
+            if(!string.IsNullOrWhiteSpace(newReview.LogoImageUrl))
+                d.LogoImageUrl = newReview.LogoImageUrl;
 
             //if (newReview.LogoImage != null && newReview.LogoImage.Any())
             //    d.LogoImage = newReview.LogoImage;

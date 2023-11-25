@@ -18,7 +18,7 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.ReviewDTOs
         /// <summary>
         /// Путь к файлу
         /// </summary>
-        public string LogoImage { get; set; }
+        public string LogoImageUrl { get; set; }
         public IFormFile? ImageFile { get; set; }
         public bool Visible { get; set; }
     }
