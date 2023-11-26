@@ -143,7 +143,15 @@
                                         <span class="program__card-title">День @day.Number: @day.Name</span>
                                         <div class="program__card-wrap-info">
                                             <div class="program__card-block-image">
-                                                <img src="data:image; base64, @Convert.ToBase64String(day.Image)" class="program__card-image" alt="">
+                                                @if (!string.IsNullOrWhiteSpace(day.ImageUrl))
+                                                {
+                                                    <img src=@day.ImageUrl class="program__card-image">
+                                                }
+                                                else
+                                                {
+                                                    <img class="program__card-image" alt="">
+                                                }
+                                                
                                             </div>
                                             <div class="program__card-block-text text">
                                                 <p>

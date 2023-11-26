@@ -111,7 +111,7 @@ namespace KamchatkaTravel.Application.Services
         public async Task CreateTourDayAsync(CreateDayDto model)
         {
             var d = _mapper.Map<Day>(model);
-            d.Image = WriteBytes(model.Img);
+            //d.ImageUrl = WriteBytes(model.Img);
             await _dashboardRepository.InsertDayAsync(d);
         }
         public async Task CreateReviewAsync(CreateReviewDto model)
@@ -197,7 +197,7 @@ namespace KamchatkaTravel.Application.Services
         public async Task EditDayAsync(DayModel model)
         {
             var d = _mapper.Map<Day>(model);
-            d.Image = WriteBytes(model.ImageFile);
+            //d.ImageUrl = WriteBytes(model.ImageFile);
             await _dashboardRepository.UpdateDayAsync(d);
         }
         public async Task EditReviewAsync(ReviewModel model)

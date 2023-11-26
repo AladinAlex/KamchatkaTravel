@@ -134,8 +134,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             d.Description = newDay.Description;
             d.Number = newDay.Number;
 
-            if (newDay.Image != null && newDay.Image.Any())
-                d.Image = newDay.Image;
+            if (!string.IsNullOrWhiteSpace(newDay.ImageUrl))
+                d.ImageUrl = newDay.ImageUrl;
 
             await _context.SaveChangesAsync();
         }

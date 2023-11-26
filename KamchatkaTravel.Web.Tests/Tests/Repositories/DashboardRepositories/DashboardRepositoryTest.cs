@@ -357,7 +357,7 @@ namespace KamchatkaTravel.Web.Tests.Tests.Repositories.DashboardRepositories
                 Name = Tools.Tools.RandomText(8),
                 Number = Tools.Tools.RandomNumber(1, 8),
                 Description = Tools.Tools.RandomText(30),
-                Image = new byte[0],
+                //ImageUrl = new byte[0],
                 tour = context.Tours.First(),
                 TourId = context.Tours.First().Id,
                 CreateDt = DateTime.UtcNow,

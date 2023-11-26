@@ -83,7 +83,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 d.Property(d => d.Name).IsRequired().HasColumnType("nvarchar(64)");
                 d.Property(d => d.Number).IsRequired().HasColumnType("nvarchar(64)");
                 d.Property(d => d.Description).IsRequired().HasColumnType("nvarchar(max)");
-                d.Property(d => d.Image).IsRequired().HasColumnType("varbinary(max)");
+                //d.Property(d => d.Image).IsRequired().HasColumnType("varbinary(max)");
+                d.Property(d => d.ImageUrl).IsRequired().HasColumnType("nvarchar(max)");
                 //d.Property(d => d.Tour).IsRequired();
                 d.Property(d => d.Visible).HasDefaultValue(true);
                 d.Property(d => d.CreateDt).IsRequired().HasColumnType("datetime2");
