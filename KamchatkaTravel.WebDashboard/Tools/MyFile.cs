@@ -87,7 +87,7 @@ namespace KamchatkaTravel.WebDashboard.Tools
 
         public static string ConvertCyrillicintoEnglish(string str)
         {
-            str = str.ToLower();
+            str = str.ToLower().Replace(" ", string.Empty);
             return string.Concat(str.Select(c =>
             {
                 try

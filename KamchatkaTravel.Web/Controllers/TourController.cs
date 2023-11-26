@@ -7,16 +7,24 @@ namespace KamchatkaTravel.Web.Controllers
 {
     public class TourController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly ITourService _tourService;
-        public TourController(ILogger<HomeController> logger, ITourService tourService)
+        readonly ILogger<HomeController> _logger;
+        readonly ITourService _tourService;
+        readonly IConfiguration _config;
+
+        public TourController(ILogger<HomeController> logger, ITourService tourService, IConfiguration config)
         {
             _logger = logger;
             _tourService = tourService;
+            _config = config;
         }
         public async Task<IActionResult> Tour(Guid tourId)
         {
             TourViewDto result = await _tourService.GetTourInfo(tourId);
+            foreach (var r in result.Tour.Days)
+            {
+                if (!string.IsNullOrWhiteSpace(r.ImageUrl))
+                    r.ImageUrl = _config["ImageUrl"] + r.ImageUrl;
+            }
             return View("Tour", result);
         }
 

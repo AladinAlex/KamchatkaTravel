@@ -6,6 +6,7 @@ using KamchatkaTravel.WebDashboard.Models;
 using KamchatkaTravel.WebDashboard.Models.ForAdd;
 using KamchatkaTravel.WebDashboard.Models.ForAddView;
 using KamchatkaTravel.WebDashboard.Models.ForEditView;
+using KamchatkaTravel.WebDashboard.Tools;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +19,11 @@ namespace KamchatkaTravel.WebDashboard.Controllers
     {
         //readonly IDataService _dataService;
         readonly IDashboardService _dashboardService;
-        public TourController(IDashboardService dashboardService)
+        readonly IWebHostEnvironment _env;
+        public TourController(IDashboardService dashboardService, IWebHostEnvironment env)
         {
             _dashboardService = dashboardService;
+            _env = env;
         }
 
         #region Tour
@@ -146,6 +149,8 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> AddDay(AddTourDayModel model)
         {
+            var path = await MyFile.SaveFile(model.day.Img, _env.WebRootPath, ImageFolder.Get(Folder.Day), model.day.Name);
+            model.day.ImageUrl = path;
             await _dashboardService.CreateTourDayAsync(model.day);
             return RedirectToAction("MainTour", "Home");
         }
@@ -167,6 +172,8 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditDay(EditDayModel model)
         {
+            var path = await MyFile.SaveFile(model.day.ImageFile, _env.WebRootPath, ImageFolder.Get(Folder.Day), model.day.Name);
+            model.day.ImageUrl = path;
             await _dashboardService.EditDayAsync(model.day);
             return RedirectToAction("GetEditDay", new { DayId = model.day.Id });
         }

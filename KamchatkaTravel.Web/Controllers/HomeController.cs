@@ -10,9 +10,9 @@ namespace KamchatkaTravel.Web.Controllers
     // Land in the ocean
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly ITourService _tourService;
-        IConfiguration _config;
+        readonly ILogger<HomeController> _logger;
+        readonly ITourService _tourService;
+        readonly IConfiguration _config;
 
         public HomeController(ILogger<HomeController> logger, ITourService tourService, IConfiguration config)
         {
