@@ -36,7 +36,7 @@ namespace KamchatkaTravel.Application.Services
         {
             var t = _mapper.Map<Tour>(tourDto);
             //t.LogoImageUrl = WriteBytes(tourDto.LogoImg);
-            t.DescriptionImage = WriteBytes(tourDto.DescriptionImg);
+            //t.DescriptionImageUrl = WriteBytes(tourDto.DescriptionImg);
 
             await _repository.InsertTour(t);
         } 

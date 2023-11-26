@@ -51,8 +51,10 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditTour(EditTourViewModel model)
         {
-            var path = await MyFile.SaveFile(model.tour.LogoImageFile, _env.WebRootPath, ImageFolder.Get(Folder.Review), model.tour.Name);
-            model.tour.LogoImageUrl = path;
+            var pathLogo = await MyFile.SaveFile(model.tour.LogoImageFile, _env.WebRootPath, ImageFolder.Get(Folder.Tour), model.tour.Name);
+            model.tour.LogoImageUrl = pathLogo;
+            var pathDescr = await MyFile.SaveFile(model.tour.DescriptionImageFile, _env.WebRootPath, ImageFolder.Get(Folder.Tour), model.tour.Name);
+            model.tour.DescriptionImageUrl = pathDescr;
             await _dashboardService.EditTourAsync(model.tour);
             //return RedirectToAction("GetEditTourView", new { TourId = model.tour.Id });
             EditTourViewModel modelView = new();

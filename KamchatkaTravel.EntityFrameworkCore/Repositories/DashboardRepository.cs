@@ -95,9 +95,9 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             t.Price = newTour.Price;
             t.Description = newTour.Description;
 
-            if(newTour.DescriptionImage != null && newTour.DescriptionImage.Any())
-                t.DescriptionImage = newTour.DescriptionImage;
-            
+            if (!string.IsNullOrWhiteSpace(newTour.DescriptionImageUrl))
+                t.DescriptionImageUrl = newTour.DescriptionImageUrl;
+
             t.LinkEquipment = newTour.LinkEquipment;
             t.Visible = newTour.Visible;
             await _context.SaveChangesAsync();

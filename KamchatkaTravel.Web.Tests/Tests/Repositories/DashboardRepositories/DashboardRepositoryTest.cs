@@ -271,7 +271,7 @@ namespace KamchatkaTravel.Web.Tests.Tests.Repositories.DashboardRepositories
                 NightType = NightType.GlampingAndHotel,
                 Price = decimal.Parse(Tools.Tools.RandomNumber(7000, 11500).ToString()),
                 Description = Tools.Tools.RandomText(30),
-                DescriptionImage = new byte[0],
+                //DescriptionImageUrl = new byte[0],
                 LinkEquipment = Tools.Tools.RandomText(15),
                 CreateDt = DateTime.Now,
                 UpdateDt = null,

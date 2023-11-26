@@ -17,7 +17,7 @@ namespace KamchatkaTravel.Domain.Tours
         public NightType NightType { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-        public byte[] DescriptionImage { get; set; }
+        public string DescriptionImageUrl { get; set; }
         public string LinkEquipment { get; set; }
         
         public List<Day> Days { get; set; }

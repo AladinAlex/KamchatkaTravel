@@ -78,7 +78,7 @@ namespace KamchatkaTravel.Application.Services
         {
             var t = _mapper.Map<Tour>(model);
             //t.LogoImageUrl = WriteBytes(model.LogoImageFile);
-            t.DescriptionImage = WriteBytes(model.DescriptionImageFile);
+            //t.DescriptionImageUrl = WriteBytes(model.DescriptionImageFile);
             await _dashboardRepository.UpdateTourAsync(t);
         }
         public async Task EditViewAsync(ViewModel model)
@@ -92,7 +92,7 @@ namespace KamchatkaTravel.Application.Services
         {
             var t = _mapper.Map<Tour>(model);
             //t.LogoImageUrl = WriteBytes(model.LogoImg);
-            t.DescriptionImage = WriteBytes(model.DescriptionImg);
+            //t.DescriptionImageUrl = WriteBytes(model.DescriptionImg);
             await _dashboardRepository.InsertTourAsync(t);
         }
         public async Task CreateTourViewAsync(CreateViewDto model)

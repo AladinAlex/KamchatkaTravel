@@ -19,6 +19,7 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.DataDTOs
         public decimal? Price { get; set; }
         public string? Description { get; set; }
         public IFormFile? DescriptionImg { get; set; }
+        public string DescriptionImageUrl { get; set; }
         public string? LinkEquipment { get; set; }
     }
 }

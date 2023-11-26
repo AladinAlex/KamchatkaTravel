@@ -50,7 +50,14 @@
                 <h2 class="title title--h2 title-reset">Описание тура</h2>
                 <div class="tour-desc__wrap-content">
                     <div class="tour-desc__block-image">
-                        <img src="data:image; base64, @Convert.ToBase64String(Model.Tour.DescriptionImage)" class="tour-desc__image" alt="">
+                        @if (!string.IsNullOrWhiteSpace(Model.Tour.DescriptionImageUrl))
+                        {
+                            <img src=@Model.Tour.DescriptionImageUrl class="tour-desc__image">
+                        }
+                        else
+                        {
+                            <img class="tour-desc__image" alt="">
+                        }
                     </div>
                     <div class="tour-desc__block-text text">
                         <p>

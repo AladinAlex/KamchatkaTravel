@@ -27,6 +27,8 @@ namespace KamchatkaTravel.Web.Controllers
             }
             if (!string.IsNullOrWhiteSpace(result.Tour.LogoImageUrl))
                 result.Tour.LogoImageUrl = _config["ImageUrl"] + result.Tour.LogoImageUrl;
+            if (!string.IsNullOrWhiteSpace(result.Tour.DescriptionImageUrl))
+                result.Tour.DescriptionImageUrl = _config["ImageUrl"] + result.Tour.DescriptionImageUrl;
             return View("Tour", result);
         }
 
