@@ -24,9 +24,14 @@ namespace KamchatkaTravel.Web.Controllers
         public async Task<IActionResult> Index()
         {
             IndexDto result = await _tourService.Index();
-            foreach(var r in result.Reviews)
+            foreach (var r in result.Reviews)
             {
-                if(!string.IsNullOrWhiteSpace(r.LogoImageUrl))
+                if (!string.IsNullOrWhiteSpace(r.LogoImageUrl))
+                    r.LogoImageUrl = _config["ImageUrl"] + r.LogoImageUrl;
+            }
+            foreach (var r in result.Tours)
+            {
+                if (!string.IsNullOrWhiteSpace(r.LogoImageUrl))
                     r.LogoImageUrl = _config["ImageUrl"] + r.LogoImageUrl;
             }
             return View(result);

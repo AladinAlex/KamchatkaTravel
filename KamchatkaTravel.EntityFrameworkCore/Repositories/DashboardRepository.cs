@@ -87,8 +87,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             t.Name = newTour.Name;
             t.Tagline = newTour.Tagline;
             
-            if (newTour.LogoImage != null && newTour.LogoImage.Any())
-                t.LogoImage = newTour.LogoImage;
+            if (!string.IsNullOrWhiteSpace(newTour.LogoImageUrl))
+                t.LogoImageUrl = newTour.LogoImageUrl;
 
             t.SeasonType = newTour.SeasonType;
             t.NightType = newTour.NightType;

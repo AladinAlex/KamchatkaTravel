@@ -11,7 +11,8 @@ namespace KamchatkaTravel.Domain.Tours
         public string Tagline { get; set; } = string.Empty; // слоган - "Программа по чек-листу « Что нужно сделать на Камчатке»." (пример)
         //public int? AgeLimit { get; set; }
         //public int DurationDays { get; set; }
-        public byte[] LogoImage { get; set; }
+        //public byte[] LogoImage { get; set; }
+        public string LogoImageUrl { get; set; }
         public SeasonType SeasonType { get; set; }
         public NightType NightType { get; set; }
         public decimal Price { get; set; }

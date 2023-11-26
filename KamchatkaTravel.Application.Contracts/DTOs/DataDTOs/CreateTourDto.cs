@@ -13,6 +13,7 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.DataDTOs
         public string? Name { get; set; }
         public string? Tagline { get; set; } = string.Empty; // слоган - "Программа по чек-листу « Что нужно сделать на Камчатке»." (пример)
         public IFormFile? LogoImg { get; set; }
+        public string LogoImageUrl { get; set; }
         public SeasonType? SeasonType { get; set; }
         public NightType? NightType { get; set; }
         public decimal? Price { get; set; }

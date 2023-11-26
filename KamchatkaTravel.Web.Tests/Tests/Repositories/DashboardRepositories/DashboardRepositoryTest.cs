@@ -266,7 +266,7 @@ namespace KamchatkaTravel.Web.Tests.Tests.Repositories.DashboardRepositories
                 Id = Guid.NewGuid(),
                 Name = Tools.Tools.RandomText(7),
                 Tagline = Tools.Tools.RandomText(15),
-                LogoImage = new byte[0],
+                //LogoImageUrl = new byte[0],
                 SeasonType = SeasonType.Winter,
                 NightType = NightType.GlampingAndHotel,
                 Price = decimal.Parse(Tools.Tools.RandomNumber(7000, 11500).ToString()),

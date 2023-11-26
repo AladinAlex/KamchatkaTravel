@@ -61,7 +61,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 q.Property(tour => tour.Id).HasDefaultValueSql("newid()");
                 q.Property(tour => tour.Name).IsRequired().HasColumnType("nvarchar(64)");
                 q.Property(tour => tour.Tagline).IsRequired().HasColumnType("nvarchar(128)");
-                q.Property(tour => tour.LogoImage).IsRequired().HasColumnType("varbinary(max)");
+                //q.Property(tour => tour.LogoImageUrl).IsRequired().HasColumnType("varbinary(max)");
+                q.Property(tour => tour.LogoImageUrl).IsRequired().HasColumnType("nvarchar(max)");
                 q.Property(tour => tour.SeasonType).IsRequired().HasDefaultValue(SeasonType.All);
                 q.Property(tour =>tour.NightType).IsRequired().HasDefaultValue(NightType.defaultValue);
                 q.Property(tour => tour.Price).IsRequired().HasColumnType("decimal(16, 2)");

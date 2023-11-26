@@ -53,7 +53,7 @@
                             <input class="form-control" type="file" asp-for="@Model.review.ImageFile" name="review.ImageFile" accept="image/png, image/gif, image/jpeg">
                         </div>
                         <div class="col-lg-7">
-                            <img src=@Model.review.LogoImageUrl class="img-fluid mx-auto d-block" style="height: 200px">
+                            <img src=@(!string.IsNullOrWhiteSpace(Model.review.LogoImageUrl) ? Model.review.LogoImageUrl : "../img/Default_review_logo.jpg") class="img-fluid mx-auto d-block" style="height: 200px">
                         </div>
                     </div>
                 </li>

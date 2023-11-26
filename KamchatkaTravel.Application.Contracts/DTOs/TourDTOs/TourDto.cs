@@ -12,7 +12,7 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.TourDTOs
         //TODO: то, что отображается на главной странице (карточка тура)
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public byte[] LogoImage { get; set; }
+        public string LogoImageUrl { get; set; }
         public SeasonType SeasonType { get; set; }
         public NightType NightType { get; set; }
         public decimal Price { get; set; }

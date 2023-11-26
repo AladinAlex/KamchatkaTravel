@@ -53,7 +53,14 @@
                             <input class="form-control" type="file" asp-for="@Model.day.ImageFile" name="day.ImageFile" accept="image/png, image/gif, image/jpeg">
                         </div>
                         <div class="col-lg-7">
-                            <img src=@Model.day.ImageUrl class="img-fluid mx-auto d-block" style="height: 200px">
+                            @if (!string.IsNullOrWhiteSpace(Model.day.ImageUrl))
+                            {
+                                <img src=@Model.day.ImageUrl class="img-fluid mx-auto d-block" style="height: 200px">
+                            }
+                            else
+                            {
+                                <img class="img-fluid mx-auto d-block" style="height: 200px" alt="">
+                            }
                         </div>
                     </div>
                 </li>

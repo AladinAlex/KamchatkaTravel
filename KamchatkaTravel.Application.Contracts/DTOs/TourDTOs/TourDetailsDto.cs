@@ -12,7 +12,7 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.TourDTOs
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Tagline { get; set; }
-        public byte[] LogoImage { get; set; }
+        public string LogoImageUrl { get; set; }
         public SeasonType SeasonType { get; set; }
         public NightType NightType { get; set; }
         public decimal Price { get; set; }

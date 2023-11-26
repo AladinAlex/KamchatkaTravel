@@ -35,7 +35,7 @@ namespace KamchatkaTravel.Application.Services
         public async Task CreateTour(CreateTourDto tourDto)
         {
             var t = _mapper.Map<Tour>(tourDto);
-            t.LogoImage = WriteBytes(tourDto.LogoImg);
+            //t.LogoImageUrl = WriteBytes(tourDto.LogoImg);
             t.DescriptionImage = WriteBytes(tourDto.DescriptionImg);
 
             await _repository.InsertTour(t);

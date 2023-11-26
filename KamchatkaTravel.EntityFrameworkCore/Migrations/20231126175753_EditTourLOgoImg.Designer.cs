@@ -4,6 +4,7 @@ using KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KamchatkaTravel.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(KamchatkaTravelDbContext))]
-    partial class KamchatkaTravelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231126175753_EditTourLOgoImg")]
+    partial class EditTourLOgoImg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -317,9 +320,9 @@ namespace KamchatkaTravel.EntityFrameworkCore.Migrations
                     b.Property<string>("LinkEquipment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LogoImageUrl")
+                    b.Property<byte[]>("LogoImageUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
