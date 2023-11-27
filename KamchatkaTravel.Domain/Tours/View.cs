@@ -14,7 +14,7 @@ namespace KamchatkaTravel.Domain.Tours
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public byte[] Image { get; set; }
+        public string ImageUrl { get; set; }
         public Tour tour { get; set; }
         public Nullable<Guid> TourId { get; set; }
     }

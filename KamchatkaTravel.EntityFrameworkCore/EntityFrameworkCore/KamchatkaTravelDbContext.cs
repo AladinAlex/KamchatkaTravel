@@ -146,7 +146,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 v.Property(v => v.Id).HasDefaultValueSql("newid()");
                 v.Property(v => v.Name).IsRequired().HasColumnType("nvarchar(128)");
                 v.Property(v => v.Description).IsRequired().HasColumnType("nvarchar(max)");
-                v.Property(v => v.Image).IsRequired().HasColumnType("varbinary(max)");
+                //v.Property(v => v.ImageUrl).IsRequired().HasColumnType("varbinary(max)");
+                v.Property(v => v.ImageUrl).IsRequired().HasColumnType("nvarchar(max)");
                 v.Property(v => v.Visible).HasDefaultValue(true);
                 v.Property(v => v.CreateDt).IsRequired().HasColumnType("datetime2");
                 v.Property(v => v.UpdateDt).HasColumnType("datetime2");

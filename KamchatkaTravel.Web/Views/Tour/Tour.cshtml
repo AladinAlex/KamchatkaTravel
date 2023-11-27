@@ -78,7 +78,14 @@
                         {
                             <div class="sight-card">
                                 <div class="sight-card__block-image">
-                                    <img src="data:image; base64, @Convert.ToBase64String(view.Image)" class="sight-card__image" alt="">
+                                    @if (!string.IsNullOrWhiteSpace(view.ImageUrl))
+                                    {
+                                        <img src=@view.ImageUrl class="sight-card__image">
+                                    }
+                                    else
+                                    {
+                                        <img class="sight-card__image" alt="Вид">
+                                    }
                                 </div>
                                 <div class="sight-card__block-info">
                                     <span class="sight-card__title">@view.Name</span>

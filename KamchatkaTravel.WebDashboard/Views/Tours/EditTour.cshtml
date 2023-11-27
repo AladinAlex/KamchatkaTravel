@@ -203,7 +203,14 @@
                             <td class=@color>@t.Name</td>
                             <td class=@color>@t.Description.ToTruncateText()</td>
                             <td class=@color>
-                                <img src="data:image; base64, @(Convert.ToBase64String(t.Image))" class="img-fluid  d-block" style="height: 100px">
+                                @if (!string.IsNullOrWhiteSpace(t.ImageUrl))
+                                {
+                                    <img src=@t.ImageUrl class="img-fluid  d-block" style="height: 100px">
+                                }
+                                else
+                                {
+                                    <img class="img-fluid  d-block" style="height: 100px" alt="Вид">
+                                }
                             </td>
                             <td class=@color>
                                 <div>

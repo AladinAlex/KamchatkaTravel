@@ -107,8 +107,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             var v = await _context.Views.FirstAsync(x => x.Id == newView.Id);
             v.Visible = newView.Visible;
 
-            if (newView.Image != null && newView.Image.Any())
-                v.Image = newView.Image;
+            if (!string.IsNullOrWhiteSpace(newView.ImageUrl))
+                v.ImageUrl = newView.ImageUrl;
 
             v.Description = newView.Description;
             v.Name = newView.Name;

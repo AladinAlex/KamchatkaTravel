@@ -90,6 +90,8 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> AddView(AddTourViewModel model)
         {
+            var path = await MyFile.SaveFile(model.view.Image, _env.WebRootPath, ImageFolder.Get(Folder.View), model.view.Name);
+            model.view.ImageUrl = path;
             // тут после добавления нужно идти на edit tour текущий(model.view.tourId)
             await _dashboardService.CreateTourViewAsync(model.view);
             return RedirectToAction("MainTour", "Home");
@@ -112,6 +114,8 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditView(EditViewModel model)
         {
+            var path = await MyFile.SaveFile(model.view.ImageFile, _env.WebRootPath, ImageFolder.Get(Folder.View), model.view.Name);
+            model.view.ImageUrl = path;
             await _dashboardService.EditViewAsync(model.view);
             return RedirectToAction("GetEditView", new { ViewId = model.view.Id });
         }

@@ -84,7 +84,7 @@ namespace KamchatkaTravel.Application.Services
         public async Task EditViewAsync(ViewModel model)
         {
             var v = _mapper.Map<View>(model);
-            v.Image = WriteBytes(model.ImageFile);
+            //v.ImageUrl = WriteBytes(model.ImageFile);
             await _dashboardRepository.UpdateViewAsync(v);
         }
 
@@ -98,7 +98,7 @@ namespace KamchatkaTravel.Application.Services
         public async Task CreateTourViewAsync(CreateViewDto model)
         {
             var v = _mapper.Map<View>(model);
-            v.Image = WriteBytes(model.Image);
+            //v.ImageUrl = WriteBytes(model.Image);s
             await _dashboardRepository.InsertViewAsync(v);
         }
 
