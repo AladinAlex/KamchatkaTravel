@@ -316,7 +316,7 @@ namespace KamchatkaTravel.Web.Tests.Tests.Repositories.DashboardRepositories
             var newImage = new Image
             {
                 Id = Guid.NewGuid(),
-                Img = new byte[0],
+                //ImageUrl = new byte[0],
                 Ord = Tools.Tools.RandomNumber(1, 10),
                 tour = context.Tours.Skip(1).Take(1).First(),
                 TourId = context.Tours.Skip(1).Take(1).First().Id,

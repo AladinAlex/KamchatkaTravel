@@ -100,7 +100,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 d.HasIndex(d => d.Id).IsUnique(true);
                 d.HasIndex(d => d.Visible).IsUnique(false);
                 d.Property(d => d.Id).HasDefaultValueSql("newid()");
-                d.Property(d => d.Img).IsRequired().HasColumnType("varbinary(max)");
+                //d.Property(d => d.Img).IsRequired().HasColumnType("varbinary(max)");
+                d.Property(d => d.ImageUrl).IsRequired().HasColumnType("nvarchar(max)");
                 //d.Property(d => d.Tour).IsRequired();
                 d.Property(d => d.Visible).HasDefaultValue(true);
                 d.Property(d => d.Ord).IsRequired(false);

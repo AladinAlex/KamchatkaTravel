@@ -8,6 +8,6 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.TourDTOs
 {
     public class ImageDto
     {
-        public byte[] Img { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

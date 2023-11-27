@@ -11,7 +11,7 @@ namespace KamchatkaTravel.Domain.Tours
     public class Image : BaseModel
     {
         public Guid Id { get; set; }
-        public byte[] Img { get; set; }
+        public string ImageUrl { get; set; }
         public int? Ord { get; set; }
         public Tour tour { get; set; }
         public Guid TourId { get; set; }

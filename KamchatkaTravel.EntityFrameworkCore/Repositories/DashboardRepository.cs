@@ -121,8 +121,8 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
             v.Visible = newImage.Visible;
             v.Ord = newImage.Ord;
 
-            if (newImage.Img != null && newImage.Img.Any())
-                v.Img = newImage.Img;
+            if (!string.IsNullOrWhiteSpace(newImage.ImageUrl))
+                v.ImageUrl = newImage.ImageUrl;
 
             await _context.SaveChangesAsync();
         }

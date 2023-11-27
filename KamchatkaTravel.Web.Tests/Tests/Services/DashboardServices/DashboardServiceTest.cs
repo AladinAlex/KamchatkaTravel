@@ -238,7 +238,7 @@ namespace KamchatkaTravel.Web.Tests.Tests.Servicies.DashboardServicies
             // Act
             var newImg = new CreateImageDto
             {
-                Image = null,
+                ImageFile = null,
                 Ord = Tools.Tools.RandomNumber(1, 7),
                 TourId = context.Tours.First().Id,
 
