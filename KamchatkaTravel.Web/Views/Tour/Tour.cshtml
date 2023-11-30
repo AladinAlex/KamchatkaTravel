@@ -102,7 +102,7 @@
         <section class="pictures" data-modal-picture="main">
             @{
                 if (Model.Tour.Images != null && Model.Tour.Images.Count() == 8)
-                    foreach (var img in Model.Tour.Images)
+                    foreach (var img in Model.Tour.Images.OrderBy(x=>x.Ord))
                     {
                         <a src=@img.ImageUrl
                            data-img=@img.ImageUrl

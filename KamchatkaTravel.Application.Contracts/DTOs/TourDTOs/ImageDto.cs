@@ -9,5 +9,6 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.TourDTOs
     public class ImageDto
     {
         public string ImageUrl { get; set; }
+        public int? Ord { get; set; }
     }
 }

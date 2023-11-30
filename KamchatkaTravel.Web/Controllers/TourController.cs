@@ -30,6 +30,7 @@ namespace KamchatkaTravel.Web.Controllers
                 if (!string.IsNullOrWhiteSpace(r.ImageUrl))
                     r.ImageUrl = _config["ImageUrl"] + r.ImageUrl;
             }
+            result.Tour.Images = result.Tour.Images.OrderBy(x=> x.Ord).Take(8);
             foreach (var r in result.Tour.Images)
             {
                 if (!string.IsNullOrWhiteSpace(r.ImageUrl))
