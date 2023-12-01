@@ -18,6 +18,8 @@ namespace KamchatkaTravel.Domain.Shared.Extensions
         /// <returns></returns>
         public static string ToTruncateText(this string str, int? startIndex = 0, int? length = 50)
         { 
+            if(string.IsNullOrWhiteSpace(str))
+                return "";
             if(str.Length < length)
                 return str;
             return str.Substring(startIndex.Value, length.Value) + "...";
