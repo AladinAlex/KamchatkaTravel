@@ -1,0 +1,22 @@
+@import '@/assets/style/_vars';
+@import '@/assets/style/_mixins';
+
+.feedback-form {
+
+    &__head {}
+
+    &__subtitle {
+        @include adaptiv-font(24, 18);
+    }
+
+    .title {
+        margin-bottom: 20px;
+    }
+
+    .main-container {
+        display: grid;
+        grid-template-columns: auto max-content;
+        grid-column-gap: 40px;
+        justify-content: space-between;
+    }
+}

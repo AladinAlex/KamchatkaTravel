@@ -1,0 +1,26 @@
+.about-us {
+
+    &.section {
+        padding: 100px 0 0 0;
+    }
+
+    .main-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 40px;
+    }
+
+    &__wrap-info {}
+
+    &__wrap-image {
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}

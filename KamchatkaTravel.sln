@@ -25,6 +25,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.Web.Tests", "KamchatkaTravel.Web.Tests\KamchatkaTravel.Web.Tests.csproj", "{951A64C6-9A88-4A20-8EC8-D35CA8076096}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.TelegramApi", "KamchatkaTravel.TelegramApi\KamchatkaTravel.TelegramApi.csproj", "{1A3B6467-8321-476D-BC93-4E703441329A}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "KamchatkaTravel.Web.Client", "KamchatkaTravel.WebVue\vueapp\KamchatkaTravel.Web.Client.esproj", "{3580915F-06D0-45DA-B6A3-E6FF773C5DFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamchatkaTravel.Web.Server", "KamchatkaTravel.WebVue\webapi\KamchatkaTravel.Web.Server.csproj", "{7C28CA24-3400-4841-A00B-0B2CED8F9A32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +81,20 @@ Global
 		{951A64C6-9A88-4A20-8EC8-D35CA8076096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{951A64C6-9A88-4A20-8EC8-D35CA8076096}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{951A64C6-9A88-4A20-8EC8-D35CA8076096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A3B6467-8321-476D-BC93-4E703441329A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3B6467-8321-476D-BC93-4E703441329A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3B6467-8321-476D-BC93-4E703441329A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3B6467-8321-476D-BC93-4E703441329A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3580915F-06D0-45DA-B6A3-E6FF773C5DFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3580915F-06D0-45DA-B6A3-E6FF773C5DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3580915F-06D0-45DA-B6A3-E6FF773C5DFF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3580915F-06D0-45DA-B6A3-E6FF773C5DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3580915F-06D0-45DA-B6A3-E6FF773C5DFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3580915F-06D0-45DA-B6A3-E6FF773C5DFF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7C28CA24-3400-4841-A00B-0B2CED8F9A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C28CA24-3400-4841-A00B-0B2CED8F9A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C28CA24-3400-4841-A00B-0B2CED8F9A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C28CA24-3400-4841-A00B-0B2CED8F9A32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

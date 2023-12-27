@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "KamchatkaTravel.TelegramApi": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

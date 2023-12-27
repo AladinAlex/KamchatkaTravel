@@ -1,0 +1,41 @@
+@import '@/assets/style/_vars.scss';
+@import '@/assets/style/_mixins.scss';
+@import '@/assets/style/_settings.scss';
+@import '@/assets/style/_classes.scss';
+// @import '@/assets/style/_fonts.scss';
+
+// @import '@/assets/fonts/Montserrat/Montserrat-Bold.ttf';
+// @import '@/assets/fonts/Montserrat/Montserrat-Light.ttf';
+// @import '@/assets/fonts/Montserrat/Montserrat-Regular.ttf';
+// @import '@/assets/fonts/Montserrat/Montserrat-SemiBold.ttf';
+
+
+
+* {
+    box-sizing: border-box;
+    font-family: $main-font, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2em;
+}
+
+html,
+body {
+    width: 100%;
+}
+
+.wrapper-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: $main-color;
+    background-color: $color-1;
+}
+
+@import './parts/pages';
+@import './parts/components';
+@import './parts/ui';
+@import './parts/modal-windows';
+
+@import './libs';
+@import './media';
