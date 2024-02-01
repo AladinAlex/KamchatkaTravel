@@ -10,8 +10,9 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
 {
     public interface ITourService
     {
-        Task<IndexDto> Index();
-        Task<TourViewDto> GetTourInfo(Guid id);
+        Task<IndexDto> Index(bool withDefaultPictures = true);
+        Task<TourViewDto> GetTourInfo(Guid id, bool withDefaultPictures = true);
+        Task<TourViewDto> GetTourInfo(string TourName, bool withDefaultPictures = true);
         Task CreateClientRequest(ClientRequestCreateDto clientRequest);
     }
 }

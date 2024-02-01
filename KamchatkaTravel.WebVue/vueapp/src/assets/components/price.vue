@@ -9,14 +9,14 @@
             <div class="price__wrap-blocks">
                 <div class="price__block-info">
                     <span class="price__block-title">Входит в стоимость:</span>
-                    <ul v-if="includes.filter(x => x.isInclude).length > 0" class="price__list">
-                        <li v-for="(include, index) in includes.filter(x => x.isInclude)" class="price__li">{{ include.Text }}</li>
+                    <ul v-if="includes?.filter(x => x.isInclude).length > 0" class="price__list">
+                        <li v-for="(include, index) in includes?.filter(x => x.isInclude).sort((a, b) => a.number - b.number)" :key="index" class="price__li">{{ include.text }}</li>
                     </ul>
                 </div>
                 <div class="price__block-info">
                     <span class="price__block-title">Не входит в стоимость:</span>
-                    <ul v-if="includes.filter(x => !x.isInclude).length > 0" class="price__list">
-                        <li v-for="(include, index) in includes.filter(x => !x.isInclude)" class="price__li">{{ include.Text }}</li>
+                    <ul v-if="includes?.filter(x => !x.isInclude).length > 0" class="price__list">
+                        <li v-for="(include, index) in includes?.filter(x => !x.isInclude).sort((a, b) => a.number - b.number)" :key="index" class="price__li">{{ include.text }}</li>
                     </ul>
                 </div>
             </div>

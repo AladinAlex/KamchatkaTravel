@@ -1,24 +1,23 @@
 <template>
-            <main class="page">
+                <main class="page">
                 <div class="tour-page">
-                    <Presentation :imgUrl="require('@/assets/images/kamchatka-1.jpg')"
-                        :title="'Камчатка: три вулкана и океан'"
-                        :desc="'Программа по чек-листу «Что нужно сделать на Камчатке». Возраст 12+'"
+                    <Presentation :imgUrl="tour.logoImageUrl"
+                        :title="tour.name"
+                        :desc="tour.tagline"
                         :button_text="'Хочу поехать'"
-                        :day_count = 1
-                        :price = 78000
-                        :day-nigth_type = 1
+                        :day_count = tour.days?.length
+                        :price = tour.price
+                        :nigth_type = tour.nightType
                     />
-                    <TourDesc   :imgLink="'@/assets/images/kamchatka-2.jpg'"
-                                :desc="'<p> Камчатка – край вулканов, медведей и необузданной природы! Этот маршрут – лидирует по впечатлениям уже несколько лет благодаря попаданию 100 из 100! </p> <p>     А всё потому, что в рамках тура мы выполняем чек лист «Что обязательно должен сделать каждый турист на Камчатке»: </p> <ul>     <li>подняться на кратер действующего вулкана;</li>     <li>узнать, как пахнут фумаролы;</li>     <li>покормить суслика с ладошки;</li>     <li>увидеть медведя;</li>     <li>отдохнуть в диком горячем источнике;</li>     <li>искупаться в Тихом океане;</li>     <li>попробовать камчатские морепродукты.</li> </ul> <p>Активный маршрут без тяжелых рюкзаков с релаксом в горячих источниках!!!</p>'"
+                    <TourDesc   :imgLink="tour.descriptionImageUrl"
+                                :desc="tour.description"
                     />
-                    <Sights/>
-                    <Pictures/>
-                    <Program/>
-                    <Price :price = 78000 :imgLink="null" :includes="[]"/>
-                    <Faqs/>
-                    <Review/>
-                    <FeedbackForm/>
+                    <Sights :sights="tour.views"/>
+                    <Pictures :images="tour.images"/>
+                    <Program :days="tour.days"/>
+                    <Price :price = tour.price :imgLink="tour.logoImageUrl" :includes="tour.includes"/>
+                    <Faqs :faqs="tour.questions"/>
+                    <FeedbackForm />
                 </div>
             </main>
 </template>
@@ -33,7 +32,8 @@ import Price from "@/assets/components/price.vue";
 import Faqs from "@/assets/components/Faqs.vue";
 import Review from "@/assets/components/reviews.vue";
 import FeedbackForm from "@/assets/components/feedback-form.vue";
-
+import { ref, onMounted, watch, reactive } from 'vue';
+import ApiTour from "@/common/api/Tour";
 
 export default {
     components: {
@@ -48,10 +48,38 @@ export default {
         FeedbackForm
     },
 
-    setup() {
+    props: {
+        name: {
+            type: String,
+            required: true,
+        }
+    },
 
+    setup(props, {emit}) {
+
+        let tour = ref({
+            // name: null,
+            // tagline: null,
+            // logoImageUrl: null
+        });
+
+        const getTour = async() => {
+            await ApiTour.TourByName(props.name).then((r) => {
+                if(r.status == 200) {
+                    
+                    tour.value = r.data.tour
+                    console.log('tour')
+                    console.log(tour)
+                    // document.title = 'Land in the Ocean - ' + tour.value.name
+                    document.title = tour.value.name
+                }
+            })
+            .catch((err) => console.log("getTour: " + err))
+        }
+
+        getTour();
         return {
-
+            tour
         };
     },
 };

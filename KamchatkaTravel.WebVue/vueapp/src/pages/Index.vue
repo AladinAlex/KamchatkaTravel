@@ -7,10 +7,10 @@
                 :button_text="'Поговорить с гидом'"
                 />
             <Aboutus/>
-            <Tours/>
-            <Pictures/>
-            <Faqs/>
-            <Review/>
+            <Tours :tours="index.tours"/>
+            <Pictures />
+            <Faqs :faqs="index.questions" />
+            <Review :reviewList="index.reviews"/>
             <section class="feedback-form section" data-smooth-scrolling="feedback-form">
                 <div class="main-container max-width">
                     <div class="feedback-form__head">
@@ -32,7 +32,8 @@ import Tours from "@/assets/components/Tours.vue";
 import Pictures from "@/assets/components/Pictures.vue";
 import Faqs from "@/assets/components/Faqs.vue";
 import Review from "@/assets/components/reviews.vue";
-
+import ApiHome from "@/common/api/Home";
+import { ref, reactive } from "vue";
 
 export default {
     components: {
@@ -46,8 +47,23 @@ export default {
 
     setup() {
 
-        return {
+        let index = ref([]);
+        const getIndex = async() => {
+            await ApiHome.Index().then((r) => {
+                // console.log('r')
+                // console.log(r)
+              if(r.status == 200) {
+                index.value = r.data
+                // console.log('r.data')
+                // console.log(r.data)
+              }
+            })
+            .catch((err) => console.log("getIndex: " + err))
+        }
+        getIndex()
 
+        return {
+            index
         };
     },
 };

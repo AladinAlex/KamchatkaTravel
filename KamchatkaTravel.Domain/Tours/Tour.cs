@@ -19,6 +19,7 @@ namespace KamchatkaTravel.Domain.Tours
         public string Description { get; set; }
         public string DescriptionImageUrl { get; set; }
         public string LinkEquipment { get; set; }
+        public string RouteName { get; set; }
         
         public List<Day> Days { get; set; }
         public List<Image> Images { get; set; }

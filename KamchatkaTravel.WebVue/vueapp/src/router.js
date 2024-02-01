@@ -11,13 +11,14 @@ const routes = [
         }
     },
     {
-        path: "/tour",  
+        path: "/tour/:name",  
         name: "tour",
         component: () => import("@/pages/Tour.vue"),
         meta: {
-            title: 'Land in the Ocean - tour_name',
+            title: 'Land in the Ocean',
             layout: 'default',
-        }
+        },
+        props: true
     },
     {
         path: "/Privacy",  

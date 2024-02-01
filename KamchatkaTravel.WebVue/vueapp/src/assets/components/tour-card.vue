@@ -1,23 +1,26 @@
  <template>
-    <a v-for="(t, index) in tours" :key="index" :href="t.route" class="tour-card">
+    <!-- <a v-for="(t, index) in refTours2" :key="index" :href="t.route" class="tour-card"> -->
+    <!-- <a :href="tour.id" class="tour-card"> -->
+    <router-link :to="'/tour/' + tour.routeName" class="tour-card">
         <div class="tour-card__block-image">
-            <img :src="[t.imgLink ? t.imgLink : require('@/assets/images/kamchatka-2.jpg')]" :class="'tour-card__image'" alt="">
+            <img :src="[tour.logoImageUrl ? tour.logoImageUrl : require('@/assets/images/kamchatka-2.jpg')]" :class="'tour-card__image'" alt="">
         </div>
         <div class="tour-card__wrap-info">
-            <span class="tour-card__title">{{ t.name }}</span>
-            <span class="tour-card__desc">{{ (t.dayCount ?? 0) + ' ' + getDayFormat(t.dayCount) + " | " + getNigthType(t.nigthType) }}</span>
+            <span class="tour-card__title">{{ tour.name }}</span>
+            <span class="tour-card__desc">{{ (tour.dayCount ?? 0) + ' ' + getDayFormat(tour.dayCount) + " | " + getNightType(tour.nightType) }}</span>
             <div class="tour-card__block-price">
-                <span class="tour-card__price">{{ getPrice(t.price) }} р</span>
+                <span class="tour-card__price">{{ getPrice(tour.price) }} р</span>
                 <button type="button" class="btn btn--size--md btn--theme--tertiary">
                     <span class="btn__text">Хочу поехать</span>
                 </button>
             </div>
         </div>
-    </a>
+    </router-link>
 </template>
   
   <script>
-  
+  import { ref, reactive, watch } from "vue";
+  import { useRouter } from 'vue-router';
 
   export default {
     components: {
@@ -25,8 +28,8 @@
     // emits: ["emits"],
     props: {
 
-        tours: {
-            type: Array,
+        tour: {
+            type: Object,
             required: true,
         }
     },
@@ -36,15 +39,16 @@
             return 'день'
         }
         
-        const getNigthType = (nigthType) => {
+        const getNightType = (nightType) => {
             return 'без ночевки'
         }
         const getPrice = (price) => {
             return price
         }
+
       return {
         getDayFormat,
-        getNigthType,
+        getNightType,
         getPrice
       };
     }

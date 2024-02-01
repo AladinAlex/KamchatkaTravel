@@ -15,22 +15,22 @@ namespace KamchatkaTravel.Application.Contracts.DTOs
         //public IList<DayDto> Days { get; set; }
         //public IList<IncludeDto> Includes { get; set; }
         //public IList<QuestionDto> Questions { get; set; }
-        public IList<string> PicturesLink
-        {
-            get
-            {
-                //return System.IO.Directory.GetCurrentDirectory();
-                //return Environment.CurrentDirectory;
-                IList<string> result = new List<string>();
+        public IList<string> PicturesLink { get; set; }
+        //{
+        //    get
+        //    {
+        //        //return System.IO.Directory.GetCurrentDirectory();
+        //        //return Environment.CurrentDirectory;
+        //        IList<string> result = new List<string>();
 
-                var path = System.IO.Directory.GetCurrentDirectory() + "/wwwroot/images/MainPicturesSeparate";
-                foreach (var file in Directory.GetFiles(path, "*kamchatka*"))
-                {
-                    result.Add(System.IO.Path.GetFileName(file));
-                }
+        //        var path = System.IO.Directory.GetCurrentDirectory() + "/wwwroot/images/MainPicturesSeparate";
+        //        foreach (var file in Directory.GetFiles(path, "*kamchatka*"))
+        //        {
+        //            result.Add(System.IO.Path.GetFileName(file));
+        //        }
 
-                return result;
-            }
-        }
+        //        return result;
+        //    }
+        //}
     }
 }

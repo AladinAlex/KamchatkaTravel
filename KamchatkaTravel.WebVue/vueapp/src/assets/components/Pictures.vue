@@ -1,8 +1,13 @@
 <template>
 <section class="pictures" data-modal-picture="main">
 
-    <Picture :images="images ?? imagesDefault" />
-    
+    <template v-if="images && images.length">
+        <Picture v-for="(i, index) in images" :key="index" :image="i" />
+    </template>
+    <template v-else>
+        <Picture v-for="(i, index) in imagesDefault" :key="index" :image="i" />
+    </template>
+
 </section>
 </template>
 
@@ -22,33 +27,35 @@ export default {
         Picture
     },
 
-    setup() {
+    setup(props) {
 
+        console.log('props.images')
+        console.log(props.images)
         return {
             imagesDefault: [
                 {
-                    imgLink: "img/kamchatka-5.963ea4a4.jpg"
+                    imageUrl:  require('@/assets/images/MainPicturesSeparate/kamchatka-5.jpg')
                 },
                 {
-                    imgLink: "img/kamchatka-5.963ea4a4.jpg"
+                    imageUrl: require('@/assets/images/MainPicturesSeparate/kamchatka-6.jpg')
                 },
                 {
-                    imgLink: "img/kamchatka-5.963ea4a4.jpg"
+                    imageUrl: require('@/assets/images/MainPicturesSeparate/kamchatka-7.jpg')
                 },
                 {
-                    imgLink: "img/kamchatka-5.963ea4a4.jpg"
+                    imageUrl: require('@/assets/images/MainPicturesSeparate/kamchatka-8.jpg')
                 },
                 {
-                    imgLink: "img/kamchatka-5.963ea4a4.jpg"
+                    imageUrl: require('@/assets/images/MainPicturesSeparate/kamchatka-9.jpg')
                 },
                 {
-                    imgLink: "img/kamchatka-5.963ea4a4.jpg"
+                    imageUrl: require('@/assets/images/MainPicturesSeparate/kamchatka-10.jpg')
                 },
                 {
-                    imgLink: "img/kamchatka-5.963ea4a4.jpg"
+                    imageUrl: require('@/assets/images/MainPicturesSeparate/kamchatka-11.jpg')
                 },
                 {
-                    imgLink: "img/kamchatka-5.963ea4a4.jpg"
+                    imageUrl: require('@/assets/images/MainPicturesSeparate/kamchatka-12.jpg')
                 },
             ]
         };

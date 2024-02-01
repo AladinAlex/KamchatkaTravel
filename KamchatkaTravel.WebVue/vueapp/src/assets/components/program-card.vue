@@ -1,10 +1,10 @@
 <template>
-    <div v-for="(day, index) in days" :key="index"  class="swiper-slide">
+    <div class="swiper-slide">
         <div class="program__card">
             <span class="program__card-title">{{'День ' +  day.number + ': ' + day.name}}</span>
             <div class="program__card-wrap-info">
                 <div class="program__card-block-image">
-                    <img :src="day.imgLink" class="program__card-image" alt="">
+                    <img :src="day.imageUrl" class="program__card-image" alt="">
                 </div>
                 <div class="program__card-block-text text">
                     <p>
@@ -25,8 +25,8 @@ export default {
     },
 
     props: {
-        days: {
-            type: Array,
+        day: {
+            type: Object,
             required: true,
         }
     },

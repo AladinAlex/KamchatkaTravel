@@ -13,6 +13,7 @@ namespace KamchatkaTravel.Domain.Interfaces
     {
         //Task<Tour> InsertTourAsync(/*Поля*/);
         Task<Tour> GetTourByIdAsync(Guid Id);
+        Task<Tour> GetTourByRouteNameAsync(string TourName);
         Task<IEnumerable<Tour>> GetToursAsync();
         Task<IEnumerable<Question>> GetQuestionsAsync();
         Task<IEnumerable<Review>> GetTop5ReviewsAsync();

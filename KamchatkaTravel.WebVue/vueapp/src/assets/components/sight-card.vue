@@ -1,11 +1,11 @@
 <template>
-    <div v-for="(sight, index) in sights" :key="index" class="sight-card">
+    <div class="sight-card">
         <div class="sight-card__block-image">
-            <img :src="sight.imgLink" class="sight-card__image" alt="">
+            <img :src="sight.imageUrl" class="sight-card__image" alt="  ">
         </div>
         <div class="sight-card__block-info">
-            <span class="sight-card__title">{{ sight.title }}</span>
-            <span class="sight-card__subtitle">{{ sight.subtitle }}</span>
+            <span class="sight-card__title">{{ sight.name }}</span>
+            <span class="sight-card__subtitle">{{ sight.description }}</span>
         </div>
     </div>
 </template>
@@ -17,8 +17,8 @@
 
 export default {
     props: {
-        sights: {
-            type: Array,
+        sight: {
+            type: Object,
             required: true,
         }
     },

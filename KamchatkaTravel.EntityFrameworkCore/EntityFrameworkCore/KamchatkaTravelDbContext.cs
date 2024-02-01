@@ -73,6 +73,7 @@ namespace KamchatkaTravel.EntityFrameworkCore.EntityFrameworkCore
                 q.Property(tour => tour.LinkEquipment).IsRequired(false);
                 q.Property(tour => tour.CreateDt).IsRequired().HasColumnType("datetime2");
                 q.Property(tour => tour.UpdateDt).HasColumnType("datetime2");
+                q.Property(tour => tour.RouteName).HasColumnType("varchar(max)");
             });
 
             builder.Entity<Day>(d =>

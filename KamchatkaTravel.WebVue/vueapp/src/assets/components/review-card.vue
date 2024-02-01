@@ -1,13 +1,14 @@
 <template>
-    <div v-for="(r, index) in reviews" :key="index" class="swiper-slide">
+    <!-- <div v-for="(r, index) in reviews" :key="index" class="swiper-slide"> -->
+    <div class="swiper-slide">
         <div class="review-card">
             <div class="review-card__block-image">
-                <img :src="[r.imgUrl ? r.imgUrl : require('@/assets/images/Default_review_logo.jpg')]" class="review-card__image" alt="">
+                <img :src="[review.logoImageUrl ? review.logoImageUrl : require('@/assets/images/Default_review_logo.jpg')]" class="review-card__image" alt="">
             </div>
-            <span class="review-card__name">{{ r.fi }}</span>
-            <span class="review-card__date">{{ r.date }}г</span>
+            <span class="review-card__name">{{ getName(review.firstName, review.lastName) }}</span>
+            <span class="review-card__date">{{ review.date }}г</span>
             <div class="review-card__text">
-                <p>{{ r.text }}</p>
+                <p>{{ review.text }}</p>
             </div>
         </div>
     </div>
@@ -22,16 +23,20 @@ export default {
     },
 
     props: {
-        reviews: {
-            type: Array,
+        review: {
+            type: Object,
             required: true,
         }
     },
 
     setup(props, {emit}) {
 
+        const getName = (firstName, lastName) => {
+            return firstName + ' ' + Array.from(lastName)[0] + '.'
+        }
+
         return {
-            
+            getName
         };
     },
 };

@@ -84,7 +84,12 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
         {
             var t = await _context.Tours.FirstAsync(x => x.Id == newTour.Id);
 
-            t.Name = newTour.Name;
+            if(t.Name != newTour.Name)
+            {
+                t.RouteName = KamchatkaTravel.Domain.Shared.Utils.Tools.GetRouteByName(newTour.Name);
+                t.Name = newTour.Name;
+            }
+
             t.Tagline = newTour.Tagline;
             
             if (!string.IsNullOrWhiteSpace(newTour.LogoImageUrl))

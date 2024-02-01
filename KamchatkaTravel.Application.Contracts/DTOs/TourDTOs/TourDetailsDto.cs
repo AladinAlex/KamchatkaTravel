@@ -19,6 +19,7 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.TourDTOs
         public string Description { get; set; }
         public string DescriptionImageUrl { get; set; }
         public string LinkEquipment { get; set; }
+        public string RouteName { get; set; }
         public IEnumerable<ViewDto> Views { get; set; }
         public IEnumerable<ImageDto> Images { get; set; }
         public IEnumerable<DayDto> Days { get; set; }

@@ -35,7 +35,7 @@
                 <span class="footer__title">Полезное</span>
                 <ul class="footer__nav-list list-reset">
                     <li class="footer__nav-li">
-                        <a href="/privacy-policy.html" class="footer__link">Политика конфиденциальности UPDATE LINK</a>
+                        <a href="/Privacy" class="footer__link">Политика конфиденциальности</a>
                     </li>
                 </ul>
             </div>
@@ -43,7 +43,7 @@
     </div>
     <div class="main-container max-width">
         <div class="footer__wrap-copy">
-            <span class="footer__copyright">&copy; Название компании</span>
+            <span class="footer__copyright">&copy; Land in the ocean</span>
             <a href="https://andreyfront.github.io/presentation/dist/index.html" class="footer__dev link-reset" target="_blank">Сделано Andrey FD</a>
         </div>
     </div>

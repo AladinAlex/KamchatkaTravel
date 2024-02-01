@@ -6,7 +6,7 @@
               <Sorting/>
           </div>
           <div class="tours__wrap-cards">
-              <TourCard :tours="tours" />
+              <TourCard v-for="(t, index) in tours" :key="index" :tour="t"/>
           </div>
       </div>
   </section>
@@ -21,29 +21,16 @@
         Sorting,
         TourCard
     },
+    props: {
+      tours: {
+          type: Array,
+          required: true,
+      }
+    },
     setup(props, { emit }) { 
-      
 
       return {
-        tours: [
-            {
-                route: 'trivulkana',
-                imgLink: null,
-                name: 'Камчатка: три вулкана и океан. 12+',
-                dayCount: 1,
-                nigthType: 1,
-                price: 78000,
-
-            },
-            {
-                route: 'lavoviepolya',
-                imgLink: null,
-                name: 'Камчатка: лавовые поля и активные вулканы. 12+',
-                dayCount: 1,
-                nigthType: 1,
-                price: 95000,
-            }
-        ]
+        
       };
     }
   };

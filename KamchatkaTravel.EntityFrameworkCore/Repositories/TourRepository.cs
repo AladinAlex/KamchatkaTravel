@@ -93,5 +93,21 @@ namespace KamchatkaTravel.EntityFrameworkCore.Repositories
 
             return tour;
         }
+
+        public async Task<Tour> GetTourByRouteNameAsync(string TourName)
+        {
+
+            var tour = await _context.Tours
+                .Where(t => t.Visible && t.RouteName == TourName)
+                .Include(x => x.Days.Where(u => u.Visible))
+                .Include(x => x.Includes.Where(u => u.Visible))
+                .Include(x => x.Questions.Where(u => u.Visible))
+                .Include(x => x.Images.Where(u => u.Visible))
+                .Include(x => x.Views.Where(u => u.Visible))
+                .AsSplitQuery()
+                .FirstAsync();
+
+            return tour;
+        }
     }
 }

@@ -1,12 +1,13 @@
 <template>
-    <div v-for="(f, index) in faqs" :key="index" class="faq__block" data-faq="block">
+    <!-- <div v-for="(f, index) in faqs" :key="index" class="faq__block" data-faq="block"> -->
+    <div class="faq__block" data-faq="block">
         <div class="faq__block-head" data-faq="head">
-            <span class="faq__block-title">{{ f.ask }}</span>
+            <span class="faq__block-title">{{ faq.name }}</span>
             <InlineSvg :src="require('@/assets/icons/plus.svg')" :class="'faq__block-icon'"></InlineSvg>
         </div>
         <div class="faq__block-body text" data-faq="body">
             <p>
-                {{ f.question }}
+                {{ faq.answer }}
             </p>
         </div>
     </div>
@@ -21,8 +22,8 @@ export default {
     },
 
     props: {
-        faqs: {
-            type: Array,
+        faq: {
+            type: Object,
             required: true,
         }
     },

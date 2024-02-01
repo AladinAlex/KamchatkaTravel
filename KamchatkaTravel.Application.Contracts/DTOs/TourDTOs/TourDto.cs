@@ -18,5 +18,6 @@ namespace KamchatkaTravel.Application.Contracts.DTOs.TourDTOs
         public decimal Price { get; set; }
         //public List<DayDto> Days  { get; set; }
         public int dayCount { get; set; }
+        public string RouteName { get; set; }
     }
 }

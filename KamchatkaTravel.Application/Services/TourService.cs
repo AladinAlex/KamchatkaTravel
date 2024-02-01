@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using KamchatkaTravel.Domain.Shared.Tours;
 using System.Diagnostics;
 using System.Collections;
+using KamchatkaTravel.Application.Utils;
 
 namespace KamchatkaTravel.Application.Services
 {
@@ -30,15 +31,17 @@ namespace KamchatkaTravel.Application.Services
             _repository = repository;
         }
 
-        public async Task<IndexDto> Index()
+        public async Task<IndexDto> Index(bool withDefaultPictures = true)
         {
-
             IEnumerable<Tour> tours = await _repository.GetToursAsync();
             IEnumerable<Question> questions = await _repository.GetQuestionsAsync();
             IEnumerable<Review> reviews = await _repository.GetTop5ReviewsAsync();
 
             /*тут нужна проверка*/
             IndexDto response = new();
+            if (withDefaultPictures)
+                response.PicturesLink = Tools.GetPictures();
+
             response.Tours = _mapper.Map<IEnumerable<TourDto>>(tours);
             response.Questions = _mapper.Map<IEnumerable<QuestionDto>>(questions);
             response.Reviews = _mapper.Map<IEnumerable<ReviewDto>>(reviews);
@@ -51,13 +54,32 @@ namespace KamchatkaTravel.Application.Services
             return response;
         }
 
-        public async Task<TourViewDto> GetTourInfo(Guid id)
+        public async Task<TourViewDto> GetTourInfo(Guid id, bool withDefaultPictures = true)
         {
             var t = await _repository.GetTourByIdAsync(id);
             TourViewDto response = new()
             {
                 Tour = _mapper.Map<TourDetailsDto>(t)
             };
+            if (withDefaultPictures)
+                response.PicturesLink = Tools.GetPictures();
+
+            return response;
+        }
+        /// <summary>
+        /// Получение тура по RouteName
+        /// </summary>
+        /// <param name="TourName">RouteName тура</param>
+        /// <returns></returns>
+        public async Task<TourViewDto> GetTourInfo(string TourName, bool withDefaultPictures = true)
+        {
+            var t = await _repository.GetTourByRouteNameAsync(TourName);
+            TourViewDto response = new()
+            {
+                Tour = _mapper.Map<TourDetailsDto>(t)
+            };
+            if (withDefaultPictures)
+                response.PicturesLink = Tools.GetPictures();
 
             return response;
         }

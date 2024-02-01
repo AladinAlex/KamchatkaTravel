@@ -13,20 +13,20 @@ namespace KamchatkaTravel.Application.Contracts.DTOs
         public IEnumerable<TourDto> Tours { get; set; }
         public IEnumerable<QuestionDto> Questions { get; set; }
         public IEnumerable<ReviewDto> Reviews { get; set; }
-        public IList<string> PicturesLink
-        {
-            get
-            {
-                IList<string> result = new List<string>();
+        public IList<string> PicturesLink { get; set; }
+        //{
+        //    get
+        //    {
+        //        IList<string> result = new List<string>();
 
-                var path = Directory.GetCurrentDirectory() + "/wwwroot/images/MainPicturesSeparate";
-                foreach (var file in Directory.GetFiles(path, "*kamchatka*"))
-                {
-                    result.Add(Path.GetFileName(file));
-                }
+        //        var path = Directory.GetCurrentDirectory() + "/wwwroot/images/MainPicturesSeparate";
+        //        foreach (var file in Directory.GetFiles(path, "*kamchatka*"))
+        //        {
+        //            result.Add(Path.GetFileName(file));
+        //        }
 
-                return result;
-            }
-        }
+        //        return result;
+        //    }
+        //}
     }
 }
