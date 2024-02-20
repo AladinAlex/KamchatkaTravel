@@ -66,6 +66,7 @@ builder.Services.AddTransient<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IIdentityRepository, IdentityRepository>();
 builder.Services.AddTransient<IIdentityService, IdentityService>();
 
+//builder.Services.AddScoped<IUserStore<IdentityPerson>, IdentityPersonStore>();
 
 builder.Services.AddSwaggerGen();
 
