@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\KamchatkaTravel.Application\KamchatkaTravel.Application.csproj" />
     <ProjectReference Include="..\KamchatkaTravel.EntityFrameworkCore\KamchatkaTravel.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\KamchatkaTravel.TelegramApi\KamchatkaTravel.TelegramApi.csproj" />
   </ItemGroup>
 
 </Project>

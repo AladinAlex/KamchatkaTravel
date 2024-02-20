@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Профиль пользователя";
+    string tooltipText = "1. Зайдите в телеграмм бота \"@LandInThecean_bot\" 2. Начни диалог 3. Узнай свой Chat ID (например, @getmyid_bot) 4. Запиши его в поле идентификатора чата";
 }
 
 <div class="container-fluid">
@@ -57,10 +58,72 @@
                     </div>
                 </div>
             </li>
-
         </ul>
 
+        @if (User.IsInRole("User"))
+        {
+            
+        <div class="flex justify-content-between h5">
+            <span>Настройка подписки на отправку уведомлений в телеграмм</span>
+            <span data-toggle="tooltip" data-placement="top" title="@tooltipText" class="question-icon">
+                ?
+            </span>
+        </div>
+        <form>
+            <ul class="list-group mb-2">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Telegram ID:</b>
+                        </div>
+                        <div class="col-lg-10">
+                            <input class="form-control w-100" asp-for="@Model.Chat_id" name="Chat_id" type="number" />
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <b>Отправлять уведомления:</b>
+                        </div>
+                        <div class="form-check form-switch col-lg-10">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.IsActive" name="IsActive" />
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div>
+                <button class="btn btn-dark" type="submit" asp-action="EditTelegramProfile" asp-controller="Account">
+                    <span>Сохранить</span>
+                </button>
+                <input type="hidden" name="PersonTelegram_Id" value="@Model.PersonTelegram_Id" asp-for="@Model.PersonTelegram_Id">
+            </div>
+        </form>
+        }
 
     </div>
-
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var questionIcon = document.querySelector('.question-icon');
+        var tooltip = new bootstrap.Tooltip(questionIcon);
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<style>
+    .question-icon {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: #4E5754;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+</style>

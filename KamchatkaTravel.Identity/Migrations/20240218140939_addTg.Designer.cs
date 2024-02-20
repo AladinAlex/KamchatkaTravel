@@ -4,6 +4,7 @@ using KamchatkaTravel.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KamchatkaTravel.Identity.Migrations
 {
     [DbContext(typeof(KamchatkaTravelIdentityDbContext))]
-    partial class KamchatkaTravelIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240218140939_addTg")]
+    partial class addTg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

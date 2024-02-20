@@ -8,12 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\KamchatkaTravel.Application.Contracts\KamchatkaTravel.Application.Contracts.csproj" />
     <ProjectReference Include="..\KamchatkaTravel.Domain\KamchatkaTravel.Domain.csproj" />
     <ProjectReference Include="..\KamchatkaTravel.Identity\KamchatkaTravel.Identity.csproj" />
+    <ProjectReference Include="..\KamchatkaTravel.TelegramApi\KamchatkaTravel.TelegramApi.csproj" />
   </ItemGroup>
 
 </Project>

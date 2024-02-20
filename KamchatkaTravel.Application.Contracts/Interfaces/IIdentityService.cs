@@ -14,5 +14,7 @@ namespace KamchatkaTravel.Application.Contracts.Interfaces
         Task<ServiceResponse> AddUserRole(IdentityPerson user, string role);
         Task<ServiceResponse> AddUser(string Name, string username, string password, string Surname = null, string Comment = null, string Email = null);
         Task<IdentityPerson?> GetUserByLogin(string username);
+        Task UpdateTelegramInfo(int Id, int Chat_Id, bool isActive);
+        Task CreateTelegramInfo(int Chat_Id, bool isActive, IdentityPerson identityPerson);
     }
 }

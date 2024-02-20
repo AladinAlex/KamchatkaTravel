@@ -10,7 +10,7 @@ namespace KamchatkaTravel.Web.Tests.Tests.Repositories.IdentityRepository
         public async Task AddRole()
         {
             // Arrange
-            IIdentityRepository identity = new KamchatkaTravel.Identity.Repositories.IdentityRepository(userManager, roleManager);
+            //IIdentityRepository identity = new KamchatkaTravel.Identity.Repositories.IdentityRepository(userManager, roleManager);
 
             // Assert
         }

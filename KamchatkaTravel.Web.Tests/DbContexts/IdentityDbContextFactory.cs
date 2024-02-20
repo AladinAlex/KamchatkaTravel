@@ -12,6 +12,13 @@ namespace KamchatkaTravel.Web.Tests.DbContexts
                 .Options;
             var context = new KamchatkaTravelIdentityDbContext(options);
             context.Database.EnsureCreated();
+            context.PersonTelegrams.AddRange(
+                new Identity.Models.PersonTelegram()
+                {
+                    Chat_Id = 753876757,
+                    IsActive = true,
+                    Id = 1,
+                });
             context.SaveChanges();
             return context;
         }

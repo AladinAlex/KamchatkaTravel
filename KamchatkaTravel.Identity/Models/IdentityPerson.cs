@@ -12,5 +12,6 @@ namespace KamchatkaTravel.Identity.Models
         public string Name { get; set; }
         public string? Surname { get; set; }
         public string? Comment { get; set; }
+        public PersonTelegram? PersonTelegram { get; set; }
     }
 }

@@ -127,7 +127,30 @@ namespace KamchatkaTravel.WebDashboard.Controllers
             model.Email = user.Email;
             model.Roles = roles;
 
+            model.PersonTelegram_Id = user.PersonTelegram?.Id;
+            model.Chat_id = user.PersonTelegram?.Chat_Id;
+            model.IsActive = user.PersonTelegram?.IsActive ?? false;
+
             return View("Profile", model);
+        }
+
+        public async Task<IActionResult> EditTelegramProfile(ProfileModel model)
+        {
+            var user = await _identityService.GetUserByLogin(User.Identity.Name);
+            if (user == null)
+                return Redirect("/");
+            // Обновление
+            if (model.PersonTelegram_Id.HasValue)
+            {
+                await _identityService.UpdateTelegramInfo(model.PersonTelegram_Id.Value, model.Chat_id ?? 0, model.IsActive);
+            }
+            // Создание
+            else
+            {
+                await _identityService.CreateTelegramInfo(model.Chat_id ?? 0, model.IsActive, user);
+            }
+
+            return RedirectToAction("Profile");
         }
     }
 }

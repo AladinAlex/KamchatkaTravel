@@ -45,5 +45,16 @@ namespace KamchatkaTravel.Application.Services
             var result = await _identityRepository.GetUserByLogin(username);
             return result;
         }
+
+        public async Task UpdateTelegramInfo(int Id, int Chat_Id, bool isActive)
+        {
+            await _identityRepository.UpdateTelegramInfo(Id, Chat_Id, isActive);
+        }
+
+        public async Task CreateTelegramInfo(int Chat_Id, bool isActive, IdentityPerson identityPerson)
+        {
+            await _identityRepository.CreateTelegramInfo(Chat_Id, isActive, identityPerson);
+        }
+
     }
 }

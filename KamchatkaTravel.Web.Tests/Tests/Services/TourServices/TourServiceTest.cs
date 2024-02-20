@@ -3,7 +3,11 @@ using KamchatkaTravel.Application.Contracts.Interfaces;
 using KamchatkaTravel.Application.Services;
 using KamchatkaTravel.Domain.Interfaces;
 using KamchatkaTravel.EntityFrameworkCore.Repositories;
+using KamchatkaTravel.Identity.EntityFrameworkCore;
+using KamchatkaTravel.Identity.Interfaces;
+using KamchatkaTravel.Identity.Repositories;
 using KamchatkaTravel.Web.Tests.Tests.Base;
+using Microsoft.AspNetCore.Identity;
 
 namespace KamchatkaTravel.Web.Tests.Tests.Servicies.TourServicies
 {
@@ -14,7 +18,10 @@ namespace KamchatkaTravel.Web.Tests.Tests.Servicies.TourServicies
         {
             // Arrange
             ITourRepository repository = new TourRepository(context);
-            ITourService service = new TourService(mapper, repository);
+            //var userManager = new IdentityPersonStore();
+            var tgApi = new TelegramApi.TelegramApiService(null, "");
+            IIdentityRepository identRepos = new IdentityRepository(null, null, identityContext);
+            ITourService service = new TourService(mapper, repository, tgApi, identRepos);
             // Act
             var result = await service.Index();
             // Assert
@@ -30,7 +37,9 @@ namespace KamchatkaTravel.Web.Tests.Tests.Servicies.TourServicies
         {
             // Arrange
             ITourRepository repository = new TourRepository(context);
-            ITourService service = new TourService(mapper, repository);
+            var tgApi = new TelegramApi.TelegramApiService(null, "");
+            IIdentityRepository identRepos = new IdentityRepository(null, null, identityContext);
+            ITourService service = new TourService(mapper, repository, tgApi, identRepos);
             // Act
             foreach (var tour in context.Tours)
             {
@@ -45,7 +54,9 @@ namespace KamchatkaTravel.Web.Tests.Tests.Servicies.TourServicies
         {
             // Arrange
             ITourRepository repository = new TourRepository(context);
-            ITourService service = new TourService(mapper, repository);
+            var tgApi = new TelegramApi.TelegramApiService(null, "");
+            IIdentityRepository identRepos = new IdentityRepository(null, null, identityContext);
+            ITourService service = new TourService(mapper, repository, tgApi, identRepos);
             var CRnew1 = new ClientRequestCreateDto
             {
                 FirstName = Tools.Tools.RandomText(8),
