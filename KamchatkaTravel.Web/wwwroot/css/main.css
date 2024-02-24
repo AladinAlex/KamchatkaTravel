@@ -1606,6 +1606,7 @@ body {
     object-fit: contain;
     -o-object-position: left center;
     object-position: left center;
+    filter: invert(1);
 }
 
 .social-network {
