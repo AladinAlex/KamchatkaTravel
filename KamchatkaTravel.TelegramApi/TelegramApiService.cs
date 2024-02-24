@@ -8,6 +8,8 @@ using Telegram.Bot.Types;
 
 namespace KamchatkaTravel.TelegramApi
 {
+    //документация
+    //https://core.telegram.org/bots/api#making-requests
     public class TelegramApiService
     {
         readonly HttpClient httpClient;
