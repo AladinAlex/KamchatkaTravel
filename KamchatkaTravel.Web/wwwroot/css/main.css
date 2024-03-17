@@ -808,7 +808,7 @@ body {
 .footer .logo__image {
     width: 150px;
     height: 150px;
-    filter: invert(1);
+    /*filter: invert(1);*/
 }
 
 .presentation {
@@ -1606,7 +1606,7 @@ body {
     object-fit: contain;
     -o-object-position: left center;
     object-position: left center;
-    filter: invert(1);
+    /*filter: invert(1);*/
 }
 
 .social-network {
@@ -1644,8 +1644,8 @@ body {
     }
 
         .social-network__link:hover .social-network__icon {
-            -webkit-filter: invert(1);
-            filter: invert(1);
+/*            -webkit-filter: invert(1);
+            filter: invert(1);*/
         }
 
 .social-network__icon {

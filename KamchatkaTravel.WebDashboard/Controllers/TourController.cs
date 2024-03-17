@@ -125,7 +125,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> AddImage(AddTourImageModel model)
         {
-            var path = await MyFile.SaveFile(model.image.ImageFile, _env.WebRootPath, ImageFolder.Get(Folder.Image), model.image.Ord.ToString());
+            var path = await MyFile.SaveFile(model.image.ImageFile, _env.WebRootPath, ImageFolder.Get(Folder.Image), model.image.Ord.ToString() ?? "Image");
             model.image.ImageUrl = path;
             await _dashboardService.CreateTourImageAsync(model.image);
             return RedirectToAction("MainTour", "Home");
@@ -150,7 +150,7 @@ namespace KamchatkaTravel.WebDashboard.Controllers
         [Authorize(Roles = "SuperAdmin,Admin,User")]
         public async Task<IActionResult> EditImage(EditImageModel model)
         {
-            var path = await MyFile.SaveFile(model.image.ImageFile, _env.WebRootPath, ImageFolder.Get(Folder.Image), model.image.Ord?.ToString());
+            var path = await MyFile.SaveFile(model.image.ImageFile, _env.WebRootPath, ImageFolder.Get(Folder.Image), model.image.Ord?.ToString() ?? "Image");
             model.image.ImageUrl = path;
             await _dashboardService.EditImageAsync(model.image);
             return RedirectToAction("GetEditImage", new { ImageId = model.image.Id });

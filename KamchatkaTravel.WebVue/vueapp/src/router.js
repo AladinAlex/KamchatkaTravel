@@ -6,7 +6,7 @@ const routes = [
         name: "Index",
         component: () => import("@/pages/Index.vue"),
         meta: {
-            title: 'Land in the Ocean - Туры по Камчатке',
+            title: 'Land in the Ocean - Туры на Камчатку',
             layout: 'default',
         }
     },
