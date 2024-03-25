@@ -91,6 +91,7 @@ namespace KamchatkaTravel.Application.Services
         public async Task CreateTourAsync(CreateTourDto model)
         {
             var t = _mapper.Map<Tour>(model);
+            t.RouteName = KamchatkaTravel.Domain.Shared.Utils.Tools.GetRouteByName(t.Name);
             //t.LogoImageUrl = WriteBytes(model.LogoImg);
             //t.DescriptionImageUrl = WriteBytes(model.DescriptionImg);
             await _dashboardRepository.InsertTourAsync(t);
